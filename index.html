@@ -1,1 +1,341 @@
-document.getElementById("foto").src=o.imagen;
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOMWEEN - Comunidad Tom</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #54216b, #13091d 85%);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+header {
+  padding: 15px;
+}
+
+h1 {
+  color: #ffac2e;
+  text-shadow: 0 0 15px #ff6900;
+  margin-bottom: 8px;
+}
+
+h2 {
+  color: #ffe5a4;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 10px;
+}
+
+/* PORTADA */
+
+.portada-juego {
+  position: relative;
+  width: 100%;
+  margin: auto;
+}
+
+.imagen-portada {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+/* ZONAS PARA ELEGIR DISFRAZ */
+
+.zona {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+.zona:hover {
+  background: rgba(255, 190, 40, 0.15);
+  outline: 2px solid #ffc83d;
+}
+
+.zona:focus-visible {
+  outline: 3px solid #ffc83d;
+}
+
+/* DISFRACES IZQUIERDA */
+
+.zona1 {
+  left: 20%;
+  top: 24%;
+}
+
+.zona2 {
+  left: 18%;
+  top: 48%;
+}
+
+.zona3 {
+  left: 20%;
+  top: 73%;
+}
+
+/* DISFRACES DERECHA */
+
+.zona4 {
+  left: 80%;
+  top: 24%;
+}
+
+.zona5 {
+  left: 82%;
+  top: 48%;
+}
+
+.zona6 {
+  left: 80%;
+  top: 73%;
+}
+
+/* PANTALLA DE PREMIO */
+
+#resultado {
+  display: none;
+  background: linear-gradient(160deg, #4d205d, #1b0b2a);
+  border: 3px solid #ffb735;
+  border-radius: 25px;
+  padding: 25px 15px;
+  margin: 15px auto;
+  max-width: 600px;
+  box-shadow: 0 0 30px rgba(255, 150, 0, 0.3);
+  animation: aparecer 0.5s ease;
+}
+
+#foto {
+  display: block;
+  width: 85%;
+  max-width: 350px;
+  max-height: 400px;
+  object-fit: contain;
+  margin: 15px auto;
+}
+
+#premio {
+  font-size: clamp(35px, 8vw, 55px);
+  font-weight: 900;
+  color: #ffcf41;
+  text-shadow: 0 0 20px #ff8c00;
+}
+
+.volver {
+  background: linear-gradient(135deg, #ffca40, #ff8500);
+  color: #24102e;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.volver:hover {
+  transform: scale(1.05);
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media(max-width: 500px) {
+  header {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 25px;
+  }
+
+  .zona {
+    width: 28%;
+    height: 25%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎃 TOMWEEN 🎃</h1>
+  <h2>🐱 COMUNIDAD TOM 🐱</h2>
+  <p>¡Elegí un disfraz para Tom y descubrí tu premio!</p>
+</header>
+
+<main>
+
+  <!-- PANTALLA PRINCIPAL -->
+
+  <div id="seleccion" class="portada-juego">
+
+    <img
+      src="portada.png"
+      alt="Elegí el disfraz de Tom"
+      class="imagen-portada"
+    >
+
+    <button class="zona zona1"
+      onclick="elegir(0)"
+      aria-label="Vampiro"></button>
+
+    <button class="zona zona2"
+      onclick="elegir(1)"
+      aria-label="Fantasma"></button>
+
+    <button class="zona zona3"
+      onclick="elegir(2)"
+      aria-label="Momia"></button>
+
+    <button class="zona zona4"
+      onclick="elegir(3)"
+      aria-label="Diablo"></button>
+
+    <button class="zona zona5"
+      onclick="elegir(4)"
+      aria-label="Brujo"></button>
+
+    <button class="zona zona6"
+      onclick="elegir(5)"
+      aria-label="Esqueleto"></button>
+
+  </div>
+
+  <!-- PANTALLA DEL PREMIO -->
+
+  <section id="resultado">
+
+    <h1>🎉 ¡TRUCO O TRATO! 🎉</h1>
+
+    <h2 id="disfraz"></h2>
+
+    <img id="foto" alt="Tom disfrazado">
+
+    <h2>🎁 ¡FELICIDADES! GANASTE 🎁</h2>
+
+    <div id="premio"></div>
+
+    <p id="descripcion-premio"></p>
+
+    <button class="volver" onclick="volver()">
+      🎃 VOLVER AL JUEGO
+    </button>
+
+  </section>
+
+</main>
+
+<script>
+
+/* DISFRACES Y PREMIOS */
+
+const opciones = [
+  {
+    nombre: "Vampiro",
+    premio: "30%",
+    imagen: "vampiro.png",
+    tipo: "bono"
+  },
+  {
+    nombre: "Fantasma",
+    premio: "20%",
+    imagen: "fantasma.png",
+    tipo: "bono"
+  },
+  {
+    nombre: "Momia",
+    premio: "15%",
+    imagen: "momia.png",
+    tipo: "bono"
+  },
+  {
+    nombre: "Diablo",
+    premio: "10%",
+    imagen: "diablo.png",
+    tipo: "bono"
+  },
+  {
+    nombre: "Brujo",
+    premio: "1.000 FICHAS",
+    imagen: "brujo.png",
+    tipo: "fichas"
+  },
+  {
+    nombre: "Esqueleto",
+    premio: "500 FICHAS",
+    imagen: "esqueleto.png",
+    tipo: "fichas"
+  }
+];
+
+/* ELEGIR DISFRAZ */
+
+function elegir(numero) {
+
+  const opcion = opciones[numero];
+
+  document.getElementById("seleccion").style.display = "none";
+
+  document.getElementById("resultado").style.display = "block";
+
+  document.getElementById("disfraz").textContent =
+    "Tom se disfrazó de " + opcion.nombre;
+
+  document.getElementById("foto").src = opcion.imagen;
+
+  document.getElementById("premio").textContent = opcion.premio;
+
+  document.getElementById("descripcion-premio").textContent =
+    opcion.tipo === "bono"
+      ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
+      : "PARA TU PRÓXIMA CARGA";
+
+  window.scrollTo(0, 0);
+}
+
+/* VOLVER AL INICIO */
+
+function volver() {
+
+  document.getElementById("resultado").style.display = "none";
+
+  document.getElementById("seleccion").style.display = "block";
+
+  window.scrollTo(0, 0);
+}
+
+</script>
+
+</body>
+</html>
+
