@@ -3,254 +3,530 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOMWEEN | Comunidad Tom</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:white;text-align:center;font-family:Arial,sans-serif;background:radial-gradient(circle at 50% 30%,#7225a4,#200a35 75%)}
-main{max-width:950px;margin:auto;padding:12px}
-.pantalla{display:none}
-.pantalla.activa{display:block}
-h1{color:#ffbf35;text-shadow:0 3px 10px #ff7100;font-size:clamp(24px,5vw,42px)}
-h2{color:#ffe49c}
-.btn{border:2px solid #ffe59b;border-radius:40px;background:linear-gradient(#ffdc65,#ff8c12);color:#38133e;font-size:clamp(17px,4vw,24px);font-weight:bold;padding:15px 27px;margin:17px auto;cursor:pointer;box-shadow:0 6px 0 #9e3b0d,0 0 20px #ff8b00aa}
-.btn:active{transform:translateY(3px)}
-.audio{position:fixed;z-index:30;right:10px;top:10px;border:2px solid #ffcb65;border-radius:50px;background:#260c3fe8;color:white;padding:10px 12px;font-size:15px;cursor:pointer}
-.portada{width:100%;max-width:720px;border-radius:20px;display:block;margin:18px auto;box-shadow:0 0 25px #ff860055}
-.sub{font-size:clamp(16px,3vw,21px);font-weight:bold}
+* {
+  box-sizing: border-box;
+}
 
-/* FONDO DE HALLOWEEN Y BOTONES INVISIBLES */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #130521;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
 
-.escenario{position:relative;width:100%;aspect-ratio:3/2;margin:10px auto;border-radius:14px;overflow:hidden;box-shadow:0 0 35px #ff8c00a8;background:#35154d}
-.fondo-juego{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block}
-.zona{position:absolute;z-index:2;border:0;background:transparent;cursor:pointer;border-radius:50%;-webkit-tap-highlight-color:transparent}
-.zona:hover,.zona:focus-visible{outline:3px solid #ffde6b;background:#ffb52c20}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 10%, #7c2aab80, transparent 45%),
+    radial-gradient(circle at 15% 85%, #f66b1640, transparent 40%);
+  pointer-events: none;
+}
 
-/* POSICIONES DE LOS SEIS DISFRACES */
+section {
+  display: none;
+  position: relative;
+  min-height: 100vh;
+  padding: 20px 12px 45px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.z1{left:11%;top:10%;width:22%;height:27%}
-.z2{left:7%;top:34%;width:24%;height:25%}
-.z3{left:10%;top:57%;width:23%;height:29%}
-.z4{right:8%;top:10%;width:23%;height:27%}
-.z5{right:6%;top:35%;width:24%;height:25%}
-.z6{right:10%;top:58%;width:23%;height:29%}
+section.activa {
+  display: flex;
+}
 
-/* PANTALLA DEL PREMIO */
+h1, h2, p {
+  margin: 10px 0;
+}
 
-.premio-box{max-width:700px;margin:15px auto;padding:20px;background:radial-gradient(circle at top,#913bb8,#260b45 85%);border:3px solid #ffbf35;border-radius:24px;box-shadow:0 0 28px #ff8c0077}
-.premio-box img{width:85%;max-width:350px;max-height:380px;object-fit:contain}
-.premio{font-size:clamp(36px,8vw,60px);font-weight:900;color:#ffcf3b;text-shadow:0 0 16px #ff8500}
+h1 {
+  color: #ffae29;
+  text-shadow: 0 3px 0 #742400, 0 0 20px #ff7900;
+}
 
-@media(max-width:600px){
-main{padding:8px}
-.escenario{border-radius:8px}
-.audio{font-size:13px;padding:8px 10px}
-#inicio h1{padding-top:36px}
+h2 {
+  color: #ffc54e;
+  text-shadow: 0 0 15px #e75d00;
+}
+
+.btn {
+  display: inline-block;
+  margin: 12px auto;
+  padding: 16px 25px;
+  border: 2px solid #ffe67b;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffbd35, #fa6d09);
+  box-shadow: 0 6px 0 #8d3504, 0 0 20px #ff8b3970;
+  color: #281006;
+  font-size: 18px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  max-width: 95%;
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #8d3504;
+}
+
+.btn-whatsapp {
+  background: linear-gradient(180deg, #57ef83, #10ae48);
+  color: #052e13;
+  border-color: #a8ffb5;
+  box-shadow: 0 6px 0 #08672b, 0 0 20px #24f46780;
+}
+
+.portada {
+  width: min(94vw, 650px);
+  height: auto;
+  display: block;
+  border-radius: 22px;
+  box-shadow: 0 0 35px #a74cf570;
+}
+
+.intro {
+  color: #fff0d0;
+  font-weight: bold;
+  font-size: 18px;
+  max-width: 580px;
+}
+
+.escenario {
+  position: relative;
+  width: min(96vw, 750px);
+  aspect-ratio: 3 / 2;
+  margin: 16px auto;
+  border: 3px solid #fbb64c;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(#33115c99, #1d092c99),
+    radial-gradient(circle, #8a409d, #160622);
+  box-shadow: 0 0 30px #f7903d65;
+}
+
+.fondo-juego {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.zona {
+  position: absolute;
+  z-index: 2;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.zona:focus-visible {
+  outline: 3px solid #ffed65;
+  background: #ffeb4b40;
+}
+
+/* Zonas de los seis disfraces sobre el fondo */
+.z1 { left: 4%;  top: 9%;  width: 27%; height: 36%; }
+.z2 { left: 36%; top: 5%;  width: 28%; height: 34%; }
+.z3 { right: 4%; top: 9%;  width: 27%; height: 36%; }
+.z4 { left: 4%;  bottom: 7%; width: 27%; height: 36%; }
+.z5 { left: 36%; bottom: 4%; width: 28%; height: 34%; }
+.z6 { right: 4%; bottom: 7%; width: 27%; height: 36%; }
+
+.ayuda {
+  color: #f8d9ff;
+  font-size: 15px;
+}
+
+.resultado-caja {
+  width: min(94vw, 540px);
+  padding: 25px 18px;
+  border: 3px solid #f6b34b;
+  border-radius: 25px;
+  background: linear-gradient(150deg, #421167, #180622 70%);
+  box-shadow: 0 0 35px #e477eb60;
+}
+
+.resultado-caja img {
+  display: block;
+  width: min(75%, 310px);
+  max-height: 330px;
+  object-fit: contain;
+  margin: 12px auto;
+  filter: drop-shadow(0 10px 15px #0009);
+}
+
+.premio {
+  font-size: clamp(38px, 9vw, 65px);
+  color: #ffcb42;
+  font-weight: 900;
+  text-shadow: 0 4px 0 #8d3b00, 0 0 18px #ff8c21;
+}
+
+.sub {
+  font-size: 17px;
+  font-weight: bold;
+  color: #f5d9ff;
+}
+
+#musicaBtn {
+  position: fixed;
+  z-index: 20;
+  right: 12px;
+  top: 12px;
+  background: #281039ee;
+  color: white;
+  border: 1px solid #b578dc;
+  border-radius: 30px;
+  padding: 10px 13px;
+  cursor: pointer;
+}
+
+.pie {
+  color: #e6c7ed;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  section { padding-top: 65px; }
+  .btn { font-size: 15px; padding: 14px 18px; }
+  .intro { font-size: 15px; }
 }
 </style>
 </head>
+
 <body>
 
-<button class="audio" id="audioBtn" onclick="alternarMusica()" aria-label="Activar o silenciar música">🔇 Música</button>
+<button id="musicaBtn" onclick="alternarMusica()">
+  🔇 Música
+</button>
 
-<main>
+<!-- PANTALLA 1: PORTADA -->
+<section id="inicio" class="activa">
 
-<!-- PANTALLA 1: BIENVENIDA -->
+  <img
+    class="portada"
+    src="portada-nueva.png"
+    alt="Comunidad Tom Halloween"
+  >
 
-<section class="pantalla activa" id="inicio">
-<h1>🎃 COMUNIDAD TOM 🎃</h1>
-<h2>👻 ¡FELIZ HALLOWEEN! 👻</h2>
+  <p class="intro">
+    🎃 ¡Bienvenidos al juego especial de Halloween
+    de COMUNIDAD TOM! 🐱
+  </p>
 
-<img class="portada" src="portada-nueva.png" alt="Logo de Comunidad Tom Halloween">
+  <button class="btn" onclick="iniciarJuego()">
+    🎮 INICIAR JUEGO
+  </button>
 
-<p class="sub">¡Una noche de disfraces, sorpresas y premios!</p>
-
-<button class="btn" onclick="continuar()">🎃 CONTINUAR 🎃</button>
 </section>
 
-<!-- PANTALLA 2: TOM Y LOS SEIS DISFRACES -->
+<!-- PANTALLA 2: ELEGIR DISFRAZ -->
+<section id="seleccion">
 
-<section class="pantalla" id="seleccion">
+  <h1>🎃 COMUNIDAD TOM 🎃</h1>
+  <h2>¡ELEGÍ EL DISFRAZ DE TOM!</h2>
 
-<div class="escenario">
+  <p class="intro">
+    👻 Elegí uno de los 6 disfraces y descubrí
+    el premio escondido.
+  </p>
 
-<img class="fondo-juego" src="fondo-halloween.png" alt="Tom con su calabaza y seis disfraces de Halloween">
+  <div class="escenario">
 
-<button class="zona z1" onclick="elegir(0)" aria-label="Elegir vampiro" title="Vampiro"></button>
+    <img
+      class="fondo-juego"
+      src="fondo-halloween.png"
+      alt="Tom rodeado de seis disfraces de Halloween"
+    >
 
-<button class="zona z2" onclick="elegir(1)" aria-label="Elegir fantasma" title="Fantasma"></button>
+    <button class="zona z1" aria-label="Elegir disfraz 1"
+      onclick="elegir(0)"></button>
 
-<button class="zona z3" onclick="elegir(2)" aria-label="Elegir momia" title="Momia"></button>
+    <button class="zona z2" aria-label="Elegir disfraz 2"
+      onclick="elegir(1)"></button>
 
-<button class="zona z4" onclick="elegir(3)" aria-label="Elegir diablo" title="Diablo"></button>
+    <button class="zona z3" aria-label="Elegir disfraz 3"
+      onclick="elegir(2)"></button>
 
-<button class="zona z5" onclick="elegir(4)" aria-label="Elegir brujo" title="Brujo"></button>
+    <button class="zona z4" aria-label="Elegir disfraz 4"
+      onclick="elegir(3)"></button>
 
-<button class="zona z6" onclick="elegir(5)" aria-label="Elegir esqueleto" title="Esqueleto"></button>
+    <button class="zona z5" aria-label="Elegir disfraz 5"
+      onclick="elegir(4)"></button>
 
-</div>
+    <button class="zona z6" aria-label="Elegir disfraz 6"
+      onclick="elegir(5)"></button>
 
-<button class="btn" onclick="mostrar('inicio')">⬅ VOLVER</button>
+  </div>
+
+  <p class="ayuda">
+    👆 Tocá el disfraz que más te guste.
+  </p>
+
 </section>
 
 <!-- PANTALLA 3: PREMIO -->
+<section id="resultado">
 
-<section class="pantalla" id="resultado">
+  <div class="resultado-caja">
 
-<div class="premio-box">
+    <h1>🎉 ¡FELICIDADES! 🎉</h1>
 
-<h1>🎉 ¡TRUCO O TRATO! 🎉</h1>
+    <h2 id="nombreDisfraz"></h2>
 
-<h2 id="nombre"></h2>
+    <img id="imagenPremio" src="" alt="Tom disfrazado">
 
-<img id="foto" alt="Tom disfrazado">
+    <p>🎁 ¡TU PREMIO ES!</p>
 
-<h2>🎁 ¡FELICIDADES! GANASTE 🎁</h2>
+    <div class="premio" id="premio"></div>
 
-<div class="premio" id="premio"></div>
+    <p class="sub" id="detalle"></p>
 
-<p class="sub" id="detalle"></p>
+    <a
+      id="reclamarWhatsapp"
+      class="btn btn-whatsapp"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💚 RECLAMAR MI PREMIO POR WHATSAPP
+    </a>
 
-<button class="btn" onclick="mostrar('seleccion')">🎃 VOLVER A JUGAR</button>
+    <br>
 
-</div>
+    <button class="btn" onclick="volverAJugar()">
+      🔄 VOLVER A JUGAR
+    </button>
+
+  </div>
+
+  <p class="pie">🐱 COMUNIDAD TOM · ESPECIAL HALLOWEEN 🎃</p>
+
 </section>
-
-</main>
 
 <script>
 
-/* DISFRACES Y PREMIOS */
+/* DISFRACES, PREMIOS Y ENLACES DE WHATSAPP */
 
-const opciones=[
-{nombre:'Vampiro',premio:'30%',imagen:'vampiro.png',tipo:'bono'},
-{nombre:'Fantasma',premio:'20%',imagen:'fantasma.png',tipo:'bono'},
-{nombre:'Momia',premio:'15%',imagen:'momia.png',tipo:'bono'},
-{nombre:'Diablo',premio:'10%',imagen:'diablo.png',tipo:'bono'},
-{nombre:'Brujo',premio:'1.000 FICHAS',imagen:'brujo.png',tipo:'fichas'},
-{nombre:'Esqueleto',premio:'500 FICHAS',imagen:'esqueleto.png',tipo:'fichas'}
+const opciones = [
+  {
+    nombre: "VAMPIRO",
+    premio: "30%",
+    imagen: "vampiro.png",
+    tipo: "bono",
+    whatsapp: "https://wa.link/ekus81"
+  },
+  {
+    nombre: "FANTASMA",
+    premio: "20%",
+    imagen: "fantasma.png",
+    tipo: "bono",
+    whatsapp: "https://wa.link/sgwya9"
+  },
+  {
+    nombre: "MOMIA",
+    premio: "15%",
+    imagen: "momia.png",
+    tipo: "bono",
+    whatsapp: "https://wa.link/xcaa8y"
+  },
+  {
+    nombre: "DIABLO",
+    premio: "10%",
+    imagen: "diablo.png",
+    tipo: "bono",
+    whatsapp: "https://wa.link/a5cnge"
+  },
+  {
+    nombre: "BRUJO",
+    premio: "1.000 FICHAS",
+    imagen: "brujo.png",
+    tipo: "fichas",
+    whatsapp: "https://wa.link/am2t5h"
+  },
+  {
+    nombre: "ESQUELETO",
+    premio: "500 FICHAS",
+    imagen: "esqueleto.png",
+    tipo: "fichas",
+    whatsapp: "https://wa.link/nmz8vi"
+  }
 ];
 
-/* CAMBIAR DE PANTALLA */
+/* CAMBIO DE PANTALLAS */
 
-function mostrar(id){
-document.querySelectorAll('.pantalla').forEach(e=>e.classList.remove('activa'));
-document.getElementById(id).classList.add('activa');
-window.scrollTo(0,0);
+function mostrar(id) {
+  document.querySelectorAll("section").forEach(seccion => {
+    seccion.classList.remove("activa");
+  });
+
+  document.getElementById(id).classList.add("activa");
+  window.scrollTo(0, 0);
 }
 
-/* ELEGIR DISFRAZ */
+function iniciarJuego() {
+  iniciarMusica();
+  mostrar("seleccion");
+}
 
-function elegir(n){
-const o=opciones[n];
+function elegir(numero) {
+  const o = opciones[numero];
 
-document.getElementById('nombre').textContent='Tom se disfrazó de '+o.nombre;
-document.getElementById('foto').src=o.imagen;
-document.getElementById('premio').textContent=o.premio;
+  if (!o) return;
 
-document.getElementById('detalle').textContent=
-o.tipo==='bono'
-?'DE BONIFICACIÓN EN TU PRÓXIMA CARGA'
-:'PARA TU PRÓXIMA CARGA';
+  document.getElementById("nombreDisfraz").textContent =
+    "TOM " + o.nombre;
 
-mostrar('resultado');
-sonidoPremio();
+  document.getElementById("imagenPremio").src =
+    o.imagen;
+
+  document.getElementById("premio").textContent =
+    o.premio;
+
+  document.getElementById("detalle").textContent =
+    o.tipo === "bono"
+      ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
+      : "DE REGALO PARA TU PRÓXIMA CARGA";
+
+  /* Cada premio abre su propio WhatsApp */
+  document.getElementById("reclamarWhatsapp").href =
+    o.whatsapp;
+
+  mostrar("resultado");
+  sonidoPremio();
+}
+
+function volverAJugar() {
+  mostrar("seleccion");
 }
 
 /* MÚSICA DE HALLOWEEN */
 
-let ctx=null;
-let musicaActiva=false;
-let intervalo=null;
-let paso=0;
+let audioCtx = null;
+let musicaActiva = false;
+let intervaloMusica = null;
+let indiceNota = 0;
 
-const notas=[
-392,0,466.16,392,
-349.23,0,311.13,349.23,
-392,0,293.66,311.13,
-261.63,0,293.66,0
+const melodia = [
+  392, 311, 392, 466,
+  392, 311, 261, 311,
+  349, 277, 349, 415,
+  349, 277, 233, 277
 ];
 
-function nota(f,d=0.18,vol=0.045,tipo='sine'){
-if(!ctx||!f)return;
+function contextoAudio() {
+  if (!audioCtx) {
+    audioCtx = new (
+      window.AudioContext || window.webkitAudioContext
+    )();
+  }
 
-const osc=ctx.createOscillator();
-const g=ctx.createGain();
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
 
-osc.type=tipo;
-osc.frequency.value=f;
-
-g.gain.setValueAtTime(0.0001,ctx.currentTime);
-g.gain.exponentialRampToValueAtTime(vol,ctx.currentTime+0.025);
-g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+d);
-
-osc.connect(g);
-g.connect(ctx.destination);
-
-osc.start();
-osc.stop(ctx.currentTime+d+0.02);
+  return audioCtx;
 }
 
-function tocarPaso(){
-nota(notas[paso%notas.length],0.28,0.035,'triangle');
+function tocarNota(frecuencia, duracion, tipo, volumen) {
+  const ctx = contextoAudio();
 
-if(paso%4===0){
-nota(130.81,0.38,0.018,'sine');
+  const oscilador = ctx.createOscillator();
+  const ganancia = ctx.createGain();
+
+  oscilador.type = tipo;
+  oscilador.frequency.value = frecuencia;
+
+  ganancia.gain.setValueAtTime(
+    0.0001,
+    ctx.currentTime
+  );
+
+  ganancia.gain.exponentialRampToValueAtTime(
+    volumen,
+    ctx.currentTime + 0.025
+  );
+
+  ganancia.gain.exponentialRampToValueAtTime(
+    0.0001,
+    ctx.currentTime + duracion
+  );
+
+  oscilador.connect(ganancia);
+  ganancia.connect(ctx.destination);
+
+  oscilador.start();
+  oscilador.stop(ctx.currentTime + duracion + 0.02);
 }
 
-paso++;
+function pasoMusical() {
+  if (!musicaActiva) return;
+
+  const nota = melodia[indiceNota % melodia.length];
+
+  tocarNota(nota, 0.30, "triangle", 0.055);
+
+  if (indiceNota % 4 === 0) {
+    tocarNota(nota / 2, 0.55, "sine", 0.025);
+  }
+
+  indiceNota++;
 }
 
-async function alternarMusica(){
+function iniciarMusica() {
+  if (musicaActiva) return;
 
-if(!ctx){
-const C=window.AudioContext||window.webkitAudioContext;
+  contextoAudio();
+  musicaActiva = true;
 
-if(!C){
-alert('Tu navegador no permite reproducir música.');
-return;
+  pasoMusical();
+  intervaloMusica = setInterval(pasoMusical, 380);
+
+  document.getElementById("musicaBtn").textContent =
+    "🔊 Música";
 }
 
-ctx=new C();
+function detenerMusica() {
+  musicaActiva = false;
+  clearInterval(intervaloMusica);
+  intervaloMusica = null;
+
+  document.getElementById("musicaBtn").textContent =
+    "🔇 Música";
 }
 
-try{
-await ctx.resume();
-}catch(e){
-return;
+function alternarMusica() {
+  if (musicaActiva) {
+    detenerMusica();
+  } else {
+    iniciarMusica();
+  }
 }
 
-musicaActiva=!musicaActiva;
+function sonidoPremio() {
+  const ctx = contextoAudio();
 
-document.getElementById('audioBtn').textContent=
-musicaActiva?'🔊 Música':'🔇 Música';
-
-if(musicaActiva){
-tocarPaso();
-intervalo=setInterval(tocarPaso,340);
-}else{
-clearInterval(intervalo);
-intervalo=null;
-}
-}
-
-/* CONTINUAR Y COMENZAR MÚSICA */
-
-function continuar(){
-mostrar('seleccion');
-if(!musicaActiva)alternarMusica();
-}
-
-/* SONIDO AL GANAR */
-
-function sonidoPremio(){
-
-if(!ctx||!musicaActiva)return;
-
-[523.25,659.25,783.99,1046.5].forEach((f,i)=>{
-setTimeout(()=>nota(f,0.28,0.065,'triangle'),i*140);
-});
-
+  [523, 659, 784, 1047].forEach((nota, i) => {
+    setTimeout(() => {
+      tocarNota(nota, 0.35, "sine", 0.12);
+    }, i * 150);
+  });
 }
 
 </script>
