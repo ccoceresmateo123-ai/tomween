@@ -17,6 +17,7 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;
+  overflow-x: hidden;
 }
 
 section {
@@ -73,6 +74,10 @@ p {
   box-shadow: 0 5px 0 #873000;
 }
 
+.btn:active {
+  transform: translateY(3px);
+}
+
 /* IMAGEN DE LOS DISFRACES */
 
 .escenario {
@@ -93,15 +98,7 @@ p {
   height: auto;
 }
 
-/*
-  LOS BOTONES ESTÁN SOBRE LA IMAGEN.
-  LAS POSICIONES SON PORCENTAJES DEL
-  ANCHO Y ALTO DE LA IMAGEN ORIGINAL.
-
-  1 VAMPIRO    4 DIABLO
-  2 FANTASMA   5 BRUJO
-  3 MOMIA      6 ESQUELETO
-*/
+/* BOTONES SOBRE LOS DISFRACES */
 
 .zona {
   position: absolute;
@@ -120,9 +117,7 @@ p {
   background: rgba(255, 230, 60, 0.25);
 }
 
-/* CENTROS DE LOS 6 CÍRCULOS */
-
-/* VAMPIRO */
+/* 1 VAMPIRO */
 .z1 {
   left: 21%;
   top: 20%;
@@ -130,7 +125,7 @@ p {
   height: 24%;
 }
 
-/* FANTASMA */
+/* 2 FANTASMA */
 .z2 {
   left: 19%;
   top: 45%;
@@ -138,7 +133,7 @@ p {
   height: 25%;
 }
 
-/* MOMIA */
+/* 3 MOMIA */
 .z3 {
   left: 20%;
   top: 69%;
@@ -146,7 +141,7 @@ p {
   height: 25%;
 }
 
-/* DIABLO */
+/* 4 DIABLO */
 .z4 {
   left: 80%;
   top: 20%;
@@ -154,7 +149,7 @@ p {
   height: 25%;
 }
 
-/* BRUJO */
+/* 5 BRUJO */
 .z5 {
   left: 81%;
   top: 45%;
@@ -162,7 +157,7 @@ p {
   height: 25%;
 }
 
-/* ESQUELETO */
+/* 6 ESQUELETO */
 .z6 {
   left: 80%;
   top: 70%;
@@ -170,15 +165,32 @@ p {
   height: 25%;
 }
 
-/* PANTALLA GANADORA */
+/* PANTALLA DE PREMIO */
 
 .resultado-caja {
+  position: relative;
   width: min(95vw, 550px);
-  padding: 22px 16px;
+  padding: 24px 16px;
   border: 3px solid #ffc04d;
   border-radius: 25px;
-  background: linear-gradient(145deg, #50156d, #190822);
-  box-shadow: 0 0 35px #d85aff60;
+  background:
+    radial-gradient(circle at top, #ac238d, transparent 55%),
+    linear-gradient(145deg, #601a85, #190822);
+  box-shadow:
+    0 0 25px #ffb52f80,
+    0 0 55px #d85aff60;
+  animation: aparecer 0.5s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .resultado-caja img {
@@ -188,14 +200,38 @@ p {
   object-fit: contain;
   margin: 12px auto;
   filter: drop-shadow(0 10px 14px #0008);
+  animation: festejoTom 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes festejoTom {
+  from {
+    transform: translateY(0) rotate(-3deg);
+  }
+  to {
+    transform: translateY(-12px) rotate(3deg);
+  }
 }
 
 .premio {
-  color: #ffce40;
+  color: #ffe13c;
   font-size: clamp(38px, 9vw, 65px);
   font-weight: 900;
-  text-shadow: 0 4px #843000, 0 0 18px orange;
   margin: 15px 0;
+  animation: brilloPremio 0.8s infinite alternate;
+}
+
+@keyframes brilloPremio {
+  from {
+    text-shadow: 0 4px #843000, 0 0 12px orange;
+    transform: scale(1);
+  }
+  to {
+    text-shadow:
+      0 4px #843000,
+      0 0 20px yellow,
+      0 0 38px #ff48cc;
+    transform: scale(1.06);
+  }
 }
 
 .sub {
@@ -242,6 +278,32 @@ p {
   font-size: 15px;
 }
 
+/* CONFETI */
+
+#confeti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+  display: none;
+}
+
+.papelito {
+  position: absolute;
+  top: -30px;
+  width: 10px;
+  height: 18px;
+  animation: caer linear forwards;
+}
+
+@keyframes caer {
+  to {
+    transform: translateY(110vh) rotate(900deg);
+    opacity: 0;
+  }
+}
+
 /* MÚSICA */
 
 #musicaBtn {
@@ -268,9 +330,13 @@ p {
   .btn-canal {
     font-size: 14px;
   }
+}
 
-  .canal-titulo {
-    font-size: 16px;
+@media (prefers-reduced-motion: reduce) {
+  .resultado-caja,
+  .resultado-caja img,
+  .premio {
+    animation: none;
   }
 }
 </style>
@@ -282,7 +348,9 @@ p {
   🔇 Música
 </button>
 
-<!-- PANTALLA 1: PORTADA -->
+<div id="confeti"></div>
+
+<!-- PORTADA -->
 
 <section id="inicio" class="activa">
 
@@ -305,12 +373,11 @@ p {
 
 </section>
 
-<!-- PANTALLA 2: ELEGIR DISFRAZ -->
+<!-- ELEGIR DISFRAZ -->
 
 <section id="seleccion">
 
   <h1>🎃 COMUNIDAD TOM 🎃</h1>
-
   <h2>¡ELEGÍ EL DISFRAZ DE TOM!</h2>
 
   <p>
@@ -325,47 +392,23 @@ p {
       alt="Tom y los seis disfraces"
     >
 
-    <!-- 1: VAMPIRO -->
-    <button
-      class="zona z1"
-      aria-label="Vampiro"
-      onclick="elegir(0)">
-    </button>
+    <button class="zona z1" aria-label="Vampiro"
+      onclick="elegir(0)"></button>
 
-    <!-- 2: FANTASMA -->
-    <button
-      class="zona z2"
-      aria-label="Fantasma"
-      onclick="elegir(1)">
-    </button>
+    <button class="zona z2" aria-label="Fantasma"
+      onclick="elegir(1)"></button>
 
-    <!-- 3: MOMIA -->
-    <button
-      class="zona z3"
-      aria-label="Momia"
-      onclick="elegir(2)">
-    </button>
+    <button class="zona z3" aria-label="Momia"
+      onclick="elegir(2)"></button>
 
-    <!-- 4: DIABLO -->
-    <button
-      class="zona z4"
-      aria-label="Diablo"
-      onclick="elegir(3)">
-    </button>
+    <button class="zona z4" aria-label="Diablo"
+      onclick="elegir(3)"></button>
 
-    <!-- 5: BRUJO -->
-    <button
-      class="zona z5"
-      aria-label="Brujo"
-      onclick="elegir(4)">
-    </button>
+    <button class="zona z5" aria-label="Brujo"
+      onclick="elegir(4)"></button>
 
-    <!-- 6: ESQUELETO -->
-    <button
-      class="zona z6"
-      aria-label="Esqueleto"
-      onclick="elegir(5)">
-    </button>
+    <button class="zona z6" aria-label="Esqueleto"
+      onclick="elegir(5)"></button>
 
   </div>
 
@@ -373,13 +416,15 @@ p {
 
 </section>
 
-<!-- PANTALLA 3: RESULTADO -->
+<!-- RESULTADO Y YA PARTICIPASTE -->
 
 <section id="resultado">
 
   <div class="resultado-caja">
 
-    <h1>🎉 ¡FELICIDADES! 🎉</h1>
+    <h1 id="tituloResultado">
+      🎉 ¡FELICIDADES! 🎉
+    </h1>
 
     <h2 id="nombreDisfraz"></h2>
 
@@ -389,7 +434,7 @@ p {
       alt="Tom con su disfraz ganador"
     >
 
-    <p>🎁 ¡TU PREMIO ES!</p>
+    <p id="textoPremio">🎁 ¡TU PREMIO ES!</p>
 
     <div class="premio" id="premio"></div>
 
@@ -404,8 +449,6 @@ p {
     >
       💚 RECLAMAR MI PREMIO POR WHATSAPP
     </a>
-
-    <!-- AGRADECIMIENTO Y CANAL -->
 
     <div class="canal-caja">
 
@@ -430,10 +473,6 @@ p {
 
     </div>
 
-    <button class="btn" onclick="volverAJugar()">
-      🔄 VOLVER A JUGAR
-    </button>
-
   </div>
 
   <p class="pie">
@@ -444,7 +483,7 @@ p {
 
 <script>
 
-/* LOS 6 PREMIOS Y SUS ENLACES */
+/* PREMIOS Y WHATSAPP */
 
 const opciones = [
   {
@@ -491,7 +530,43 @@ const opciones = [
   }
 ];
 
-/* CAMBIAR DE PANTALLA */
+/* GUARDAR PARTICIPACIÓN EN EL NAVEGADOR */
+
+const CLAVE_JUEGO = "tomween_halloween_2026_premio";
+
+function premioGuardado() {
+  try {
+    const valor = localStorage.getItem(CLAVE_JUEGO);
+
+    if (valor === null) return null;
+
+    const numero = Number(valor);
+
+    if (
+      Number.isInteger(numero) &&
+      numero >= 0 &&
+      numero < opciones.length
+    ) {
+      return numero;
+    }
+  } catch (error) {
+    console.warn("No se pudo leer el premio guardado.");
+  }
+
+  return null;
+}
+
+function guardarPremio(numero) {
+  try {
+    localStorage.setItem(CLAVE_JUEGO, String(numero));
+    return true;
+  } catch (error) {
+    console.warn("No se pudo guardar el premio.");
+    return false;
+  }
+}
+
+/* PANTALLAS */
 
 function mostrar(id) {
   document.querySelectorAll("section").forEach(seccion => {
@@ -504,15 +579,52 @@ function mostrar(id) {
 
 function iniciarJuego() {
   iniciarMusica();
-  mostrar("seleccion");
+
+  const anterior = premioGuardado();
+
+  if (anterior !== null) {
+    mostrarPremio(anterior, true);
+  } else {
+    mostrar("seleccion");
+  }
 }
 
-/* ELEGIR DISFRAZ */
+/* ELEGIR SOLO UNA VEZ */
 
 function elegir(numero) {
+  const anterior = premioGuardado();
+
+  if (anterior !== null) {
+    mostrarPremio(anterior, true);
+    return;
+  }
+
+  if (!opciones[numero]) return;
+
+  const guardado = guardarPremio(numero);
+
+  if (!guardado) {
+    alert(
+      "No se pudo guardar tu participación. " +
+      "Activá el almacenamiento del navegador e intentá nuevamente."
+    );
+    return;
+  }
+
+  mostrarPremio(numero, false);
+}
+
+/* MOSTRAR PREMIO O YA PARTICIPASTE */
+
+function mostrarPremio(numero, yaParticipo) {
   const opcion = opciones[numero];
 
   if (!opcion) return;
+
+  document.getElementById("tituloResultado").textContent =
+    yaParticipo
+      ? "🎃 ¡YA PARTICIPASTE! 🎃"
+      : "🎉 ¡FELICIDADES! 🎉";
 
   document.getElementById("nombreDisfraz").textContent =
     "TOM " + opcion.nombre;
@@ -523,6 +635,11 @@ function elegir(numero) {
   document.getElementById("premio").textContent =
     opcion.premio;
 
+  document.getElementById("textoPremio").textContent =
+    yaParticipo
+      ? "🎁 ESTE FUE TU PREMIO:"
+      : "🎁 ¡TU PREMIO ES!";
+
   document.getElementById("detalle").textContent =
     opcion.tipo === "bono"
       ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
@@ -532,14 +649,63 @@ function elegir(numero) {
     opcion.whatsapp;
 
   mostrar("resultado");
-  sonidoPremio();
+
+  if (!yaParticipo) {
+    sonidoPremio();
+    lanzarConfeti();
+  }
 }
 
-function volverAJugar() {
-  mostrar("seleccion");
+/* SI VUELVEN A ENTRAR, MOSTRAR PREMIO GUARDADO */
+
+window.addEventListener("DOMContentLoaded", () => {
+  const anterior = premioGuardado();
+
+  if (anterior !== null) {
+    mostrarPremio(anterior, true);
+  }
+});
+
+/* CONFETI DE FESTEJO */
+
+function lanzarConfeti() {
+  const contenedor = document.getElementById("confeti");
+  const colores = [
+    "#ffca28",
+    "#ff5722",
+    "#b84dff",
+    "#32e86b",
+    "#ff3dba",
+    "#40d8ff"
+  ];
+
+  contenedor.innerHTML = "";
+  contenedor.style.display = "block";
+
+  for (let i = 0; i < 85; i++) {
+    const papel = document.createElement("span");
+    papel.className = "papelito";
+
+    papel.style.left = Math.random() * 100 + "%";
+    papel.style.background =
+      colores[Math.floor(Math.random() * colores.length)];
+
+    papel.style.animationDuration =
+      (2.5 + Math.random() * 2) + "s";
+
+    papel.style.animationDelay =
+      (Math.random() * 1.2) + "s";
+
+    contenedor.appendChild(papel);
+  }
+
+  setTimeout(() => {
+    contenedor.style.display = "none";
+    contenedor.innerHTML = "";
+  }, 6000);
 }
 
-/* MÚSICA DE HALLOWEEN */
+/* MÚSICA MÁS RÁPIDA Y TERRORÍFICA */
 
 let audioCtx = null;
 let musicaActiva = false;
@@ -547,10 +713,12 @@ let intervaloMusica = null;
 let indiceNota = 0;
 
 const melodia = [
-  392, 311, 392, 466,
-  392, 311, 261, 311,
-  349, 277, 349, 415,
-  349, 277, 233, 277
+  392, 370, 311, 277,
+  392, 466, 440, 311,
+  349, 330, 277, 233,
+  349, 415, 392, 277,
+  523, 494, 392, 311,
+  466, 440, 349, 277
 ];
 
 function contextoAudio() {
@@ -582,7 +750,7 @@ function tocarNota(frecuencia, duracion, tipo, volumen) {
 
   ganancia.gain.exponentialRampToValueAtTime(
     volumen,
-    ctx.currentTime + 0.025
+    ctx.currentTime + 0.015
   );
 
   ganancia.gain.exponentialRampToValueAtTime(
@@ -602,10 +770,15 @@ function pasoMusical() {
 
   const nota = melodia[indiceNota % melodia.length];
 
-  tocarNota(nota, 0.30, "triangle", 0.055);
+  tocarNota(nota, 0.18, "sawtooth", 0.025);
+  tocarNota(nota / 2, 0.24, "triangle", 0.035);
 
   if (indiceNota % 4 === 0) {
-    tocarNota(nota / 2, 0.55, "sine", 0.025);
+    tocarNota(65, 0.32, "sine", 0.07);
+  }
+
+  if (indiceNota % 4 === 2) {
+    tocarNota(120, 0.10, "square", 0.018);
   }
 
   indiceNota++;
@@ -618,7 +791,9 @@ function iniciarMusica() {
   musicaActiva = true;
 
   pasoMusical();
-  intervaloMusica = setInterval(pasoMusical, 380);
+
+  /* RITMO MÁS RÁPIDO */
+  intervaloMusica = setInterval(pasoMusical, 220);
 
   document.getElementById("musicaBtn").textContent =
     "🔊 Música";
@@ -641,13 +816,17 @@ function alternarMusica() {
   }
 }
 
+/* SONIDO DE VICTORIA */
+
 function sonidoPremio() {
   contextoAudio();
 
-  [523, 659, 784, 1047].forEach((nota, i) => {
+  const notas = [523, 659, 784, 1047, 1319];
+
+  notas.forEach((nota, i) => {
     setTimeout(() => {
-      tocarNota(nota, 0.35, "sine", 0.12);
-    }, i * 150);
+      tocarNota(nota, 0.4, "triangle", 0.12);
+    }, i * 110);
   });
 }
 
