@@ -4,13 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>TOMWEEN - COMUNIDAD TOM</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -18,7 +15,6 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;
-  min-height: 100vh;
 }
 
 section {
@@ -33,9 +29,7 @@ section {
     linear-gradient(160deg, #230a3a, #100518);
 }
 
-section.activa {
-  display: flex;
-}
+section.activa { display: flex; }
 
 h1 {
   color: #ffb52f;
@@ -48,9 +42,7 @@ h2 {
   margin: 10px 0;
 }
 
-p {
-  line-height: 1.5;
-}
+p { line-height: 1.5; }
 
 .portada {
   width: min(95vw, 650px);
@@ -74,10 +66,6 @@ p {
   box-shadow: 0 5px 0 #873000;
 }
 
-.btn:active {
-  transform: translateY(3px);
-}
-
 .escenario {
   position: relative;
   width: min(96vw, 750px);
@@ -97,7 +85,11 @@ p {
   object-fit: fill;
 }
 
-/* BOTONES INVISIBLES DE LOS DISFRACES */
+/*
+  POSICIONES CORREGIDAS:
+  IZQUIERDA: 1, 2, 3
+  DERECHA: 4, 5, 6
+*/
 
 .zona {
   position: absolute;
@@ -105,53 +97,61 @@ p {
   border: 0;
   background: transparent;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .zona:focus-visible {
-  outline: 3px solid yellow;
+  outline: 3px solid #ffe45c;
+  background: #ffea4a30;
 }
 
+/* 1 VAMPIRO - ARRIBA IZQUIERDA */
 .z1 {
-  left: 4%;
-  top: 9%;
-  width: 27%;
-  height: 36%;
+  left: 10%;
+  top: 8%;
+  width: 24%;
+  height: 28%;
 }
 
+/* 2 FANTASMA - CENTRO IZQUIERDA */
 .z2 {
-  left: 36%;
-  top: 5%;
-  width: 28%;
-  height: 34%;
+  left: 7%;
+  top: 32%;
+  width: 25%;
+  height: 28%;
 }
 
+/* 3 MOMIA - ABAJO IZQUIERDA */
 .z3 {
-  right: 4%;
-  top: 9%;
-  width: 27%;
-  height: 36%;
+  left: 8%;
+  top: 56%;
+  width: 25%;
+  height: 28%;
 }
 
+/* 4 DIABLO - ARRIBA DERECHA */
 .z4 {
-  left: 4%;
-  bottom: 7%;
-  width: 27%;
-  height: 36%;
+  right: 7%;
+  top: 7%;
+  width: 25%;
+  height: 29%;
 }
 
+/* 5 BRUJO - CENTRO DERECHA */
 .z5 {
-  left: 36%;
-  bottom: 4%;
-  width: 28%;
-  height: 34%;
+  right: 5%;
+  top: 32%;
+  width: 25%;
+  height: 28%;
 }
 
+/* 6 ESQUELETO - ABAJO DERECHA */
 .z6 {
-  right: 4%;
-  bottom: 7%;
-  width: 27%;
-  height: 36%;
+  right: 7%;
+  top: 57%;
+  width: 25%;
+  height: 28%;
 }
 
 .resultado-caja {
@@ -185,22 +185,20 @@ p {
   color: #f3d8ff;
 }
 
-.btn-whatsapp {
+.btn-whatsapp, .btn-canal {
   display: inline-block;
   width: min(100%, 390px);
-  padding: 17px 15px;
-  margin: 15px auto;
+  padding: 16px 14px;
+  margin: 12px auto;
   border: 2px solid #baffc8;
   border-radius: 18px;
   background: linear-gradient(#43eb76, #0ba83e);
   color: #073817;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 900;
   text-decoration: none;
   box-shadow: 0 5px 0 #075b26;
 }
-
-/* NUEVO: MENSAJE Y BOTÓN DEL CANAL */
 
 .canal-caja {
   margin: 22px auto 8px;
@@ -210,7 +208,6 @@ p {
   background: linear-gradient(145deg, #622278, #301044);
   border: 2px solid #b967ed;
   border-radius: 20px;
-  box-shadow: 0 0 18px #c44df650;
 }
 
 .canal-titulo {
@@ -222,20 +219,6 @@ p {
 .canal-texto {
   color: #fff0ff;
   font-size: 15px;
-}
-
-.btn-canal {
-  display: inline-block;
-  margin: 12px auto 4px;
-  padding: 15px 18px;
-  border: 2px solid #c4ffcc;
-  border-radius: 15px;
-  background: linear-gradient(#46e877, #11a846);
-  color: #073817;
-  font-size: 16px;
-  font-weight: 900;
-  text-decoration: none;
-  box-shadow: 0 4px 0 #086329;
 }
 
 #musicaBtn {
@@ -257,17 +240,8 @@ p {
 }
 
 @media (max-width: 480px) {
-  .btn {
-    font-size: 15px;
-  }
-
-  .btn-whatsapp,
-  .btn-canal {
+  .btn, .btn-whatsapp, .btn-canal {
     font-size: 14px;
-  }
-
-  .canal-titulo {
-    font-size: 16px;
   }
 }
 </style>
@@ -279,8 +253,7 @@ p {
   🔇 Música
 </button>
 
-<!-- PANTALLA 1: PORTADA -->
-
+<!-- PORTADA -->
 <section id="inicio" class="activa">
 
   <img
@@ -302,48 +275,46 @@ p {
 
 </section>
 
-<!-- PANTALLA 2: ELEGIR DISFRAZ -->
-
+<!-- SELECCIÓN DE DISFRACES -->
 <section id="seleccion">
 
   <h1>🎃 COMUNIDAD TOM 🎃</h1>
-
   <h2>¡ELEGÍ EL DISFRAZ DE TOM!</h2>
 
-  <p>
-    👻 Tocá uno de los 6 disfraces para descubrir tu premio.
-  </p>
+  <p>👻 Tocá uno de los 6 disfraces para descubrir tu premio.</p>
 
   <div class="escenario">
 
     <img
       class="fondo-juego"
       src="fondo-halloween.png"
-      alt="Tom y sus disfraces de Halloween"
+      alt="Tom y sus seis disfraces"
     >
 
+    <!-- COLUMNA IZQUIERDA -->
     <button class="zona z1"
-      aria-label="Vampiro"
+      aria-label="Vampiro, número 1"
       onclick="elegir(0)"></button>
 
     <button class="zona z2"
-      aria-label="Fantasma"
+      aria-label="Fantasma, número 2"
       onclick="elegir(1)"></button>
 
     <button class="zona z3"
-      aria-label="Momia"
+      aria-label="Momia, número 3"
       onclick="elegir(2)"></button>
 
+    <!-- COLUMNA DERECHA -->
     <button class="zona z4"
-      aria-label="Diablo"
+      aria-label="Diablo, número 4"
       onclick="elegir(3)"></button>
 
     <button class="zona z5"
-      aria-label="Brujo"
+      aria-label="Brujo, número 5"
       onclick="elegir(4)"></button>
 
     <button class="zona z6"
-      aria-label="Esqueleto"
+      aria-label="Esqueleto, número 6"
       onclick="elegir(5)"></button>
 
   </div>
@@ -352,8 +323,7 @@ p {
 
 </section>
 
-<!-- PANTALLA 3: PREMIO -->
-
+<!-- PANTALLA GANADORA -->
 <section id="resultado">
 
   <div class="resultado-caja">
@@ -365,7 +335,7 @@ p {
     <img
       id="imagenPremio"
       src=""
-      alt="Tom con su disfraz ganador"
+      alt="Tom disfrazado con su premio"
     >
 
     <p>🎁 ¡TU PREMIO ES!</p>
@@ -373,8 +343,6 @@ p {
     <div class="premio" id="premio"></div>
 
     <p class="sub" id="detalle"></p>
-
-    <!-- BOTÓN PARA RECLAMAR EL PREMIO -->
 
     <a
       id="reclamarWhatsapp"
@@ -386,8 +354,7 @@ p {
       💚 RECLAMAR MI PREMIO POR WHATSAPP
     </a>
 
-    <!-- NUEVO: AGRADECIMIENTO Y CANAL -->
-
+    <!-- CANAL DE COMUNIDAD TOM -->
     <div class="canal-caja">
 
       <p class="canal-titulo">
@@ -425,7 +392,7 @@ p {
 
 <script>
 
-/* DISFRACES, PREMIOS Y ENLACES */
+/* PREMIOS EN EL ORDEN DE LA IMAGEN */
 
 const opciones = [
   {
@@ -472,8 +439,6 @@ const opciones = [
   }
 ];
 
-/* MOSTRAR PANTALLAS */
-
 function mostrar(id) {
   document.querySelectorAll("section").forEach(seccion => {
     seccion.classList.remove("activa");
@@ -488,10 +453,7 @@ function iniciarJuego() {
   mostrar("seleccion");
 }
 
-/* ELEGIR DISFRAZ Y MOSTRAR PREMIO */
-
 function elegir(numero) {
-
   const opcion = opciones[numero];
 
   if (!opcion) return;
@@ -509,8 +471,6 @@ function elegir(numero) {
     opcion.tipo === "bono"
       ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
       : "DE REGALO PARA TU PRÓXIMA CARGA";
-
-  /* ENLACE DE WHATSAPP SEGÚN EL PREMIO */
 
   document.getElementById("reclamarWhatsapp").href =
     opcion.whatsapp;
@@ -553,26 +513,18 @@ function contextoAudio() {
 
 function tocarNota(frecuencia, duracion, tipo, volumen) {
   const ctx = contextoAudio();
-
   const oscilador = ctx.createOscillator();
   const ganancia = ctx.createGain();
 
   oscilador.type = tipo;
   oscilador.frequency.value = frecuencia;
 
-  ganancia.gain.setValueAtTime(
-    0.0001,
-    ctx.currentTime
-  );
-
+  ganancia.gain.setValueAtTime(0.0001, ctx.currentTime);
   ganancia.gain.exponentialRampToValueAtTime(
-    volumen,
-    ctx.currentTime + 0.025
+    volumen, ctx.currentTime + 0.025
   );
-
   ganancia.gain.exponentialRampToValueAtTime(
-    0.0001,
-    ctx.currentTime + duracion
+    0.0001, ctx.currentTime + duracion
   );
 
   oscilador.connect(ganancia);
@@ -586,7 +538,6 @@ function pasoMusical() {
   if (!musicaActiva) return;
 
   const nota = melodia[indiceNota % melodia.length];
-
   tocarNota(nota, 0.30, "triangle", 0.055);
 
   if (indiceNota % 4 === 0) {
@@ -601,8 +552,8 @@ function iniciarMusica() {
 
   contextoAudio();
   musicaActiva = true;
-
   pasoMusical();
+
   intervaloMusica = setInterval(pasoMusical, 380);
 
   document.getElementById("musicaBtn").textContent =
@@ -637,6 +588,5 @@ function sonidoPremio() {
 }
 
 </script>
-
 </body>
 </html>
