@@ -1,11 +1,10 @@
 
-
-  
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TOMWEEN - COMUNIDAD TOM</title>
 
 <style>
@@ -98,7 +97,7 @@ p {
   object-fit: fill;
 }
 
-/* BOTONES INVISIBLES SOBRE LOS 6 DISFRACES */
+/* BOTONES INVISIBLES DE LOS DISFRACES */
 
 .zona {
   position: absolute;
@@ -201,6 +200,44 @@ p {
   box-shadow: 0 5px 0 #075b26;
 }
 
+/* NUEVO: MENSAJE Y BOTÓN DEL CANAL */
+
+.canal-caja {
+  margin: 22px auto 8px;
+  padding: 18px 14px;
+  width: 100%;
+  max-width: 430px;
+  background: linear-gradient(145deg, #622278, #301044);
+  border: 2px solid #b967ed;
+  border-radius: 20px;
+  box-shadow: 0 0 18px #c44df650;
+}
+
+.canal-titulo {
+  color: #ffda77;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.canal-texto {
+  color: #fff0ff;
+  font-size: 15px;
+}
+
+.btn-canal {
+  display: inline-block;
+  margin: 12px auto 4px;
+  padding: 15px 18px;
+  border: 2px solid #c4ffcc;
+  border-radius: 15px;
+  background: linear-gradient(#46e877, #11a846);
+  color: #073817;
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 4px 0 #086329;
+}
+
 #musicaBtn {
   position: fixed;
   top: 12px;
@@ -224,8 +261,13 @@ p {
     font-size: 15px;
   }
 
-  .btn-whatsapp {
-    font-size: 15px;
+  .btn-whatsapp,
+  .btn-canal {
+    font-size: 14px;
+  }
+
+  .canal-titulo {
+    font-size: 16px;
   }
 }
 </style>
@@ -260,7 +302,7 @@ p {
 
 </section>
 
-<!-- PANTALLA 2: SELECCIÓN -->
+<!-- PANTALLA 2: ELEGIR DISFRAZ -->
 
 <section id="seleccion">
 
@@ -268,7 +310,9 @@ p {
 
   <h2>¡ELEGÍ EL DISFRAZ DE TOM!</h2>
 
-  <p>👻 Tocá uno de los 6 disfraces para descubrir tu premio.</p>
+  <p>
+    👻 Tocá uno de los 6 disfraces para descubrir tu premio.
+  </p>
 
   <div class="escenario">
 
@@ -330,7 +374,7 @@ p {
 
     <p class="sub" id="detalle"></p>
 
-    <!-- BOTÓN VERDE DE WHATSAPP -->
+    <!-- BOTÓN PARA RECLAMAR EL PREMIO -->
 
     <a
       id="reclamarWhatsapp"
@@ -342,7 +386,30 @@ p {
       💚 RECLAMAR MI PREMIO POR WHATSAPP
     </a>
 
-    <br>
+    <!-- NUEVO: AGRADECIMIENTO Y CANAL -->
+
+    <div class="canal-caja">
+
+      <p class="canal-titulo">
+        🐱🎃 ¡GRACIAS POR PARTICIPAR!
+      </p>
+
+      <p class="canal-texto">
+        💜 Seguinos en nuestro canal de WhatsApp
+        para descubrir más juegos, premios y bonos
+        de COMUNIDAD TOM.
+      </p>
+
+      <a
+        class="btn-canal"
+        href="https://whatsapp.com/channel/0029Vb7Vf4nKgsNszIrKNG02"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📲 SEGUIR NUESTRO CANAL
+      </a>
+
+    </div>
 
     <button class="btn" onclick="volverAJugar()">
       🔄 VOLVER A JUGAR
@@ -358,7 +425,7 @@ p {
 
 <script>
 
-/* LOS 6 DISFRACES, PREMIOS Y WHATSAPP */
+/* DISFRACES, PREMIOS Y ENLACES */
 
 const opciones = [
   {
@@ -421,15 +488,13 @@ function iniciarJuego() {
   mostrar("seleccion");
 }
 
-/* ELEGIR DISFRAZ Y ASIGNAR WHATSAPP */
+/* ELEGIR DISFRAZ Y MOSTRAR PREMIO */
 
 function elegir(numero) {
 
   const opcion = opciones[numero];
 
-  if (!opcion) {
-    return;
-  }
+  if (!opcion) return;
 
   document.getElementById("nombreDisfraz").textContent =
     "TOM " + opcion.nombre;
@@ -445,7 +510,8 @@ function elegir(numero) {
       ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
       : "DE REGALO PARA TU PRÓXIMA CARGA";
 
-  /* ESTA LÍNEA COLOCA EL LINK CORRECTO */
+  /* ENLACE DE WHATSAPP SEGÚN EL PREMIO */
+
   document.getElementById("reclamarWhatsapp").href =
     opcion.whatsapp;
 
