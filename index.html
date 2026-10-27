@@ -51,20 +51,12 @@ section.activa {
 ========================== */
 
 #inicio {
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
   min-height: 100svh;
-  padding: 85px 16px 45px;
+  padding: 75px 16px 40px;
   background:
-    linear-gradient(180deg, #10041730, #10041770),
-    url("fondoinicio.png") center center / cover no-repeat,
+    linear-gradient(180deg, #10041730, #10041790),
+    url("fondoinicio.png") center / cover no-repeat,
     linear-gradient(160deg, #270b40, #100417);
-}
-
-#inicio > * {
-  position: relative;
-  z-index: 1;
 }
 
 .portada {
@@ -111,27 +103,54 @@ p {
 }
 
 /* ==========================
-   ESCENARIO DE DISFRACES
+   ESCENARIO VERTICAL
 ========================== */
+
+#seleccion {
+  padding: 55px 10px 25px;
+  justify-content: flex-start;
+}
+
+#seleccion h1 {
+  margin: 5px 0;
+}
+
+#seleccion h2 {
+  margin: 4px 0;
+}
+
+#seleccion > p {
+  margin: 8px 0;
+}
 
 .escenario {
   position: relative;
-  width: min(96vw, 750px);
+  width: min(96vw, 470px);
+  aspect-ratio: 9 / 16;
   margin: 12px auto;
   border: 3px solid #f8b34b;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
   background: #32134e;
   box-shadow: 0 0 25px #ff923d80;
   line-height: 0;
   isolation: isolate;
   user-select: none;
+  touch-action: none;
 }
 
+/*
+  NUEVA IMAGEN VERTICAL
+  No se estira ni se recorta.
+*/
+
 .fondo-juego {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: fill;
   pointer-events: none;
   -webkit-user-drag: none;
 }
@@ -145,8 +164,8 @@ p {
   z-index: 4;
   left: 50%;
   top: 55%;
-  width: 25%;
-  height: 44%;
+  width: 29%;
+  height: 28%;
   object-fit: contain;
   object-position: center;
   transform: translate(-50%, -50%);
@@ -206,7 +225,7 @@ p {
 }
 
 /* ==========================
-   MAGIA DE TRANSFORMACION
+   MAGIA
 ========================== */
 
 #magia {
@@ -215,7 +234,7 @@ p {
   z-index: 5;
   left: 50%;
   top: 55%;
-  width: 48%;
+  width: 55%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -258,16 +277,17 @@ p {
 }
 
 /* ==========================
-   ZONAS DE LOS DISFRACES
+   ZONAS DE LOS 6 DISFRACES
+   SEGUN IMAGEN VERTICAL
 ========================== */
 
 .zona {
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   padding: 0;
   border: 0;
   background: transparent;
-  border-radius: 50%;
+  border-radius: 25%;
   transform: translate(-50%, -50%);
   cursor: grab;
   touch-action: none;
@@ -284,71 +304,70 @@ p {
 
 .zona.bloqueada {
   pointer-events: none;
-  opacity: .45;
 }
 
+/*
+  FILA SUPERIOR:
+  Vampiro - Diablo
+
+  FILA CENTRAL:
+  Fantasma - Momia
+
+  FILA INFERIOR:
+  Brujo - Esqueleto
+*/
+
 .z1 {
-  left: 21%;
-  top: 20%;
-  width: 23%;
-  height: 25%;
+  left: 23%;
+  top: 27%;
+  width: 37%;
+  height: 19%;
 }
 
 .z2 {
-  left: 19%;
-  top: 45%;
-  width: 23%;
-  height: 25%;
+  left: 23%;
+  top: 50%;
+  width: 37%;
+  height: 19%;
 }
 
 .z3 {
-  left: 20%;
-  top: 72%;
-  width: 24%;
-  height: 25%;
+  left: 77%;
+  top: 50%;
+  width: 37%;
+  height: 19%;
 }
 
 .z4 {
-  left: 80%;
-  top: 20%;
-  width: 24%;
-  height: 25%;
+  left: 77%;
+  top: 27%;
+  width: 37%;
+  height: 19%;
 }
 
 .z5 {
-  left: 81%;
-  top: 45%;
-  width: 24%;
-  height: 25%;
+  left: 23%;
+  top: 75%;
+  width: 37%;
+  height: 19%;
 }
 
 .z6 {
-  left: 80%;
-  top: 72%;
-  width: 24%;
-  height: 25%;
+  left: 77%;
+  top: 75%;
+  width: 37%;
+  height: 19%;
 }
 
-.ayuda-arrastre {
-  display: inline-block;
-  max-width: 95%;
-  margin: 8px auto;
-  padding: 10px 16px;
-  border: 1px solid #ffcf60;
-  border-radius: 15px;
-  background: #260a3ae8;
-  color: #fff1bd;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
-/* DISFRAZ QUE SIGUE AL DEDO */
+/* ==========================
+   DISFRAZ ARRASTRADO
+========================== */
 
 .arrastre-vista {
   position: fixed;
   z-index: 9999;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border: 3px solid #ffdc69;
   border-radius: 50%;
   background-color: #321044;
@@ -357,6 +376,19 @@ p {
   pointer-events: none;
   transform: translate(-50%, -50%);
   overflow: hidden;
+}
+
+.ayuda-arrastre {
+  display: inline-block;
+  max-width: 95%;
+  margin: 10px auto;
+  padding: 10px 16px;
+  border: 1px solid #ffcf60;
+  border-radius: 15px;
+  background: #260a3ae8;
+  color: #fff1bd;
+  font-weight: bold;
+  line-height: 1.4;
 }
 
 /* ==========================
@@ -458,7 +490,9 @@ p {
   color: #f6ddff;
 }
 
-/* CONDICIONES */
+/* ==========================
+   CONDICIONES
+========================== */
 
 .condiciones {
   width: 100%;
@@ -491,7 +525,9 @@ p {
   border-bottom: 0;
 }
 
-/* BOTONES */
+/* ==========================
+   BOTONES
+========================== */
 
 .btn-whatsapp,
 .btn-canal {
@@ -548,7 +584,9 @@ p {
   color: #e4c3f0;
 }
 
-/* CONFETI */
+/* ==========================
+   CONFETI
+========================== */
 
 #confeti {
   display: none;
@@ -574,7 +612,9 @@ p {
   }
 }
 
-/* BOTON DE MUSICA */
+/* ==========================
+   BOTON MUSICA
+========================== */
 
 #musicaBtn {
   position: fixed;
@@ -590,55 +630,45 @@ p {
 }
 
 /* ==========================
-   ESCENARIO GRANDE EN CELULAR
+   AJUSTES PARA CELULAR
 ========================== */
 
 @media (max-width: 600px) {
+
   #seleccion {
-    padding: 65px 0 24px;
-    justify-content: flex-start;
+    padding: 60px 0 22px;
   }
 
   #seleccion h1 {
-    font-size: clamp(20px, 6vw, 28px);
-    margin: 8px 0 4px;
+    font-size: 23px;
   }
 
   #seleccion h2 {
-    font-size: clamp(18px, 5vw, 24px);
-    margin: 4px 0;
+    font-size: 20px;
   }
 
   #seleccion > p {
     font-size: 13px;
     padding: 0 10px;
-    margin: 6px 0;
   }
 
   .escenario {
     width: 100%;
-    max-width: none;
-    margin: 10px 0;
+    max-width: 470px;
+    margin: 8px auto;
     border-left: 0;
     border-right: 0;
     border-radius: 8px;
   }
 
-  .fondo-juego {
-    width: 100%;
-    height: min(70svh, 690px);
-    min-height: 470px;
-    object-fit: fill;
-  }
-
   #tomJugador {
-    width: 30%;
-    height: 44%;
+    width: 31%;
+    height: 28%;
   }
 
   .arrastre-vista {
-    width: 90px;
-    height: 90px;
+    width: 82px;
+    height: 82px;
   }
 
   .ayuda-arrastre {
@@ -659,10 +689,6 @@ p {
   #inicio {
     padding: 75px 14px 35px;
   }
-
-  #inicio > p {
-    max-width: 420px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -679,19 +705,38 @@ p {
 
 <body>
 
-<!-- MUSICA -->
-<button id="musicaBtn" type="button" onclick="alternarMusica()">
+<button
+  id="musicaBtn"
+  type="button"
+  onclick="alternarMusica()"
+>
   🔇 Activar música
 </button>
 
-<audio id="musicaInicio" src="musica-inicio.mp3" preload="auto" loop></audio>
-<audio id="musicaDisfraces" src="musica-disfraces.mp3" preload="auto" loop></audio>
-<audio id="sonidoTransformacion" src="sonido-transformacion.mp3" preload="auto"></audio>
+<audio
+  id="musicaInicio"
+  src="musica-inicio.mp3"
+  preload="auto"
+  loop
+></audio>
+
+<audio
+  id="musicaDisfraces"
+  src="musica-disfraces.mp3"
+  preload="auto"
+  loop
+></audio>
+
+<audio
+  id="sonidoTransformacion"
+  src="sonido-transformacion.mp3"
+  preload="auto"
+></audio>
 
 <div id="confeti"></div>
 
 <!-- ==========================
-     PANTALLA DE INICIO
+     INICIO
 ========================== -->
 
 <section id="inicio" class="activa">
@@ -705,35 +750,47 @@ p {
   <h2>🎃 ¡BIENVENIDOS A TOMWEEN! 🎃</h2>
 
   <p>
-    🐱 Arrastrá un disfraz hasta Tom y descubrí tu premio especial.
+    🐱 Arrastrá un disfraz hasta Tom y descubrí
+    tu premio especial.
   </p>
 
-  <button class="btn" type="button" onclick="iniciarJuego()">
+  <button
+    class="btn"
+    type="button"
+    onclick="iniciarJuego()"
+  >
     🎮 INICIAR JUEGO
   </button>
 
 </section>
 
 <!-- ==========================
-     SELECCION DE DISFRACES
+     DISFRACES
 ========================== -->
 
 <section id="seleccion">
 
   <h1>🎃 COMUNIDAD TOM 🎃</h1>
+
   <h2>¡DISFRAZÁ A TOM!</h2>
 
   <p>
-    👆 Mantené presionado un disfraz y arrastralo hasta Tom.
+    👆 Mantené presionado un disfraz y
+    arrastralo hasta Tom.
   </p>
 
   <div class="escenario" id="escenario">
 
+    <!-- NUEVA IMAGEN VERTICAL -->
+
     <img
       class="fondo-juego"
-      src="fondo-halloween.png"
-      alt="Escenario de Halloween con seis disfraces"
+      src="fondo-halloween-vertical.png"
+      alt="Seis disfraces de Halloween"
+      draggable="false"
     >
+
+    <!-- TOM APARECE POR CODIGO -->
 
     <img
       id="tomJugador"
@@ -744,16 +801,63 @@ p {
 
     <div id="magia"></div>
 
-    <button class="zona z1" type="button" data-numero="0" aria-label="Vampiro"></button>
-    <button class="zona z2" type="button" data-numero="1" aria-label="Fantasma"></button>
-    <button class="zona z3" type="button" data-numero="2" aria-label="Momia"></button>
-    <button class="zona z4" type="button" data-numero="3" aria-label="Diablo"></button>
-    <button class="zona z5" type="button" data-numero="4" aria-label="Brujo"></button>
-    <button class="zona z6" type="button" data-numero="5" aria-label="Esqueleto"></button>
+    <!--
+      POSICIONES SEGUN LA NUEVA IMAGEN:
+
+      VAMPIRO       DIABLO
+      FANTASMA      MOMIA
+      BRUJO         ESQUELETO
+    -->
+
+    <button
+      class="zona z1"
+      type="button"
+      data-numero="0"
+      aria-label="Vampiro"
+    ></button>
+
+    <button
+      class="zona z2"
+      type="button"
+      data-numero="1"
+      aria-label="Fantasma"
+    ></button>
+
+    <button
+      class="zona z3"
+      type="button"
+      data-numero="2"
+      aria-label="Momia"
+    ></button>
+
+    <button
+      class="zona z4"
+      type="button"
+      data-numero="3"
+      aria-label="Diablo"
+    ></button>
+
+    <button
+      class="zona z5"
+      type="button"
+      data-numero="4"
+      aria-label="Brujo"
+    ></button>
+
+    <button
+      class="zona z6"
+      type="button"
+      data-numero="5"
+      aria-label="Esqueleto"
+    ></button>
 
   </div>
 
-  <div id="mensajeArrastre" class="ayuda-arrastre" aria-live="polite">
+  <div
+    id="mensajeArrastre"
+    class="ayuda-arrastre"
+    aria-live="polite"
+  >
     ✨ ¡Arrastrá tu disfraz favorito hasta el centro!
   </div>
 
@@ -767,7 +871,10 @@ p {
 
   <div class="resultado-caja" id="cajaResultado">
 
-    <h1 class="titulo-ganador" id="tituloResultado">
+    <h1
+      class="titulo-ganador"
+      id="tituloResultado"
+    >
       🎉 ¡FELICIDADES! 🎉
     </h1>
 
@@ -776,7 +883,7 @@ p {
     <img
       id="imagenPremio"
       src=""
-      alt="Tom disfrazado de ganador"
+      alt="Tom disfrazado"
     >
 
     <p id="textoPremio">
@@ -788,15 +895,40 @@ p {
     <p class="sub" id="detalle"></p>
 
     <div class="condiciones">
-      <h3>🎃 CONDICIONES DE TU PREMIO 🎃</h3>
 
-      <div class="condicion">🎁 SIN MÍNIMO DE CARGA</div>
-      <div class="condicion">💰 TOPE DE BONIFICACIÓN: $30.000</div>
-      <div class="condicion">🔄 PARA RETIRAR CON BONO DEBÉS DUPLICAR LA BONIFICACIÓN</div>
-      <div class="condicion">🎰 BONO NO VÁLIDO PARA RULETA</div>
-      <div class="condicion">📱 VÁLIDO PARA UNA SOLA PLATAFORMA</div>
-      <div class="condicion">💳 UNA SOLA CARGA</div>
-      <div class="condicion">📞 UN SOLO NÚMERO</div>
+      <h3>
+        🎃 CONDICIONES DE TU PREMIO 🎃
+      </h3>
+
+      <div class="condicion">
+        🎁 SIN MÍNIMO DE CARGA
+      </div>
+
+      <div class="condicion">
+        💰 TOPE DE BONIFICACIÓN: $30.000
+      </div>
+
+      <div class="condicion">
+        🔄 PARA RETIRAR CON BONO DEBÉS DUPLICAR
+        LA BONIFICACIÓN
+      </div>
+
+      <div class="condicion">
+        🎰 BONO NO VÁLIDO PARA RULETA
+      </div>
+
+      <div class="condicion">
+        📱 VÁLIDO PARA UNA SOLA PLATAFORMA
+      </div>
+
+      <div class="condicion">
+        💳 UNA SOLA CARGA
+      </div>
+
+      <div class="condicion">
+        📞 UN SOLO NÚMERO
+      </div>
+
     </div>
 
     <a
@@ -809,9 +941,11 @@ p {
       💚 RECLAMAR MI PREMIO POR WHATSAPP
     </a>
 
-    <!-- BOTON NUEVO PARA PROBAR ILIMITADAMENTE -->
-
-    <button class="btn" type="button" onclick="volverAJugar()">
+    <button
+      class="btn"
+      type="button"
+      onclick="volverAJugar()"
+    >
       🔄 VOLVER A JUGAR
     </button>
 
@@ -822,8 +956,9 @@ p {
       </p>
 
       <p class="canal-texto">
-        💜 Seguinos en nuestro canal de WhatsApp para descubrir más juegos,
-        premios y bonos de COMUNIDAD TOM.
+        💜 Seguinos en nuestro canal de WhatsApp
+        para descubrir más juegos, premios y
+        bonos de COMUNIDAD TOM.
       </p>
 
       <a
@@ -847,17 +982,18 @@ p {
 
 <script>
 
-/* ==================================
+/* ==========================
    MODO PRUEBA
-   TRUE = INTENTOS ILIMITADOS
-   FALSE = UNA SOLA PARTICIPACION
-================================== */
+========================== */
 
 const MODO_PRUEBA = true;
 
-const CLAVE_JUEGO = "tomween_halloween_2026_premio";
+const CLAVE_JUEGO =
+  "tomween_halloween_2026_premio";
 
-/* PREMIOS ORIGINALES */
+/* ==========================
+   PREMIOS
+========================== */
 
 const opciones = [
   {
@@ -891,7 +1027,7 @@ const opciones = [
   {
     nombre: "BRUJO",
     premio: "1.000 FICHAS",
-    imagen: "bruja.png",
+    imagen: "brujo.png",
     tipo: "fichas",
     whatsapp: "https://wa.link/am2t5h"
   },
@@ -904,26 +1040,42 @@ const opciones = [
   }
 ];
 
-/* ELEMENTOS */
+/* ==========================
+   ELEMENTOS
+========================== */
 
-const musicaInicio = document.getElementById("musicaInicio");
-const musicaDisfraces = document.getElementById("musicaDisfraces");
-const sonidoTransformacion = document.getElementById("sonidoTransformacion");
-const botonMusica = document.getElementById("musicaBtn");
+const musicaInicio =
+  document.getElementById("musicaInicio");
 
-const escenario = document.getElementById("escenario");
-const tomJugador = document.getElementById("tomJugador");
-const magia = document.getElementById("magia");
-const mensajeArrastre = document.getElementById("mensajeArrastre");
+const musicaDisfraces =
+  document.getElementById("musicaDisfraces");
+
+const sonidoTransformacion =
+  document.getElementById("sonidoTransformacion");
+
+const botonMusica =
+  document.getElementById("musicaBtn");
+
+const escenario =
+  document.getElementById("escenario");
+
+const tomJugador =
+  document.getElementById("tomJugador");
+
+const magia =
+  document.getElementById("magia");
+
+const mensajeArrastre =
+  document.getElementById("mensajeArrastre");
 
 let musicaSilenciada = true;
 let arrastre = null;
 let juegoBloqueado = false;
 let transicionEnCurso = false;
 
-/* ==================================
-   GUARDAR PARTICIPACION
-================================== */
+/* ==========================
+   PARTICIPACION
+========================== */
 
 function premioGuardado() {
 
@@ -932,7 +1084,8 @@ function premioGuardado() {
   }
 
   try {
-    const valor = localStorage.getItem(CLAVE_JUEGO);
+    const valor =
+      localStorage.getItem(CLAVE_JUEGO);
 
     if (valor === null) {
       return null;
@@ -949,7 +1102,7 @@ function premioGuardado() {
     }
 
   } catch (error) {
-    console.warn("No se pudo leer el premio guardado.");
+    console.warn("No se pudo leer el premio.");
   }
 
   return null;
@@ -962,7 +1115,11 @@ function guardarPremio(numero) {
   }
 
   try {
-    localStorage.setItem(CLAVE_JUEGO, String(numero));
+    localStorage.setItem(
+      CLAVE_JUEGO,
+      String(numero)
+    );
+
     return true;
 
   } catch (error) {
@@ -971,24 +1128,27 @@ function guardarPremio(numero) {
   }
 }
 
-/* ==================================
-   CAMBIO DE PANTALLAS
-================================== */
+/* ==========================
+   PANTALLAS
+========================== */
 
 function mostrar(id) {
 
-  document.querySelectorAll("section").forEach(seccion => {
-    seccion.classList.remove("activa");
-  });
+  document.querySelectorAll("section").forEach(
+    seccion => {
+      seccion.classList.remove("activa");
+    }
+  );
 
-  document.getElementById(id).classList.add("activa");
+  document.getElementById(id)
+    .classList.add("activa");
 
   window.scrollTo(0, 0);
 }
 
-/* ==================================
+/* ==========================
    AUDIO
-================================== */
+========================== */
 
 function detenerAudiosMusicales() {
   musicaInicio.pause();
@@ -1002,24 +1162,29 @@ function reproducirAudio(audio, reiniciar = false) {
   }
 
   try {
+
     if (reiniciar) {
       audio.currentTime = 0;
     }
 
     audio.play().catch(error => {
-      console.warn("No se pudo reproducir el audio:", error);
+      console.warn(
+        "No se pudo reproducir audio:",
+        error
+      );
     });
 
   } catch (error) {
-    console.warn("Error al iniciar audio:", error);
+    console.warn("Error de audio:", error);
   }
 }
 
 function actualizarBotonMusica() {
 
-  botonMusica.textContent = musicaSilenciada
-    ? "🔇 Activar música"
-    : "🔊 Silenciar música";
+  botonMusica.textContent =
+    musicaSilenciada
+      ? "🔇 Activar música"
+      : "🔊 Silenciar música";
 }
 
 function iniciarJuego() {
@@ -1036,6 +1201,7 @@ function iniciarJuego() {
   detenerAudiosMusicales();
 
   musicaSilenciada = false;
+
   actualizarBotonMusica();
 
   reproducirAudio(musicaDisfraces, true);
@@ -1054,15 +1220,18 @@ function alternarMusica() {
   }
 
   if (transicionEnCurso) {
-    sonidoTransformacion.play().catch(() => {});
+    sonidoTransformacion.play()
+      .catch(() => {});
     return;
   }
 
   const seleccionActiva =
-    document.getElementById("seleccion").classList.contains("activa");
+    document.getElementById("seleccion")
+      .classList.contains("activa");
 
   const inicioActivo =
-    document.getElementById("inicio").classList.contains("activa");
+    document.getElementById("inicio")
+      .classList.contains("activa");
 
   if (seleccionActiva) {
     reproducirAudio(musicaDisfraces, true);
@@ -1071,41 +1240,60 @@ function alternarMusica() {
   }
 }
 
-/* ==================================
+/* ==========================
    ARRASTRAR DISFRACES
-================================== */
+========================== */
 
 function crearVistaArrastre(numero, x, y) {
 
-  const rectEscenario = escenario.getBoundingClientRect();
+  const rectEscenario =
+    escenario.getBoundingClientRect();
 
   const boton = document.querySelector(
     '.zona[data-numero="' + numero + '"]'
   );
 
-  const rectBoton = boton.getBoundingClientRect();
+  const rectBoton =
+    boton.getBoundingClientRect();
 
-  const vista = document.createElement("div");
+  const vista =
+    document.createElement("div");
+
   vista.className = "arrastre-vista";
 
-  const anchoVista = Math.min(rectEscenario.width * .24, 150);
+  const anchoVista = Math.min(
+    rectEscenario.width * .25,
+    120
+  );
 
   const centroX =
-    rectBoton.left + rectBoton.width / 2 - rectEscenario.left;
+    rectBoton.left +
+    rectBoton.width / 2 -
+    rectEscenario.left;
 
   const centroY =
-    rectBoton.top + rectBoton.height / 2 - rectEscenario.top;
+    rectBoton.top +
+    rectBoton.height / 2 -
+    rectEscenario.top;
 
-  vista.style.width = anchoVista + "px";
-  vista.style.height = anchoVista + "px";
+  vista.style.width =
+    anchoVista + "px";
 
-  vista.style.backgroundImage = 'url("fondo-halloween.png")';
+  vista.style.height =
+    anchoVista + "px";
 
-  const imagenFondo = document.querySelector(".fondo-juego");
-  const rectImagen = imagenFondo.getBoundingClientRect();
+  vista.style.backgroundImage =
+    'url("fondo-halloween-vertical.png")';
+
+  const imagenFondo =
+    document.querySelector(".fondo-juego");
+
+  const rectImagen =
+    imagenFondo.getBoundingClientRect();
 
   vista.style.backgroundSize =
-    rectImagen.width + "px " + rectImagen.height + "px";
+    rectImagen.width + "px " +
+    rectImagen.height + "px";
 
   vista.style.backgroundPosition =
     (anchoVista / 2 - centroX) + "px " +
@@ -1159,78 +1347,113 @@ function iniciarArrastre(evento, numero) {
   mensajeArrastre.textContent =
     "🎃 ¡Soltá el disfraz encima de Tom!";
 
-  moverVista(evento.clientX, evento.clientY);
+  moverVista(
+    evento.clientX,
+    evento.clientY
+  );
 }
 
-document.querySelectorAll(".zona").forEach(boton => {
+document.querySelectorAll(".zona").forEach(
+  boton => {
 
-  boton.addEventListener("pointerdown", evento => {
-    iniciarArrastre(
-      evento,
-      Number(boton.dataset.numero)
+    boton.addEventListener(
+      "pointerdown",
+      evento => {
+
+        iniciarArrastre(
+          evento,
+          Number(boton.dataset.numero)
+        );
+
+      }
     );
-  });
 
-});
-
-document.addEventListener("pointermove", evento => {
-
-  if (!arrastre || evento.pointerId !== arrastre.pointerId) {
-    return;
   }
+);
 
-  evento.preventDefault();
+document.addEventListener(
+  "pointermove",
+  evento => {
 
-  moverVista(evento.clientX, evento.clientY);
+    if (
+      !arrastre ||
+      evento.pointerId !== arrastre.pointerId
+    ) {
+      return;
+    }
 
-}, { passive: false });
+    evento.preventDefault();
 
-document.addEventListener("pointerup", evento => {
+    moverVista(
+      evento.clientX,
+      evento.clientY
+    );
 
-  if (!arrastre || evento.pointerId !== arrastre.pointerId) {
-    return;
+  },
+  { passive: false }
+);
+
+document.addEventListener(
+  "pointerup",
+  evento => {
+
+    if (
+      !arrastre ||
+      evento.pointerId !== arrastre.pointerId
+    ) {
+      return;
+    }
+
+    const numero = arrastre.numero;
+
+    if (arrastre.vista) {
+      arrastre.vista.remove();
+    }
+
+    arrastre = null;
+
+    const rectTom =
+      tomJugador.getBoundingClientRect();
+
+    const sobreTom =
+      evento.clientX >= rectTom.left &&
+      evento.clientX <= rectTom.right &&
+      evento.clientY >= rectTom.top &&
+      evento.clientY <= rectTom.bottom;
+
+    if (sobreTom) {
+
+      transformarTom(numero);
+
+    } else {
+
+      mensajeArrastre.textContent =
+        "👻 ¡Casi! Arrastrá el disfraz " +
+        "hasta el centro, encima de Tom.";
+
+    }
+
   }
+);
 
-  const numero = arrastre.numero;
+document.addEventListener(
+  "pointercancel",
+  () => {
 
-  if (arrastre.vista) {
-    arrastre.vista.remove();
-  }
+    if (arrastre && arrastre.vista) {
+      arrastre.vista.remove();
+    }
 
-  arrastre = null;
+    arrastre = null;
 
-  const rectTom = tomJugador.getBoundingClientRect();
-
-  const sobreTom =
-    evento.clientX >= rectTom.left &&
-    evento.clientX <= rectTom.right &&
-    evento.clientY >= rectTom.top &&
-    evento.clientY <= rectTom.bottom;
-
-  if (sobreTom) {
-    transformarTom(numero);
-  } else {
     mensajeArrastre.textContent =
-      "👻 ¡Casi! Arrastrá el disfraz hasta el centro, encima de Tom.";
+      "✨ Intentá arrastrar el disfraz hasta Tom.";
   }
+);
 
-});
-
-document.addEventListener("pointercancel", () => {
-
-  if (arrastre && arrastre.vista) {
-    arrastre.vista.remove();
-  }
-
-  arrastre = null;
-
-  mensajeArrastre.textContent =
-    "✨ Intentá arrastrar el disfraz hasta Tom.";
-});
-
-/* ==================================
-   TRANSFORMACION DE TOM
-================================== */
+/* ==========================
+   TRANSFORMACION
+========================== */
 
 function transformarTom(numero) {
 
@@ -1251,7 +1474,7 @@ function transformarTom(numero) {
 
   if (!guardarPremio(numero)) {
     alert(
-      "No se pudo guardar tu participación. Activá el almacenamiento del navegador."
+      "No se pudo guardar tu participación."
     );
     return;
   }
@@ -1259,12 +1482,15 @@ function transformarTom(numero) {
   transicionEnCurso = true;
   juegoBloqueado = true;
 
-  document.querySelectorAll(".zona").forEach(zona => {
-    zona.classList.add("bloqueada");
-  });
+  document.querySelectorAll(".zona").forEach(
+    zona => {
+      zona.classList.add("bloqueada");
+    }
+  );
 
   mensajeArrastre.textContent =
-    "✨ ¡La magia de Halloween está transformando a Tom!";
+    "✨ ¡La magia de Halloween está " +
+    "transformando a Tom!";
 
   detenerAudiosMusicales();
 
@@ -1272,46 +1498,64 @@ function transformarTom(numero) {
 
   try {
     sonidoTransformacion.currentTime = 0;
-  } catch (error) {
-    console.warn("No se pudo reiniciar el sonido.");
-  }
+  } catch (error) {}
 
-  tomJugador.classList.remove("apareciendo", "girando");
+  tomJugador.classList.remove(
+    "apareciendo",
+    "girando"
+  );
+
   magia.classList.remove("activa");
 
   void tomJugador.offsetWidth;
   void magia.offsetWidth;
 
-  /* COMIENZAN EL GIRO Y EL SONIDO JUNTOS */
+  /* GIRO Y SONIDO AL MISMO TIEMPO */
 
   tomJugador.classList.add("girando");
   magia.classList.add("activa");
 
   if (!musicaSilenciada) {
-    sonidoTransformacion.play().catch(error => {
-      console.warn(
-        "No se pudo reproducir el sonido de transformación:",
-        error
-      );
-    });
+
+    sonidoTransformacion.play()
+      .catch(error => {
+        console.warn(
+          "No se pudo reproducir la transformación:",
+          error
+        );
+      });
+
   }
 
-  /* TOM APARECE CON SU DISFRAZ */
+  /* CAMBIAR DISFRAZ */
 
   setTimeout(() => {
 
     const imagenNueva = new Image();
 
+    let cambiada = false;
+
     const cambiarImagen = () => {
-      tomJugador.src = opciones[numero].imagen;
+
+      if (cambiada) {
+        return;
+      }
+
+      cambiada = true;
+
+      tomJugador.src =
+        opciones[numero].imagen;
+
       tomJugador.classList.remove("girando");
+
       tomJugador.classList.add("apareciendo");
     };
 
     imagenNueva.onload = cambiarImagen;
     imagenNueva.onerror = cambiarImagen;
 
-    imagenNueva.src = opciones[numero].imagen;
+    imagenNueva.src =
+      opciones[numero].imagen;
 
     if (
       imagenNueva.complete &&
@@ -1322,7 +1566,7 @@ function transformarTom(numero) {
 
   }, 1800);
 
-  /* APARECE LA PANTALLA DE PREMIO */
+  /* PANTALLA DE PREMIO */
 
   setTimeout(() => {
 
@@ -1337,9 +1581,9 @@ function transformarTom(numero) {
   }, 2900);
 }
 
-/* ==================================
+/* ==========================
    MOSTRAR PREMIO
-================================== */
+========================== */
 
 function mostrarPremio(numero, yaParticipo) {
 
@@ -1352,36 +1596,53 @@ function mostrarPremio(numero, yaParticipo) {
   detenerAudiosMusicales();
   sonidoTransformacion.pause();
 
-  document.getElementById("tituloResultado").textContent =
+  document.getElementById(
+    "tituloResultado"
+  ).textContent =
     yaParticipo
       ? "🎃 ¡YA PARTICIPASTE! 🎃"
       : "🎉 ¡FELICIDADES! 🎉";
 
-  document.getElementById("nombreDisfraz").textContent =
+  document.getElementById(
+    "nombreDisfraz"
+  ).textContent =
     "TOM " + opcion.nombre;
 
-  const imagen = document.getElementById("imagenPremio");
+  const imagen =
+    document.getElementById("imagenPremio");
 
   imagen.src = opcion.imagen;
-  imagen.alt = "Tom disfrazado de " + opcion.nombre;
 
-  document.getElementById("premio").textContent =
+  imagen.alt =
+    "Tom disfrazado de " + opcion.nombre;
+
+  document.getElementById(
+    "premio"
+  ).textContent =
     opcion.premio;
 
-  document.getElementById("textoPremio").textContent =
+  document.getElementById(
+    "textoPremio"
+  ).textContent =
     yaParticipo
       ? "🎁 ESTE FUE TU PREMIO:"
       : "🎁 ¡TU PREMIO ES!";
 
-  document.getElementById("detalle").textContent =
+  document.getElementById(
+    "detalle"
+  ).textContent =
     opcion.tipo === "bono"
       ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
       : "DE REGALO PARA TU PRÓXIMA CARGA";
 
-  document.getElementById("reclamarWhatsapp").href =
+  document.getElementById(
+    "reclamarWhatsapp"
+  ).href =
     opcion.whatsapp;
 
-  document.getElementById("cajaResultado").classList.toggle(
+  document.getElementById(
+    "cajaResultado"
+  ).classList.toggle(
     "festejando",
     !yaParticipo
   );
@@ -1393,22 +1654,22 @@ function mostrarPremio(numero, yaParticipo) {
   }
 }
 
-/* ==================================
-   VOLVER A JUGAR - MODO PRUEBA
-================================== */
+/* ==========================
+   VOLVER A JUGAR
+========================== */
 
 function volverAJugar() {
 
   if (!MODO_PRUEBA) {
+
     const anterior = premioGuardado();
 
     if (anterior !== null) {
       mostrarPremio(anterior, true);
       return;
     }
-  }
 
-  /* REINICIAMOS LAS ANIMACIONES */
+  }
 
   transicionEnCurso = false;
   juegoBloqueado = false;
@@ -1428,29 +1689,26 @@ function volverAJugar() {
 
   magia.classList.remove("activa");
 
-  document.querySelectorAll(".zona").forEach(zona => {
-    zona.classList.remove("bloqueada");
-  });
+  document.querySelectorAll(".zona").forEach(
+    zona => {
+      zona.classList.remove("bloqueada");
+    }
+  );
 
   mensajeArrastre.textContent =
     "✨ ¡Arrastrá tu disfraz favorito hasta el centro!";
 
-  /* LIMPIAMOS CONFETI */
-
-  const confeti = document.getElementById("confeti");
+  const confeti =
+    document.getElementById("confeti");
 
   confeti.innerHTML = "";
   confeti.style.display = "none";
-
-  /* DETENEMOS EL SONIDO DE TRANSFORMACION */
 
   sonidoTransformacion.pause();
 
   try {
     sonidoTransformacion.currentTime = 0;
   } catch (error) {}
-
-  /* REGRESAMOS AL ESCENARIO */
 
   mostrar("seleccion");
 
@@ -1459,13 +1717,14 @@ function volverAJugar() {
   reproducirAudio(musicaDisfraces, true);
 }
 
-/* ==================================
+/* ==========================
    CONFETI
-================================== */
+========================== */
 
 function lanzarConfeti() {
 
-  const contenedor = document.getElementById("confeti");
+  const contenedor =
+    document.getElementById("confeti");
 
   const colores = [
     "#ffca28",
@@ -1481,7 +1740,8 @@ function lanzarConfeti() {
 
   for (let i = 0; i < 90; i++) {
 
-    const papel = document.createElement("span");
+    const papel =
+      document.createElement("span");
 
     papel.className = "papelito";
 
@@ -1489,7 +1749,11 @@ function lanzarConfeti() {
       Math.random() * 100 + "%";
 
     papel.style.background =
-      colores[Math.floor(Math.random() * colores.length)];
+      colores[
+        Math.floor(
+          Math.random() * colores.length
+        )
+      ];
 
     papel.style.animationDuration =
       (2.5 + Math.random() * 2) + "s";
@@ -1506,29 +1770,30 @@ function lanzarConfeti() {
   }, 6000);
 }
 
-/* ==================================
-   INICIAR EL JUEGO
-================================== */
+/* ==========================
+   INICIO AUTOMATICO
+========================== */
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  actualizarBotonMusica();
+    actualizarBotonMusica();
 
-  /* EN MODO PRUEBA NO BLOQUEAMOS EL JUEGO */
+    if (MODO_PRUEBA) {
+      juegoBloqueado = false;
+      return;
+    }
 
-  if (MODO_PRUEBA) {
-    juegoBloqueado = false;
-    return;
+    const anterior = premioGuardado();
+
+    if (anterior !== null) {
+      juegoBloqueado = true;
+      mostrarPremio(anterior, true);
+    }
+
   }
-
-  const anterior = premioGuardado();
-
-  if (anterior !== null) {
-    juegoBloqueado = true;
-    mostrarPremio(anterior, true);
-  }
-
-});
+);
 
 </script>
 
