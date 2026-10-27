@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TOMWEEN | Comunidad Tom</title>
 
 <style>
@@ -82,7 +82,7 @@ button {
   transform: translateY(3px);
 }
 
-/* PANTALLA DE INICIO */
+/* INICIO */
 
 #inicio {
   padding: 80px 16px 40px;
@@ -101,7 +101,7 @@ button {
   box-shadow: 0 0 30px #ff8c4770;
 }
 
-/* PANTALLA DE DISFRACES */
+/* SELECCIÓN */
 
 #seleccion {
   padding: 58px 8px 25px;
@@ -151,7 +151,7 @@ button {
   -webkit-user-drag: none;
 }
 
-/* TOM EN EL CENTRO */
+/* TOM */
 
 #tomJugador {
   position: absolute;
@@ -217,7 +217,7 @@ button {
   }
 }
 
-/* EFECTO MÁGICO */
+/* MAGIA */
 
 #magia {
   display: none;
@@ -290,12 +290,7 @@ button {
   pointer-events: none;
 }
 
-/*
-  SUPERIOR: VAMPIRO / DIABLO
-  CENTRO: FANTASMA / MOMIA
-  INFERIOR: BRUJO / ESQUELETO
-*/
-
+/* VAMPIRO */
 .z1 {
   left: 23%;
   top: 27%;
@@ -303,6 +298,7 @@ button {
   height: 19%;
 }
 
+/* FANTASMA */
 .z2 {
   left: 23%;
   top: 50%;
@@ -310,6 +306,7 @@ button {
   height: 19%;
 }
 
+/* MOMIA */
 .z3 {
   left: 77%;
   top: 50%;
@@ -317,6 +314,7 @@ button {
   height: 19%;
 }
 
+/* DIABLO */
 .z4 {
   left: 77%;
   top: 27%;
@@ -324,6 +322,7 @@ button {
   height: 19%;
 }
 
+/* BRUJO */
 .z5 {
   left: 23%;
   top: 75%;
@@ -331,14 +330,13 @@ button {
   height: 19%;
 }
 
+/* ESQUELETO */
 .z6 {
   left: 77%;
   top: 75%;
   width: 37%;
   height: 19%;
 }
-
-/* DISFRAZ ARRASTRADO */
 
 .arrastre-vista {
   position: fixed;
@@ -554,6 +552,21 @@ button {
   color: #e4c3f0;
 }
 
+/* BOTÓN PARA ESCUCHAR VICTORIA */
+
+#repetirVictoria {
+  display: none;
+  margin: 10px auto 15px;
+  padding: 13px 18px;
+  border: 2px solid #ffe189;
+  border-radius: 15px;
+  background: #572071;
+  color: white;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 /* CONFETI */
 
 #confeti {
@@ -595,7 +608,7 @@ button {
   cursor: pointer;
 }
 
-/* AJUSTES PARA CELULAR */
+/* CELULAR */
 
 @media (max-width: 600px) {
   #seleccion {
@@ -697,7 +710,7 @@ button {
 
 <div id="confeti"></div>
 
-<!-- PANTALLA DE INICIO -->
+<!-- INICIO -->
 
 <section id="inicio" class="activa">
 
@@ -726,7 +739,7 @@ button {
 
 </section>
 
-<!-- PANTALLA DE DISFRACES -->
+<!-- SELECCIÓN -->
 
 <section id="seleccion">
 
@@ -757,47 +770,23 @@ button {
 
     <div id="magia"></div>
 
-    <button
-      class="zona z1"
-      type="button"
-      data-numero="0"
-      aria-label="Vampiro"
-    ></button>
+    <button class="zona z1" type="button"
+      data-numero="0" aria-label="Vampiro"></button>
 
-    <button
-      class="zona z2"
-      type="button"
-      data-numero="1"
-      aria-label="Fantasma"
-    ></button>
+    <button class="zona z2" type="button"
+      data-numero="1" aria-label="Fantasma"></button>
 
-    <button
-      class="zona z3"
-      type="button"
-      data-numero="2"
-      aria-label="Momia"
-    ></button>
+    <button class="zona z3" type="button"
+      data-numero="2" aria-label="Momia"></button>
 
-    <button
-      class="zona z4"
-      type="button"
-      data-numero="3"
-      aria-label="Diablo"
-    ></button>
+    <button class="zona z4" type="button"
+      data-numero="3" aria-label="Diablo"></button>
 
-    <button
-      class="zona z5"
-      type="button"
-      data-numero="4"
-      aria-label="Brujo"
-    ></button>
+    <button class="zona z5" type="button"
+      data-numero="4" aria-label="Brujo"></button>
 
-    <button
-      class="zona z6"
-      type="button"
-      data-numero="5"
-      aria-label="Esqueleto"
-    ></button>
+    <button class="zona z6" type="button"
+      data-numero="5" aria-label="Esqueleto"></button>
 
   </div>
 
@@ -811,19 +800,13 @@ button {
 
 </section>
 
-<!-- PANTALLA DE RESULTADO -->
+<!-- RESULTADO -->
 
 <section id="resultado">
 
-  <div
-    class="resultado-caja"
-    id="cajaResultado"
-  >
+  <div class="resultado-caja" id="cajaResultado">
 
-    <h1
-      class="titulo-ganador"
-      id="tituloResultado"
-    >
+    <h1 class="titulo-ganador" id="tituloResultado">
       🎉 ¡FELICIDADES! 🎉
     </h1>
 
@@ -839,21 +822,21 @@ button {
       🎁 ¡TU PREMIO ES!
     </p>
 
-    <div
-      class="premio"
-      id="premio"
-    ></div>
+    <div class="premio" id="premio"></div>
 
-    <p
-      class="sub"
-      id="detalle"
-    ></p>
+    <p class="sub" id="detalle"></p>
+
+    <button
+      id="repetirVictoria"
+      type="button"
+      onclick="reproducirVictoriaManual()"
+    >
+      🔊 ESCUCHAR SONIDO DE VICTORIA
+    </button>
 
     <div class="condiciones">
 
-      <h3>
-        🎃 CONDICIONES DE TU PREMIO 🎃
-      </h3>
+      <h3>🎃 CONDICIONES DE TU PREMIO 🎃</h3>
 
       <div class="condicion">
         🎁 SIN MÍNIMO DE CARGA
@@ -929,7 +912,7 @@ button {
 
 <script>
 
-/* CONFIGURACIÓN FINAL */
+/* UN SOLO INTENTO POR NAVEGADOR */
 
 const CLAVE_JUEGO =
   "tomween_halloween_2026_premio";
@@ -998,6 +981,9 @@ const sonidoVictoria =
 const botonMusica =
   document.getElementById("musicaBtn");
 
+const botonVictoria =
+  document.getElementById("repetirVictoria");
+
 const escenario =
   document.getElementById("escenario");
 
@@ -1014,8 +1000,9 @@ let musicaSilenciada = true;
 let arrastre = null;
 let juegoBloqueado = false;
 let transicionEnCurso = false;
+let victoriaPreparada = false;
 
-/* PARTICIPACIÓN ÚNICA */
+/* PARTICIPACIÓN */
 
 function premioGuardado() {
   try {
@@ -1037,10 +1024,7 @@ function premioGuardado() {
     }
 
   } catch (error) {
-    console.warn(
-      "No se pudo leer el premio guardado.",
-      error
-    );
+    console.warn("No se pudo leer el premio.", error);
   }
 
   return null;
@@ -1059,11 +1043,7 @@ function guardarPremio(numero) {
     );
 
   } catch (error) {
-    console.warn(
-      "No se pudo guardar el premio.",
-      error
-    );
-
+    console.warn("No se pudo guardar el premio.", error);
     return false;
   }
 }
@@ -1095,12 +1075,9 @@ function detenerEfectos() {
   sonidoVictoria.pause();
 }
 
-function reproducirAudio(
-  audio,
-  reiniciar = false
-) {
+function reproducirAudio(audio, reiniciar = false) {
   if (musicaSilenciada) {
-    return;
+    return Promise.resolve(false);
   }
 
   try {
@@ -1108,15 +1085,19 @@ function reproducirAudio(
       audio.currentTime = 0;
     }
 
-    audio.play().catch(error => {
-      console.warn(
-        "No se pudo reproducir audio:",
-        error
-      );
-    });
+    return audio.play()
+      .then(() => true)
+      .catch(error => {
+        console.warn(
+          "No se pudo reproducir audio:",
+          error
+        );
+        return false;
+      });
 
   } catch (error) {
     console.warn("Error de audio:", error);
+    return Promise.resolve(false);
   }
 }
 
@@ -1126,6 +1107,95 @@ function actualizarBotonMusica() {
       ? "🔇 Activar música"
       : "🔊 Silenciar música";
 }
+
+/*
+  PREPARAR SONIDO DE VICTORIA
+
+  Se intenta habilitar el audio mientras
+  el jugador está interactuando.
+
+  No todos los navegadores permiten
+  garantizar el inicio automático.
+*/
+
+function prepararVictoria() {
+  if (
+    victoriaPreparada ||
+    musicaSilenciada
+  ) {
+    return;
+  }
+
+  victoriaPreparada = true;
+
+  sonidoVictoria.load();
+
+  sonidoVictoria.muted = true;
+
+  try {
+    sonidoVictoria.currentTime = 0;
+  } catch (error) {}
+
+  const intento = sonidoVictoria.play();
+
+  if (intento && typeof intento.then === "function") {
+    intento.then(() => {
+      sonidoVictoria.pause();
+
+      try {
+        sonidoVictoria.currentTime = 0;
+      } catch (error) {}
+
+      sonidoVictoria.muted = false;
+    }).catch(error => {
+      sonidoVictoria.muted = false;
+      victoriaPreparada = false;
+      console.warn(
+        "El navegador no permitió preparar la victoria:",
+        error
+      );
+    });
+  } else {
+    sonidoVictoria.pause();
+    sonidoVictoria.muted = false;
+  }
+}
+
+function sonarVictoria() {
+  botonVictoria.style.display = "none";
+
+  if (musicaSilenciada) {
+    return;
+  }
+
+  sonidoVictoria.muted = false;
+
+  reproducirAudio(
+    sonidoVictoria,
+    true
+  ).then(funciono => {
+    if (!funciono && !musicaSilenciada) {
+      botonVictoria.style.display = "inline-block";
+    }
+  });
+}
+
+function reproducirVictoriaManual() {
+  musicaSilenciada = false;
+  actualizarBotonMusica();
+
+  sonidoVictoria.muted = false;
+
+  reproducirAudio(
+    sonidoVictoria,
+    true
+  ).then(funciono => {
+    botonVictoria.style.display =
+      funciono ? "none" : "inline-block";
+  });
+}
+
+/* INICIAR JUEGO */
 
 function iniciarJuego() {
   const anterior = premioGuardado();
@@ -1147,7 +1217,15 @@ function iniciarJuego() {
     musicaDisfraces,
     true
   );
+
+  /*
+    Se precarga el archivo
+    al comenzar el juego.
+  */
+  sonidoVictoria.load();
 }
+
+/* CONTROL DE MÚSICA */
 
 function alternarMusica() {
   musicaSilenciada = !musicaSilenciada;
@@ -1185,6 +1263,15 @@ function alternarMusica() {
       musicaInicio,
       true
     );
+
+  } else {
+    const resultadoActivo =
+      document.getElementById("resultado")
+        .classList.contains("activa");
+
+    if (resultadoActivo) {
+      reproducirVictoriaManual();
+    }
   }
 }
 
@@ -1221,11 +1308,8 @@ function crearVistaArrastre(numero, x, y) {
     rectBoton.height / 2 -
     rectEscenario.top;
 
-  vista.style.width =
-    anchoVista + "px";
-
-  vista.style.height =
-    anchoVista + "px";
+  vista.style.width = anchoVista + "px";
+  vista.style.height = anchoVista + "px";
 
   vista.style.backgroundImage =
     'url("fondo.halloween-vertical.png")';
@@ -1426,9 +1510,11 @@ function transformarTom(numero) {
   detenerAudiosMusicales();
   detenerEfectos();
 
-  try {
-    sonidoTransformacion.currentTime = 0;
-  } catch (error) {}
+  /*
+    Preparar la victoria
+    antes de que termine la animación.
+  */
+  prepararVictoria();
 
   tomJugador.classList.remove(
     "apareciendo",
@@ -1551,19 +1637,13 @@ function mostrarPremio(numero, yaParticipo) {
     !yaParticipo
   );
 
+  botonVictoria.style.display = "none";
+
   mostrar("resultado");
 
   if (!yaParticipo) {
     lanzarConfeti();
-
-    /*
-      NUEVO: SONIDO DE VICTORIA
-      CUANDO APARECE EL PREMIO
-    */
-    reproducirAudio(
-      sonidoVictoria,
-      true
-    );
+    sonarVictoria();
   }
 }
 
@@ -1616,7 +1696,7 @@ function lanzarConfeti() {
   }, 6000);
 }
 
-/* COMPROBAR SI YA PARTICIPÓ */
+/* COMPROBAR PARTICIPACIÓN */
 
 window.addEventListener(
   "DOMContentLoaded",
