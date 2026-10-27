@@ -11,11 +11,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --oro: #ffc13b;
-  --fondo: #15051f;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -23,8 +18,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--fondo);
-  color: #fff;
+  background: #15051f;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   overflow-x: hidden;
@@ -33,12 +28,13 @@ body {
 section {
   display: none;
   min-height: 100vh;
+  min-height: 100svh;
   padding: 65px 12px 35px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(circle at top, #75258c 0%, transparent 60%),
+    radial-gradient(circle at top, #75258c, transparent 65%),
     linear-gradient(160deg, #270b40, #100417);
 }
 
@@ -46,41 +42,23 @@ section.activa {
   display: flex;
 }
 
-/* ==========================
-   PANTALLA DE INICIO
-========================== */
-
-#inicio {
-  min-height: 100svh;
-  padding: 75px 16px 40px;
-  background:
-    linear-gradient(180deg, #10041730, #10041790),
-    url("fondoinicio.png") center / cover no-repeat,
-    linear-gradient(160deg, #270b40, #100417);
-}
-
-.portada {
-  display: block;
-  width: min(95vw, 650px);
-  max-height: 36vh;
-  object-fit: contain;
-  border-radius: 22px;
-  box-shadow: 0 0 30px #ff8c4770;
-}
-
 h1 {
-  color: var(--oro);
+  color: #ffc13b;
   text-shadow: 0 3px #9b3500, 0 0 20px #ff8a00;
-  margin: 12px 0;
+  margin: 10px 0;
 }
 
 h2 {
   color: #ffdc89;
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 p {
   line-height: 1.5;
+}
+
+button {
+  font-family: inherit;
 }
 
 .btn {
@@ -103,53 +81,75 @@ p {
 }
 
 /* ==========================
-   ESCENARIO VERTICAL
+   PANTALLA DE INICIO
+========================== */
+
+#inicio {
+  padding: 80px 16px 40px;
+  background:
+    linear-gradient(180deg, #10041730, #10041790),
+    url("fondoinicio.png") center / cover no-repeat,
+    #17051e;
+}
+
+.portada {
+  display: block;
+  width: min(95vw, 650px);
+  max-height: 38vh;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #ff8c4770;
+}
+
+/* ==========================
+   PANTALLA DE DISFRACES
 ========================== */
 
 #seleccion {
-  padding: 55px 10px 25px;
+  padding: 58px 8px 25px;
   justify-content: flex-start;
 }
 
 #seleccion h1 {
-  margin: 5px 0;
+  font-size: clamp(21px, 5.5vw, 31px);
 }
 
 #seleccion h2 {
-  margin: 4px 0;
+  font-size: clamp(18px, 5vw, 26px);
 }
 
 #seleccion > p {
+  font-size: 14px;
   margin: 8px 0;
+  padding: 0 8px;
 }
+
+/* ==========================
+   ESCENARIO VERTICAL
+========================== */
 
 .escenario {
   position: relative;
   width: min(96vw, 470px);
   aspect-ratio: 9 / 16;
-  margin: 12px auto;
+  margin: 10px auto;
   border: 3px solid #f8b34b;
-  border-radius: 18px;
+  border-radius: 17px;
   overflow: hidden;
   background: #32134e;
   box-shadow: 0 0 25px #ff923d80;
-  line-height: 0;
   isolation: isolate;
+  line-height: 0;
   user-select: none;
   touch-action: none;
 }
 
-/*
-  NUEVA IMAGEN VERTICAL
-  No se estira ni se recorta.
-*/
-
 .fondo-juego {
   position: absolute;
   inset: 0;
-  display: block;
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: fill;
   pointer-events: none;
   -webkit-user-drag: none;
@@ -167,7 +167,6 @@ p {
   width: 29%;
   height: 28%;
   object-fit: contain;
-  object-position: center;
   transform: translate(-50%, -50%);
   pointer-events: none;
   user-select: none;
@@ -208,8 +207,8 @@ p {
 @keyframes revelarTom {
   0% {
     opacity: 0;
-    filter: brightness(4) drop-shadow(0 0 25px #dc65ff);
     transform: translate(-50%, -50%) scale(.4);
+    filter: brightness(4);
   }
 
   65% {
@@ -220,12 +219,12 @@ p {
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    filter: brightness(1) drop-shadow(0 0 15px #ff9a36);
+    filter: brightness(1);
   }
 }
 
 /* ==========================
-   MAGIA
+   EFECTO MAGICO
 ========================== */
 
 #magia {
@@ -245,7 +244,7 @@ p {
       #ffffffdd 0%,
       #e8a2ffbb 15%,
       #a62cff88 38%,
-      #7020b000 70%
+      transparent 70%
     );
 }
 
@@ -257,28 +256,27 @@ p {
 @keyframes explosionMagica {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(.1) rotate(0);
+    transform: translate(-50%, -50%) scale(.1);
   }
 
   35% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.2) rotate(80deg);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
   75% {
     opacity: .9;
-    transform: translate(-50%, -50%) scale(1.5) rotate(160deg);
+    transform: translate(-50%, -50%) scale(1.5);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.9) rotate(220deg);
+    transform: translate(-50%, -50%) scale(1.9);
   }
 }
 
 /* ==========================
-   ZONAS DE LOS 6 DISFRACES
-   SEGUN IMAGEN VERTICAL
+   ZONAS DE LOS DISFRACES
 ========================== */
 
 .zona {
@@ -294,10 +292,6 @@ p {
   -webkit-tap-highlight-color: transparent;
 }
 
-.zona:active {
-  cursor: grabbing;
-}
-
 .zona:focus-visible {
   outline: 3px solid #ffe45c;
 }
@@ -308,13 +302,13 @@ p {
 
 /*
   FILA SUPERIOR:
-  Vampiro - Diablo
+  VAMPIRO - DIABLO
 
   FILA CENTRAL:
-  Fantasma - Momia
+  FANTASMA - MOMIA
 
   FILA INFERIOR:
-  Brujo - Esqueleto
+  BRUJO - ESQUELETO
 */
 
 .z1 {
@@ -396,7 +390,6 @@ p {
 ========================== */
 
 .resultado-caja {
-  position: relative;
   width: min(95vw, 560px);
   padding: 24px 16px;
   border: 3px solid #ffcd4d;
@@ -515,7 +508,7 @@ p {
 .condicion {
   padding: 10px 8px;
   border-bottom: 1px solid #ffffff25;
-  color: #fff;
+  color: white;
   font-size: 15px;
   font-weight: bold;
   line-height: 1.4;
@@ -613,7 +606,7 @@ p {
 }
 
 /* ==========================
-   BOTON MUSICA
+   BOTON DE MUSICA
 ========================== */
 
 #musicaBtn {
@@ -630,13 +623,13 @@ p {
 }
 
 /* ==========================
-   AJUSTES PARA CELULAR
+   AJUSTES CELULAR
 ========================== */
 
 @media (max-width: 600px) {
 
   #seleccion {
-    padding: 60px 0 22px;
+    padding: 65px 0 22px;
   }
 
   #seleccion h1 {
@@ -690,20 +683,14 @@ p {
     padding: 75px 14px 35px;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .resultado-caja,
-  .resultado-caja img,
-  .titulo-ganador,
-  .premio,
-  .btn-whatsapp {
-    animation: none !important;
-  }
-}
 </style>
 </head>
 
 <body>
+
+<!-- ==========================
+     MUSICA
+========================== -->
 
 <button
   id="musicaBtn"
@@ -736,7 +723,7 @@ p {
 <div id="confeti"></div>
 
 <!-- ==========================
-     INICIO
+     PANTALLA DE INICIO
 ========================== -->
 
 <section id="inicio" class="activa">
@@ -747,11 +734,13 @@ p {
     alt="Comunidad Tom Halloween"
   >
 
-  <h2>🎃 ¡BIENVENIDOS A TOMWEEN! 🎃</h2>
+  <h2>
+    🎃 ¡BIENVENIDOS A TOMWEEN! 🎃
+  </h2>
 
   <p>
-    🐱 Arrastrá un disfraz hasta Tom y descubrí
-    tu premio especial.
+    🐱 Arrastrá un disfraz hasta Tom
+    y descubrí tu premio especial.
   </p>
 
   <button
@@ -765,7 +754,7 @@ p {
 </section>
 
 <!-- ==========================
-     DISFRACES
+     PANTALLA DE DISFRACES
 ========================== -->
 
 <section id="seleccion">
@@ -775,22 +764,24 @@ p {
   <h2>¡DISFRAZÁ A TOM!</h2>
 
   <p>
-    👆 Mantené presionado un disfraz y
-    arrastralo hasta Tom.
+    👆 Mantené presionado un disfraz
+    y arrastralo hasta Tom.
   </p>
 
   <div class="escenario" id="escenario">
 
-    <!-- NUEVA IMAGEN VERTICAL -->
+    <!--
+      NOMBRE EXACTO DE TU ARCHIVO
+      EN GITHUB:
+      fondo.halloween-vertical.png
+    -->
 
     <img
       class="fondo-juego"
-      src="fondo-halloween-vertical.png"
+      src="fondo.halloween-vertical.png"
       alt="Seis disfraces de Halloween"
       draggable="false"
     >
-
-    <!-- TOM APARECE POR CODIGO -->
 
     <img
       id="tomJugador"
@@ -801,14 +792,7 @@ p {
 
     <div id="magia"></div>
 
-    <!--
-      POSICIONES SEGUN LA NUEVA IMAGEN:
-
-      VAMPIRO       DIABLO
-      FANTASMA      MOMIA
-      BRUJO         ESQUELETO
-    -->
-
+    <!-- VAMPIRO -->
     <button
       class="zona z1"
       type="button"
@@ -816,6 +800,7 @@ p {
       aria-label="Vampiro"
     ></button>
 
+    <!-- FANTASMA -->
     <button
       class="zona z2"
       type="button"
@@ -823,6 +808,7 @@ p {
       aria-label="Fantasma"
     ></button>
 
+    <!-- MOMIA -->
     <button
       class="zona z3"
       type="button"
@@ -830,6 +816,7 @@ p {
       aria-label="Momia"
     ></button>
 
+    <!-- DIABLO -->
     <button
       class="zona z4"
       type="button"
@@ -837,6 +824,7 @@ p {
       aria-label="Diablo"
     ></button>
 
+    <!-- BRUJO -->
     <button
       class="zona z5"
       type="button"
@@ -844,6 +832,7 @@ p {
       aria-label="Brujo"
     ></button>
 
+    <!-- ESQUELETO -->
     <button
       class="zona z6"
       type="button"
@@ -864,12 +853,15 @@ p {
 </section>
 
 <!-- ==========================
-     RESULTADO
+     PANTALLA DE RESULTADO
 ========================== -->
 
 <section id="resultado">
 
-  <div class="resultado-caja" id="cajaResultado">
+  <div
+    class="resultado-caja"
+    id="cajaResultado"
+  >
 
     <h1
       class="titulo-ganador"
@@ -890,9 +882,15 @@ p {
       🎁 ¡TU PREMIO ES!
     </p>
 
-    <div class="premio" id="premio"></div>
+    <div
+      class="premio"
+      id="premio"
+    ></div>
 
-    <p class="sub" id="detalle"></p>
+    <p
+      class="sub"
+      id="detalle"
+    ></p>
 
     <div class="condiciones">
 
@@ -909,8 +907,8 @@ p {
       </div>
 
       <div class="condicion">
-        🔄 PARA RETIRAR CON BONO DEBÉS DUPLICAR
-        LA BONIFICACIÓN
+        🔄 PARA RETIRAR CON BONO DEBÉS
+        DUPLICAR LA BONIFICACIÓN
       </div>
 
       <div class="condicion">
@@ -1074,7 +1072,7 @@ let juegoBloqueado = false;
 let transicionEnCurso = false;
 
 /* ==========================
-   PARTICIPACION
+   GUARDAR PARTICIPACION
 ========================== */
 
 function premioGuardado() {
@@ -1084,6 +1082,7 @@ function premioGuardado() {
   }
 
   try {
+
     const valor =
       localStorage.getItem(CLAVE_JUEGO);
 
@@ -1115,6 +1114,7 @@ function guardarPremio(numero) {
   }
 
   try {
+
     localStorage.setItem(
       CLAVE_JUEGO,
       String(numero)
@@ -1123,13 +1123,17 @@ function guardarPremio(numero) {
     return true;
 
   } catch (error) {
-    console.warn("No se pudo guardar el premio.");
+
+    console.warn(
+      "No se pudo guardar el premio."
+    );
+
     return false;
   }
 }
 
 /* ==========================
-   PANTALLAS
+   CAMBIO DE PANTALLAS
 ========================== */
 
 function mostrar(id) {
@@ -1155,7 +1159,10 @@ function detenerAudiosMusicales() {
   musicaDisfraces.pause();
 }
 
-function reproducirAudio(audio, reiniciar = false) {
+function reproducirAudio(
+  audio,
+  reiniciar = false
+) {
 
   if (musicaSilenciada) {
     return;
@@ -1204,7 +1211,10 @@ function iniciarJuego() {
 
   actualizarBotonMusica();
 
-  reproducirAudio(musicaDisfraces, true);
+  reproducirAudio(
+    musicaDisfraces,
+    true
+  );
 }
 
 function alternarMusica() {
@@ -1214,14 +1224,19 @@ function alternarMusica() {
   actualizarBotonMusica();
 
   if (musicaSilenciada) {
+
     detenerAudiosMusicales();
+
     sonidoTransformacion.pause();
+
     return;
   }
 
   if (transicionEnCurso) {
+
     sonidoTransformacion.play()
       .catch(() => {});
+
     return;
   }
 
@@ -1234,9 +1249,18 @@ function alternarMusica() {
       .classList.contains("activa");
 
   if (seleccionActiva) {
-    reproducirAudio(musicaDisfraces, true);
+
+    reproducirAudio(
+      musicaDisfraces,
+      true
+    );
+
   } else if (inicioActivo) {
-    reproducirAudio(musicaInicio, true);
+
+    reproducirAudio(
+      musicaInicio,
+      true
+    );
   }
 }
 
@@ -1244,7 +1268,11 @@ function alternarMusica() {
    ARRASTRAR DISFRACES
 ========================== */
 
-function crearVistaArrastre(numero, x, y) {
+function crearVistaArrastre(
+  numero,
+  x,
+  y
+) {
 
   const rectEscenario =
     escenario.getBoundingClientRect();
@@ -1282,8 +1310,12 @@ function crearVistaArrastre(numero, x, y) {
   vista.style.height =
     anchoVista + "px";
 
+  /*
+    NOMBRE CORRECTO DE LA IMAGEN
+  */
+
   vista.style.backgroundImage =
-    'url("fondo-halloween-vertical.png")';
+    'url("fondo.halloween-vertical.png")';
 
   const imagenFondo =
     document.querySelector(".fondo-juego");
@@ -1317,9 +1349,15 @@ function moverVista(x, y) {
   arrastre.vista.style.top = y + "px";
 }
 
-function iniciarArrastre(evento, numero) {
+function iniciarArrastre(
+  evento,
+  numero
+) {
 
-  if (juegoBloqueado || transicionEnCurso) {
+  if (
+    juegoBloqueado ||
+    transicionEnCurso
+  ) {
     return;
   }
 
@@ -1440,7 +1478,10 @@ document.addEventListener(
   "pointercancel",
   () => {
 
-    if (arrastre && arrastre.vista) {
+    if (
+      arrastre &&
+      arrastre.vista
+    ) {
       arrastre.vista.remove();
     }
 
@@ -1452,7 +1493,7 @@ document.addEventListener(
 );
 
 /* ==========================
-   TRANSFORMACION
+   TRANSFORMACION DE TOM
 ========================== */
 
 function transformarTom(numero) {
@@ -1473,9 +1514,11 @@ function transformarTom(numero) {
   }
 
   if (!guardarPremio(numero)) {
+
     alert(
       "No se pudo guardar tu participación."
     );
+
     return;
   }
 
@@ -1510,9 +1553,13 @@ function transformarTom(numero) {
   void tomJugador.offsetWidth;
   void magia.offsetWidth;
 
-  /* GIRO Y SONIDO AL MISMO TIEMPO */
+  /*
+    GIRO Y SONIDO
+    COMIENZAN AL MISMO TIEMPO
+  */
 
   tomJugador.classList.add("girando");
+
   magia.classList.add("activa");
 
   if (!musicaSilenciada) {
@@ -1520,14 +1567,15 @@ function transformarTom(numero) {
     sonidoTransformacion.play()
       .catch(error => {
         console.warn(
-          "No se pudo reproducir la transformación:",
+          "Error en sonido de transformación:",
           error
         );
       });
-
   }
 
-  /* CAMBIAR DISFRAZ */
+  /*
+    APARECE TOM DISFRAZADO
+  */
 
   setTimeout(() => {
 
@@ -1552,6 +1600,7 @@ function transformarTom(numero) {
     };
 
     imagenNueva.onload = cambiarImagen;
+
     imagenNueva.onerror = cambiarImagen;
 
     imagenNueva.src =
@@ -1566,7 +1615,9 @@ function transformarTom(numero) {
 
   }, 1800);
 
-  /* PANTALLA DE PREMIO */
+  /*
+    PANTALLA FINAL
+  */
 
   setTimeout(() => {
 
@@ -1574,7 +1625,10 @@ function transformarTom(numero) {
 
     sonidoTransformacion.pause();
 
-    mostrarPremio(numero, false);
+    mostrarPremio(
+      numero,
+      false
+    );
 
     transicionEnCurso = false;
 
@@ -1585,7 +1639,10 @@ function transformarTom(numero) {
    MOSTRAR PREMIO
 ========================== */
 
-function mostrarPremio(numero, yaParticipo) {
+function mostrarPremio(
+  numero,
+  yaParticipo
+) {
 
   const opcion = opciones[numero];
 
@@ -1594,6 +1651,7 @@ function mostrarPremio(numero, yaParticipo) {
   }
 
   detenerAudiosMusicales();
+
   sonidoTransformacion.pause();
 
   document.getElementById(
@@ -1609,12 +1667,15 @@ function mostrarPremio(numero, yaParticipo) {
     "TOM " + opcion.nombre;
 
   const imagen =
-    document.getElementById("imagenPremio");
+    document.getElementById(
+      "imagenPremio"
+    );
 
   imagen.src = opcion.imagen;
 
   imagen.alt =
-    "Tom disfrazado de " + opcion.nombre;
+    "Tom disfrazado de " +
+    opcion.nombre;
 
   document.getElementById(
     "premio"
@@ -1662,19 +1723,27 @@ function volverAJugar() {
 
   if (!MODO_PRUEBA) {
 
-    const anterior = premioGuardado();
+    const anterior =
+      premioGuardado();
 
     if (anterior !== null) {
-      mostrarPremio(anterior, true);
+
+      mostrarPremio(
+        anterior,
+        true
+      );
+
       return;
     }
-
   }
 
   transicionEnCurso = false;
   juegoBloqueado = false;
 
-  if (arrastre && arrastre.vista) {
+  if (
+    arrastre &&
+    arrastre.vista
+  ) {
     arrastre.vista.remove();
   }
 
@@ -1685,7 +1754,8 @@ function volverAJugar() {
     "apareciendo"
   );
 
-  tomJugador.src = "tom-normal.png";
+  tomJugador.src =
+    "tom-normal.png";
 
   magia.classList.remove("activa");
 
@@ -1702,6 +1772,7 @@ function volverAJugar() {
     document.getElementById("confeti");
 
   confeti.innerHTML = "";
+
   confeti.style.display = "none";
 
   sonidoTransformacion.pause();
@@ -1714,7 +1785,10 @@ function volverAJugar() {
 
   detenerAudiosMusicales();
 
-  reproducirAudio(musicaDisfraces, true);
+  reproducirAudio(
+    musicaDisfraces,
+    true
+  );
 }
 
 /* ==========================
@@ -1736,14 +1810,21 @@ function lanzarConfeti() {
   ];
 
   contenedor.innerHTML = "";
-  contenedor.style.display = "block";
 
-  for (let i = 0; i < 90; i++) {
+  contenedor.style.display =
+    "block";
+
+  for (
+    let i = 0;
+    i < 90;
+    i++
+  ) {
 
     const papel =
       document.createElement("span");
 
-    papel.className = "papelito";
+    papel.className =
+      "papelito";
 
     papel.style.left =
       Math.random() * 100 + "%";
@@ -1765,8 +1846,12 @@ function lanzarConfeti() {
   }
 
   setTimeout(() => {
-    contenedor.style.display = "none";
+
+    contenedor.style.display =
+      "none";
+
     contenedor.innerHTML = "";
+
   }, 6000);
 }
 
@@ -1785,11 +1870,17 @@ window.addEventListener(
       return;
     }
 
-    const anterior = premioGuardado();
+    const anterior =
+      premioGuardado();
 
     if (anterior !== null) {
+
       juegoBloqueado = true;
-      mostrarPremio(anterior, true);
+
+      mostrarPremio(
+        anterior,
+        true
+      );
     }
 
   }
