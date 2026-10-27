@@ -3,517 +3,359 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TOMWEEN | Comunidad Tom</title>
-
 <style>
-* { box-sizing: border-box; }
-
-:root {
-  --oro: #ffc13b;
-  --fondo: #15051f;
+*{box-sizing:border-box}
+:root{--oro:#ffc13b;--fondo:#15051f}
+html{scroll-behavior:smooth}
+body{
+ margin:0;min-height:100vh;background:var(--fondo);
+ color:white;font-family:Arial,Helvetica,sans-serif;
+ text-align:center;overflow-x:hidden
 }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--fondo);
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  overflow-x: hidden;
+section{
+ display:none;min-height:100vh;padding:65px 12px 35px;
+ flex-direction:column;align-items:center;justify-content:center;
+ background:radial-gradient(circle at top,#75258c,transparent 60%),
+ linear-gradient(160deg,#270b40,#100417)
 }
-
-section {
-  display: none;
-  min-height: 100vh;
-  padding: 65px 12px 35px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at top, #75258c 0%, transparent 60%),
-    linear-gradient(160deg, #270b40, #100417);
+section.activa{display:flex}
+#inicio{
+ position:relative;isolation:isolate;
+ min-height:100vh;min-height:100svh;
+ padding:85px 16px 45px;
+ background:
+ linear-gradient(180deg,#10041730,#10041770),
+ url("fondoinicio.png") center/cover no-repeat,
+ linear-gradient(160deg,#270b40,#100417)
 }
-
-section.activa { display: flex; }
-
-/* PORTADA: FONDO A PANTALLA COMPLETA */
-
-#inicio {
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 85px 16px 45px;
-  background:
-    linear-gradient(180deg, #10041730, #10041770),
-    url("fondoinicio.png") center center / cover no-repeat,
-    linear-gradient(160deg, #270b40, #100417);
+#inicio>*{position:relative;z-index:1}
+.portada{
+ display:block;width:min(95vw,650px);max-height:36vh;
+ object-fit:contain;border-radius:22px;
+ box-shadow:0 0 30px #ff8c4770
 }
-
-#inicio > * {
-  position: relative;
-  z-index: 1;
+h1{
+ color:var(--oro);
+ text-shadow:0 3px #9b3500,0 0 20px #ff8a00;
+ margin:12px 0
 }
-
-.portada {
-  display: block;
-  width: min(95vw, 650px);
-  max-height: 36vh;
-  object-fit: contain;
-  border-radius: 22px;
-  box-shadow: 0 0 30px #ff8c4770;
+h2{color:#ffdc89;margin:10px 0}
+p{line-height:1.5}
+.btn{
+ display:inline-block;margin:14px auto;padding:16px 25px;
+ border:2px solid #ffe48b;border-radius:17px;
+ background:linear-gradient(#ffda57,#f47b09);
+ color:#301400;font-size:17px;font-weight:900;
+ cursor:pointer;text-decoration:none;
+ box-shadow:0 5px 0 #863100
 }
-
-h1 {
-  color: var(--oro);
-  text-shadow: 0 3px #9b3500, 0 0 20px #ff8a00;
-  margin: 12px 0;
-}
-
-h2 {
-  color: #ffdc89;
-  margin: 10px 0;
-}
-
-p { line-height: 1.5; }
-
-.btn {
-  display: inline-block;
-  margin: 14px auto;
-  padding: 16px 25px;
-  border: 2px solid #ffe48b;
-  border-radius: 17px;
-  background: linear-gradient(#ffda57, #f47b09);
-  color: #301400;
-  font-size: 17px;
-  font-weight: 900;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 5px 0 #863100;
-}
-
-.btn:active { transform: translateY(3px); }
+.btn:active{transform:translateY(3px)}
 
 /* ESCENARIO */
-
-.escenario {
-  position: relative;
-  width: min(96vw, 750px);
-  margin: 12px auto;
-  border: 3px solid #f8b34b;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #32134e;
-  box-shadow: 0 0 25px #ff923d80;
-  line-height: 0;
-  isolation: isolate;
-  user-select: none;
+.escenario{
+ position:relative;
+ width:min(96vw,750px);
+ margin:12px auto;
+ border:3px solid #f8b34b;
+ border-radius:20px;
+ overflow:hidden;background:#32134e;
+ box-shadow:0 0 25px #ff923d80;
+ line-height:0;isolation:isolate;
+ user-select:none
+}
+.fondo-juego{
+ display:block;width:100%;height:auto;
+ pointer-events:none;-webkit-user-drag:none
 }
 
-.fondo-juego {
-  display: block;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-  -webkit-user-drag: none;
+/* TOM */
+#tomJugador{
+ position:absolute;z-index:4;
+ left:50%;top:55%;width:25%;height:44%;
+ object-fit:contain;object-position:center;
+ transform:translate(-50%,-50%);
+ pointer-events:none;user-select:none;
+ -webkit-user-drag:none;
+ filter:drop-shadow(0 0 12px #ff9a36)
+}
+#tomJugador.girando{
+ animation:girarTom 1.8s ease-in-out forwards
+}
+#tomJugador.apareciendo{
+ animation:revelarTom .7s ease-out
+}
+@keyframes girarTom{
+ 0%{
+  transform:translate(-50%,-50%) rotate(0) scale(1);
+  filter:brightness(1)
+ }
+ 30%{
+  transform:translate(-50%,-50%) rotate(400deg) scale(.65);
+  filter:brightness(1.6)
+ }
+ 65%{
+  transform:translate(-50%,-50%) rotate(760deg) scale(.45);
+  filter:brightness(2.5)
+ }
+ 100%{
+  transform:translate(-50%,-50%) rotate(1080deg) scale(1);
+  filter:brightness(1.4)
+ }
+}
+@keyframes revelarTom{
+ 0%{
+  opacity:0;filter:brightness(4);
+  transform:translate(-50%,-50%) scale(.4)
+ }
+ 65%{
+  opacity:1;transform:translate(-50%,-50%) scale(1.12)
+ }
+ 100%{
+  opacity:1;transform:translate(-50%,-50%) scale(1);
+  filter:brightness(1) drop-shadow(0 0 15px #ff9a36)
+ }
 }
 
-/* TOM EN EL CENTRO */
-
-#tomJugador {
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  top: 55%;
-  width: 25%;
-  height: 44%;
-  object-fit: contain;
-  object-position: center;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  filter: drop-shadow(0 0 12px #ff9a36);
+/* EFECTO MAGICO */
+#magia{
+ display:none;position:absolute;z-index:5;
+ left:50%;top:55%;width:48%;aspect-ratio:1;
+ transform:translate(-50%,-50%);
+ pointer-events:none;border-radius:50%;
+ background:radial-gradient(circle,#ffffffdd 0%,
+ #e8a2ffbb 15%,#a62cff88 38%,#7020b000 70%)
+}
+#magia.activa{
+ display:block;
+ animation:explosionMagica 1.8s ease-out forwards
+}
+@keyframes explosionMagica{
+ 0%{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.1) rotate(0)
+ }
+ 35%{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1.2) rotate(80deg)
+ }
+ 75%{
+  opacity:.9;
+  transform:translate(-50%,-50%) scale(1.5) rotate(160deg)
+ }
+ 100%{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(1.9) rotate(220deg)
+ }
 }
 
-#tomJugador.girando {
-  animation: girarTom 1.15s ease-in-out forwards;
+/* DISFRACES */
+.zona{
+ position:absolute;z-index:3;padding:0;border:0;
+ background:transparent;border-radius:50%;
+ transform:translate(-50%,-50%);
+ cursor:grab;touch-action:none;
+ -webkit-tap-highlight-color:transparent
 }
-
-#tomJugador.apareciendo {
-  animation: revelarTom .65s ease-out;
+.zona:active{cursor:grabbing}
+.zona:focus-visible{outline:3px solid #ffe45c}
+.zona.bloqueada{pointer-events:none;opacity:.45}
+.z1{left:21%;top:20%;width:23%;height:25%}
+.z2{left:19%;top:45%;width:23%;height:25%}
+.z3{left:20%;top:72%;width:24%;height:25%}
+.z4{left:80%;top:20%;width:24%;height:25%}
+.z5{left:81%;top:45%;width:24%;height:25%}
+.z6{left:80%;top:72%;width:24%;height:25%}
+.ayuda-arrastre{
+ display:inline-block;max-width:95%;margin:8px auto;
+ padding:10px 16px;border:1px solid #ffcf60;
+ border-radius:15px;background:#260a3ae8;
+ color:#fff1bd;font-weight:bold;line-height:1.4
 }
-
-@keyframes girarTom {
-  0% {
-    transform: translate(-50%, -50%) rotate(0) scale(1);
-    filter: brightness(1);
-  }
-  35% {
-    transform: translate(-50%, -50%) rotate(400deg) scale(.55);
-    filter: brightness(2);
-  }
-  65% {
-    transform: translate(-50%, -50%) rotate(760deg) scale(.45);
-    filter: brightness(2.5);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(1080deg) scale(1);
-    filter: brightness(1.4);
-  }
-}
-
-@keyframes revelarTom {
-  0% {
-    opacity: 0;
-    filter: brightness(4) drop-shadow(0 0 25px #dc65ff);
-    transform: translate(-50%, -50%) scale(.4);
-  }
-  65% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.12);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    filter: brightness(1) drop-shadow(0 0 15px #ff9a36);
-  }
-}
-
-/* EXPLOSIÓN MÁGICA */
-
-#magia {
-  display: none;
-  position: absolute;
-  z-index: 5;
-  left: 50%;
-  top: 55%;
-  width: 48%;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, #ffffffdd 0%, #e8a2ffbb 15%,
-    #a62cff88 38%, #7020b000 70%);
-}
-
-#magia.activa {
-  display: block;
-  animation: explosionMagica 1.2s ease-out forwards;
-}
-
-@keyframes explosionMagica {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(.1) rotate(0);
-  }
-  35% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.2) rotate(80deg);
-  }
-  75% {
-    opacity: .9;
-    transform: translate(-50%, -50%) scale(1.5) rotate(160deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.9) rotate(220deg);
-  }
-}
-
-/* ZONAS PARA ARRASTRAR */
-
-.zona {
-  position: absolute;
-  z-index: 3;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  cursor: grab;
-  touch-action: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.zona:active { cursor: grabbing; }
-
-.zona:focus-visible {
-  outline: 3px solid #ffe45c;
-}
-
-.zona.bloqueada {
-  pointer-events: none;
-  opacity: .45;
-}
-
-.z1 { left: 21%; top: 20%; width: 23%; height: 25%; }
-.z2 { left: 19%; top: 45%; width: 23%; height: 25%; }
-.z3 { left: 20%; top: 72%; width: 24%; height: 25%; }
-.z4 { left: 80%; top: 20%; width: 24%; height: 25%; }
-.z5 { left: 81%; top: 45%; width: 24%; height: 25%; }
-.z6 { left: 80%; top: 72%; width: 24%; height: 25%; }
-
-.ayuda-arrastre {
-  display: inline-block;
-  max-width: 95%;
-  margin: 8px auto;
-  padding: 10px 16px;
-  border: 1px solid #ffcf60;
-  border-radius: 15px;
-  background: #260a3ae8;
-  color: #fff1bd;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
-/* IMAGEN QUE SIGUE AL DEDO O AL MOUSE */
-
-.arrastre-vista {
-  position: fixed;
-  z-index: 9999;
-  width: 100px;
-  height: 100px;
-  border: 3px solid #ffdc69;
-  border-radius: 50%;
-  background-color: #321044;
-  background-repeat: no-repeat;
-  box-shadow: 0 0 24px #c94dff;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
+.arrastre-vista{
+ position:fixed;z-index:9999;
+ width:100px;height:100px;
+ border:3px solid #ffdc69;border-radius:50%;
+ background-color:#321044;background-repeat:no-repeat;
+ box-shadow:0 0 24px #c94dff;
+ pointer-events:none;
+ transform:translate(-50%,-50%);overflow:hidden
 }
 
 /* RESULTADO */
-
-.resultado-caja {
-  position: relative;
-  width: min(95vw, 560px);
-  padding: 24px 16px;
-  border: 3px solid #ffcd4d;
-  border-radius: 25px;
-  background:
-    radial-gradient(circle at top, #a52799, transparent 58%),
-    linear-gradient(145deg, #671988, #180720);
-  box-shadow: 0 0 25px #ffc13b80, 0 0 55px #d85aff70;
-  animation: aparecer .5s ease-out;
+.resultado-caja{
+ position:relative;width:min(95vw,560px);
+ padding:24px 16px;border:3px solid #ffcd4d;
+ border-radius:25px;
+ background:radial-gradient(circle at top,#a52799,transparent 58%),
+ linear-gradient(145deg,#671988,#180720);
+ box-shadow:0 0 25px #ffc13b80,0 0 55px #d85aff70;
+ animation:aparecer .5s ease-out
 }
-
-@keyframes aparecer {
-  from { opacity: 0; transform: scale(.88); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes aparecer{
+ from{opacity:0;transform:scale(.88)}
+ to{opacity:1;transform:scale(1)}
 }
-
-.resultado-caja img {
-  display: block;
-  width: min(78%, 310px);
-  max-height: 330px;
-  object-fit: contain;
-  margin: 12px auto;
-  filter: drop-shadow(0 10px 15px #0009);
+.resultado-caja img{
+ display:block;width:min(78%,310px);max-height:330px;
+ object-fit:contain;margin:12px auto;
+ filter:drop-shadow(0 10px 15px #0009)
 }
-
-.resultado-caja.festejando img {
-  animation: festejoTom .9s ease-in-out infinite alternate;
+.resultado-caja.festejando img{
+ animation:festejoTom .9s ease-in-out infinite alternate
 }
-
-@keyframes festejoTom {
-  from { transform: translateY(0) rotate(-4deg); }
-  to { transform: translateY(-14px) rotate(4deg); }
+@keyframes festejoTom{
+ from{transform:translateY(0) rotate(-4deg)}
+ to{transform:translateY(-14px) rotate(4deg)}
 }
-
-.titulo-ganador {
-  font-size: clamp(26px, 7vw, 40px);
-  animation: brilloTitulo 1s infinite alternate;
+.titulo-ganador{
+ font-size:clamp(26px,7vw,40px);
+ animation:brilloTitulo 1s infinite alternate
 }
-
-@keyframes brilloTitulo {
-  from { text-shadow: 0 0 10px orange; }
-  to { text-shadow: 0 0 20px yellow, 0 0 35px #ff38c7; }
+@keyframes brilloTitulo{
+ from{text-shadow:0 0 10px orange}
+ to{text-shadow:0 0 20px yellow,0 0 35px #ff38c7}
 }
-
-.premio {
-  margin: 15px 0;
-  color: #ffe341;
-  font-size: clamp(38px, 9vw, 66px);
-  font-weight: 900;
-  animation: brilloPremio .8s infinite alternate;
+.premio{
+ margin:15px 0;color:#ffe341;
+ font-size:clamp(38px,9vw,66px);
+ font-weight:900;
+ animation:brilloPremio .8s infinite alternate
 }
-
-@keyframes brilloPremio {
-  from {
-    transform: scale(1);
-    text-shadow: 0 4px #843000, 0 0 12px orange;
-  }
-  to {
-    transform: scale(1.06);
-    text-shadow: 0 4px #843000, 0 0 24px yellow, 0 0 40px #ff48cc;
-  }
+@keyframes brilloPremio{
+ from{
+  transform:scale(1);
+  text-shadow:0 4px #843000,0 0 12px orange
+ }
+ to{
+  transform:scale(1.06);
+  text-shadow:0 4px #843000,0 0 24px yellow,
+  0 0 40px #ff48cc
+ }
 }
-
-.sub {
-  font-weight: 900;
-  color: #f6ddff;
+.sub{font-weight:900;color:#f6ddff}
+.condiciones{
+ width:100%;margin:20px auto;padding:18px 14px;
+ border:2px solid #ffc13b;border-radius:20px;
+ background:linear-gradient(145deg,#341044,#4b1658);
+ box-shadow:0 0 18px #ffc13b30;text-align:left
 }
-
-/* CONDICIONES */
-
-.condiciones {
-  width: 100%;
-  margin: 20px auto;
-  padding: 18px 14px;
-  border: 2px solid #ffc13b;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #341044, #4b1658);
-  box-shadow: 0 0 18px #ffc13b30;
-  text-align: left;
+.condiciones h3{
+ margin:0 0 15px;text-align:center;
+ color:#ffdc69;font-size:19px
 }
-
-.condiciones h3 {
-  margin: 0 0 15px;
-  text-align: center;
-  color: #ffdc69;
-  font-size: 19px;
+.condicion{
+ padding:10px 8px;border-bottom:1px solid #ffffff25;
+ color:white;font-size:15px;font-weight:bold;
+ line-height:1.4
 }
-
-.condicion {
-  padding: 10px 8px;
-  border-bottom: 1px solid #ffffff25;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 1.4;
+.condicion:last-child{border-bottom:0}
+.btn-whatsapp,.btn-canal{
+ display:inline-block;width:min(100%,400px);
+ margin:12px auto;padding:16px 14px;
+ border:2px solid #baffc8;border-radius:18px;
+ background:linear-gradient(#48f27b,#0ba83e);
+ color:#073817;font-size:16px;font-weight:900;
+ text-decoration:none;box-shadow:0 5px 0 #075b26
 }
-
-.condicion:last-child { border-bottom: 0; }
-
-/* BOTONES */
-
-.btn-whatsapp, .btn-canal {
-  display: inline-block;
-  width: min(100%, 400px);
-  margin: 12px auto;
-  padding: 16px 14px;
-  border: 2px solid #baffc8;
-  border-radius: 18px;
-  background: linear-gradient(#48f27b, #0ba83e);
-  color: #073817;
-  font-size: 16px;
-  font-weight: 900;
-  text-decoration: none;
-  box-shadow: 0 5px 0 #075b26;
+.btn-whatsapp{animation:pulsoBoton 1.6s infinite}
+@keyframes pulsoBoton{
+ 50%{box-shadow:0 5px 0 #075b26,0 0 24px #40ff80}
 }
-
-.btn-whatsapp { animation: pulsoBoton 1.6s infinite; }
-
-@keyframes pulsoBoton {
-  50% { box-shadow: 0 5px 0 #075b26, 0 0 24px #40ff80; }
+.canal-caja{
+ width:100%;max-width:440px;margin:22px auto 8px;
+ padding:18px 14px;border:2px solid #b967ed;
+ border-radius:20px;
+ background:linear-gradient(145deg,#622278,#301044)
 }
-
-.canal-caja {
-  width: 100%;
-  max-width: 440px;
-  margin: 22px auto 8px;
-  padding: 18px 14px;
-  border: 2px solid #b967ed;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #622278, #301044);
-}
-
-.canal-titulo {
-  color: #ffda77;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.canal-texto {
-  color: #fff0ff;
-  font-size: 15px;
-}
-
-.pie {
-  margin-top: 22px;
-  font-size: 13px;
-  color: #e4c3f0;
-}
+.canal-titulo{color:#ffda77;font-size:18px;font-weight:900}
+.canal-texto{color:#fff0ff;font-size:15px}
+.pie{margin-top:22px;font-size:13px;color:#e4c3f0}
 
 /* CONFETI */
-
-#confeti {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  overflow: hidden;
-  pointer-events: none;
+#confeti{
+ display:none;position:fixed;inset:0;z-index:50;
+ overflow:hidden;pointer-events:none
+}
+.papelito{
+ position:absolute;top:-30px;width:10px;height:18px;
+ animation:caer linear forwards
+}
+@keyframes caer{
+ to{transform:translateY(110vh) rotate(900deg);opacity:0}
 }
 
-.papelito {
-  position: absolute;
-  top: -30px;
-  width: 10px;
-  height: 18px;
-  animation: caer linear forwards;
+/* AUDIO */
+#musicaBtn{
+ position:fixed;top:12px;right:12px;z-index:100;
+ padding:10px 15px;border:1px solid #bd80dc;
+ border-radius:25px;background:#290e3d;
+ color:white;cursor:pointer
 }
 
-@keyframes caer {
-  to {
-    transform: translateY(110vh) rotate(900deg);
-    opacity: 0;
-  }
+/* MEJORA PARA CELULARES */
+@media(max-width:600px){
+ #seleccion{
+  padding:65px 0 24px;
+  justify-content:flex-start;
+ }
+ #seleccion h1{
+  font-size:clamp(20px,6vw,28px);
+  margin:8px 0 4px
+ }
+ #seleccion h2{
+  font-size:clamp(18px,5vw,24px);
+  margin:4px 0
+ }
+ #seleccion>p{
+  font-size:13px;
+  padding:0 10px;
+  margin:6px 0
+ }
+ .escenario{
+  width:100%;
+  max-width:none;
+  margin:10px 0;
+  border-left:0;
+  border-right:0;
+  border-radius:8px;
+ }
+ .fondo-juego{
+  width:100%;
+  height:min(70svh,690px);
+  min-height:470px;
+  object-fit:fill;
+ }
+ #tomJugador{
+  width:30%;
+  height:44%;
+ }
+ .arrastre-vista{
+  width:90px;height:90px
+ }
+ .ayuda-arrastre{
+  margin:10px;
+  font-size:13px
+ }
+ .btn,.btn-whatsapp,.btn-canal{font-size:14px}
+ .condicion{font-size:13px}
+ #inicio{padding:75px 14px 35px}
+ #inicio>p{max-width:420px}
 }
-
-/* BOTÓN DE MÚSICA */
-
-#musicaBtn {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 100;
-  padding: 10px 15px;
-  border: 1px solid #bd80dc;
-  border-radius: 25px;
-  background: #290e3d;
-  color: white;
-  cursor: pointer;
-}
-
-@media (max-width: 480px) {
-  .btn, .btn-whatsapp, .btn-canal { font-size: 14px; }
-  .condicion { font-size: 13px; }
-  #tomJugador { width: 27%; }
-  .arrastre-vista { width: 85px; height: 85px; }
-
-  #inicio {
-    padding: 75px 14px 35px;
-  }
-
-  #inicio > p {
-    max-width: 420px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .resultado-caja,
-  .resultado-caja img,
-  .titulo-ganador,
-  .premio,
-  .btn-whatsapp {
-    animation: none !important;
-  }
+@media(prefers-reduced-motion:reduce){
+ .resultado-caja,
+ .resultado-caja img,
+ .titulo-ganador,.premio,.btn-whatsapp{
+  animation:none!important
+ }
 }
 </style>
 </head>
-
 <body>
 
 <button id="musicaBtn" type="button" onclick="alternarMusica()">
-  🔇 Activar música
+🔇 Activar música
 </button>
 
 <audio id="musicaInicio" src="musica-inicio.mp3" preload="auto" loop></audio>
@@ -522,545 +364,433 @@ p { line-height: 1.5; }
 
 <div id="confeti"></div>
 
-<!-- PORTADA -->
-
+<!-- INICIO -->
 <section id="inicio" class="activa">
-
-  <img class="portada"
-       src="portada-nueva.png"
-       alt="Comunidad Tom Halloween">
-
-  <h2>🎃 ¡BIENVENIDOS A TOMWEEN! 🎃</h2>
-
-  <p>
-    🐱 Arrastrá un disfraz hasta Tom y descubrí tu premio especial.
-  </p>
-
-  <button class="btn" type="button" onclick="iniciarJuego()">
-    🎮 INICIAR JUEGO
-  </button>
-
+<img class="portada" src="portada-nueva.png" alt="Comunidad Tom Halloween">
+<h2>🎃 ¡BIENVENIDOS A TOMWEEN! 🎃</h2>
+<p>🐱 Arrastrá un disfraz hasta Tom y descubrí tu premio especial.</p>
+<button class="btn" type="button" onclick="iniciarJuego()">
+🎮 INICIAR JUEGO
+</button>
 </section>
 
-<!-- SELECCIÓN DE DISFRACES -->
-
+<!-- SELECCION -->
 <section id="seleccion">
+<h1>🎃 COMUNIDAD TOM 🎃</h1>
+<h2>¡DISFRAZÁ A TOM!</h2>
+<p>👆 Mantené presionado un disfraz y arrastralo hasta Tom.</p>
 
-  <h1>🎃 COMUNIDAD TOM 🎃</h1>
-  <h2>¡DISFRAZÁ A TOM!</h2>
+<div class="escenario" id="escenario">
+<img class="fondo-juego" src="fondo-halloween.png"
+alt="Escenario de Halloween con seis disfraces">
 
-  <p>👆 Mantené presionado un disfraz y arrastralo hasta Tom.</p>
+<img id="tomJugador" src="tom-normal.png"
+alt="Tom esperando su disfraz" draggable="false">
 
-  <div class="escenario" id="escenario">
+<div id="magia"></div>
 
-    <img class="fondo-juego"
-         src="fondo-halloween.png"
-         alt="Escenario de Halloween con seis disfraces">
+<button class="zona z1" type="button" data-numero="0" aria-label="Vampiro"></button>
+<button class="zona z2" type="button" data-numero="1" aria-label="Fantasma"></button>
+<button class="zona z3" type="button" data-numero="2" aria-label="Momia"></button>
+<button class="zona z4" type="button" data-numero="3" aria-label="Diablo"></button>
+<button class="zona z5" type="button" data-numero="4" aria-label="Brujo"></button>
+<button class="zona z6" type="button" data-numero="5" aria-label="Esqueleto"></button>
+</div>
 
-    <img id="tomJugador"
-         src="tom-normal.png"
-         alt="Tom esperando su disfraz"
-         draggable="false">
-
-    <div id="magia"></div>
-
-    <button class="zona z1" type="button" data-numero="0" aria-label="Disfraz de vampiro"></button>
-    <button class="zona z2" type="button" data-numero="1" aria-label="Disfraz de fantasma"></button>
-    <button class="zona z3" type="button" data-numero="2" aria-label="Disfraz de momia"></button>
-    <button class="zona z4" type="button" data-numero="3" aria-label="Disfraz de diablo"></button>
-    <button class="zona z5" type="button" data-numero="4" aria-label="Disfraz de brujo"></button>
-    <button class="zona z6" type="button" data-numero="5" aria-label="Disfraz de esqueleto"></button>
-
-  </div>
-
-  <div id="mensajeArrastre" class="ayuda-arrastre" aria-live="polite">
-    ✨ ¡Arrastrá tu disfraz favorito hasta el centro!
-  </div>
-
+<div id="mensajeArrastre" class="ayuda-arrastre" aria-live="polite">
+✨ ¡Arrastrá tu disfraz favorito hasta el centro!
+</div>
 </section>
 
 <!-- RESULTADO -->
-
 <section id="resultado">
+<div class="resultado-caja" id="cajaResultado">
 
-  <div class="resultado-caja" id="cajaResultado">
+<h1 class="titulo-ganador" id="tituloResultado">
+🎉 ¡FELICIDADES! 🎉
+</h1>
 
-    <h1 class="titulo-ganador" id="tituloResultado">🎉 ¡FELICIDADES! 🎉</h1>
+<h2 id="nombreDisfraz"></h2>
+<img id="imagenPremio" src="" alt="Tom disfrazado">
+<p id="textoPremio">🎁 ¡TU PREMIO ES!</p>
+<div class="premio" id="premio"></div>
+<p class="sub" id="detalle"></p>
 
-    <h2 id="nombreDisfraz"></h2>
+<div class="condiciones">
+<h3>🎃 CONDICIONES DE TU PREMIO 🎃</h3>
+<div class="condicion">🎁 SIN MÍNIMO DE CARGA</div>
+<div class="condicion">💰 TOPE DE BONIFICACIÓN: $30.000</div>
+<div class="condicion">🔄 PARA RETIRAR CON BONO DEBÉS DUPLICAR LA BONIFICACIÓN</div>
+<div class="condicion">🎰 BONO NO VÁLIDO PARA RULETA</div>
+<div class="condicion">📱 VÁLIDO PARA UNA SOLA PLATAFORMA</div>
+<div class="condicion">💳 UNA SOLA CARGA</div>
+<div class="condicion">📞 UN SOLO NÚMERO</div>
+</div>
 
-    <img id="imagenPremio" src="" alt="Tom con su disfraz ganador">
+<a id="reclamarWhatsapp" class="btn-whatsapp"
+href="#" target="_blank" rel="noopener noreferrer">
+💚 RECLAMAR MI PREMIO POR WHATSAPP
+</a>
 
-    <p id="textoPremio">🎁 ¡TU PREMIO ES!</p>
+<div class="canal-caja">
+<p class="canal-titulo">🐱🎃 ¡GRACIAS POR PARTICIPAR!</p>
+<p class="canal-texto">
+💜 Seguinos en nuestro canal de WhatsApp para descubrir más juegos,
+premios y bonos de COMUNIDAD TOM.
+</p>
+<a class="btn-canal"
+href="https://whatsapp.com/channel/0029Vb7Vf4nKgsNszIrKNG02"
+target="_blank" rel="noopener noreferrer">
+📲 SEGUIR NUESTRO CANAL
+</a>
+</div>
 
-    <div class="premio" id="premio"></div>
-
-    <p class="sub" id="detalle"></p>
-
-    <div class="condiciones">
-      <h3>🎃 CONDICIONES DE TU PREMIO 🎃</h3>
-      <div class="condicion">🎁 SIN MÍNIMO DE CARGA</div>
-      <div class="condicion">💰 TOPE DE BONIFICACIÓN: $30.000</div>
-      <div class="condicion">🔄 PARA RETIRAR CON BONO DEBÉS DUPLICAR LA BONIFICACIÓN</div>
-      <div class="condicion">🎰 BONO NO VÁLIDO PARA RULETA</div>
-      <div class="condicion">📱 VÁLIDO PARA UNA SOLA PLATAFORMA</div>
-      <div class="condicion">💳 UNA SOLA CARGA</div>
-      <div class="condicion">📞 UN SOLO NÚMERO</div>
-    </div>
-
-    <a id="reclamarWhatsapp"
-       class="btn-whatsapp"
-       href="#"
-       target="_blank"
-       rel="noopener noreferrer">
-      💚 RECLAMAR MI PREMIO POR WHATSAPP
-    </a>
-
-    <div class="canal-caja">
-      <p class="canal-titulo">🐱🎃 ¡GRACIAS POR PARTICIPAR!</p>
-      <p class="canal-texto">
-        💜 Seguinos en nuestro canal de WhatsApp para descubrir más juegos,
-        premios y bonos de COMUNIDAD TOM.
-      </p>
-
-      <a class="btn-canal"
-         href="https://whatsapp.com/channel/0029Vb7Vf4nKgsNszIrKNG02"
-         target="_blank"
-         rel="noopener noreferrer">
-        📲 SEGUIR NUESTRO CANAL
-      </a>
-    </div>
-
-  </div>
-
-  <p class="pie">🐱 COMUNIDAD TOM Y MISTY - HALLOWEEN 🎃</p>
-
+</div>
+<p class="pie">🐱 COMUNIDAD TOM Y MISTY - HALLOWEEN 🎃</p>
 </section>
 
 <script>
-/* PREMIOS ORIGINALES */
-
-const opciones = [
-  {
-    nombre: "VAMPIRO",
-    premio: "30%",
-    imagen: "vampiro.png",
-    tipo: "bono",
-    whatsapp: "https://wa.link/ekus81"
-  },
-  {
-    nombre: "FANTASMA",
-    premio: "20%",
-    imagen: "fantasma.png",
-    tipo: "bono",
-    whatsapp: "https://wa.link/sgwya9"
-  },
-  {
-    nombre: "MOMIA",
-    premio: "15%",
-    imagen: "momia.png",
-    tipo: "bono",
-    whatsapp: "https://wa.link/xcaa8y"
-  },
-  {
-    nombre: "DIABLO",
-    premio: "10%",
-    imagen: "diablo.png",
-    tipo: "bono",
-    whatsapp: "https://wa.link/a5cnge"
-  },
-  {
-    nombre: "BRUJO",
-    premio: "1.000 FICHAS",
-    imagen: "brujo.png",
-    tipo: "fichas",
-    whatsapp: "https://wa.link/am2t5h"
-  },
-  {
-    nombre: "ESQUELETO",
-    premio: "500 FICHAS",
-    imagen: "esqueleto.png",
-    tipo: "fichas",
-    whatsapp: "https://wa.link/nmz8vi"
-  }
+/* PREMIOS Y DISFRACES ORIGINALES */
+const opciones=[
+ {nombre:"VAMPIRO",premio:"30%",imagen:"vampiro.png",tipo:"bono",whatsapp:"https://wa.link/ekus81"},
+ {nombre:"FANTASMA",premio:"20%",imagen:"fantasma.png",tipo:"bono",whatsapp:"https://wa.link/sgwya9"},
+ {nombre:"MOMIA",premio:"15%",imagen:"momia.png",tipo:"bono",whatsapp:"https://wa.link/xcaa8y"},
+ {nombre:"DIABLO",premio:"10%",imagen:"diablo.png",tipo:"bono",whatsapp:"https://wa.link/a5cnge"},
+ {nombre:"BRUJO",premio:"1.000 FICHAS",imagen:"brujo.png",tipo:"fichas",whatsapp:"https://wa.link/am2t5h"},
+ {nombre:"ESQUELETO",premio:"500 FICHAS",imagen:"esqueleto.png",tipo:"fichas",whatsapp:"https://wa.link/nmz8vi"}
 ];
 
-const CLAVE_JUEGO = "tomween_halloween_2026_premio";
+const CLAVE_JUEGO="tomween_halloween_2026_premio";
 
-const musicaInicio = document.getElementById("musicaInicio");
-const musicaDisfraces = document.getElementById("musicaDisfraces");
-const sonidoTransformacion = document.getElementById("sonidoTransformacion");
-const botonMusica = document.getElementById("musicaBtn");
+const musicaInicio=document.getElementById("musicaInicio");
+const musicaDisfraces=document.getElementById("musicaDisfraces");
+const sonidoTransformacion=document.getElementById("sonidoTransformacion");
+const botonMusica=document.getElementById("musicaBtn");
+const escenario=document.getElementById("escenario");
+const tomJugador=document.getElementById("tomJugador");
+const magia=document.getElementById("magia");
+const mensajeArrastre=document.getElementById("mensajeArrastre");
 
-let musicaSilenciada = true;
-let arrastre = null;
-let juegoBloqueado = false;
-let transicionEnCurso = false;
+let musicaSilenciada=true;
+let arrastre=null;
+let juegoBloqueado=false;
+let transicionEnCurso=false;
 
-/* PARTICIPACIÓN ÚNICA POR NAVEGADOR */
-
-function premioGuardado() {
-  try {
-    const valor = localStorage.getItem(CLAVE_JUEGO);
-    if (valor === null) return null;
-
-    const numero = Number(valor);
-
-    if (Number.isInteger(numero) && numero >= 0 && numero < opciones.length) {
-      return numero;
-    }
-  } catch (error) {
-    console.warn("No se pudo leer el premio guardado.");
-  }
-
-  return null;
+/* PARTICIPACION */
+function premioGuardado(){
+ try{
+  const valor=localStorage.getItem(CLAVE_JUEGO);
+  if(valor===null)return null;
+  const numero=Number(valor);
+  if(Number.isInteger(numero)&&numero>=0&&numero<opciones.length)
+   return numero;
+ }catch(e){console.warn("No se pudo leer el premio.");}
+ return null;
+}
+function guardarPremio(numero){
+ try{
+  localStorage.setItem(CLAVE_JUEGO,String(numero));
+  return true;
+ }catch(e){
+  console.warn("No se pudo guardar el premio.");
+  return false;
+ }
 }
 
-function guardarPremio(numero) {
-  try {
-    localStorage.setItem(CLAVE_JUEGO, String(numero));
-    return true;
-  } catch (error) {
-    console.warn("No se pudo guardar el premio.");
-    return false;
-  }
+/* PANTALLAS */
+function mostrar(id){
+ document.querySelectorAll("section").forEach(s=>s.classList.remove("activa"));
+ document.getElementById(id).classList.add("activa");
+ window.scrollTo(0,0);
 }
 
-/* CAMBIO DE PANTALLAS */
-
-function mostrar(id) {
-  document.querySelectorAll("section").forEach(seccion => {
-    seccion.classList.remove("activa");
-  });
-
-  document.getElementById(id).classList.add("activa");
-  window.scrollTo(0, 0);
+/* MUSICA */
+function detenerAudiosMusicales(){
+ musicaInicio.pause();
+ musicaDisfraces.pause();
 }
-
-/* AUDIO */
-
-function detenerAudiosMusicales() {
-  musicaInicio.pause();
-  musicaDisfraces.pause();
+function reproducirAudio(audio,reiniciar=false){
+ if(musicaSilenciada)return;
+ if(reiniciar)audio.currentTime=0;
+ audio.play().catch(e=>console.warn("Error de audio:",e));
 }
-
-async function reproducirAudio(audio, reiniciar = false) {
-  if (musicaSilenciada) return;
-
-  try {
-    if (reiniciar) audio.currentTime = 0;
-    await audio.play();
-  } catch (error) {
-    console.warn("No se pudo reproducir el audio. Revisá su nombre y ubicación.", error);
-  }
+function actualizarBotonMusica(){
+ botonMusica.textContent=musicaSilenciada?
+ "🔇 Activar música":"🔊 Silenciar música";
 }
-
-function actualizarBotonMusica() {
-  botonMusica.textContent = musicaSilenciada
-    ? "🔇 Activar música"
-    : "🔊 Silenciar música";
+function iniciarJuego(){
+ const anterior=premioGuardado();
+ if(anterior!==null){
+  mostrarPremio(anterior,true);
+  return;
+ }
+ mostrar("seleccion");
+ detenerAudiosMusicales();
+ musicaSilenciada=false;
+ actualizarBotonMusica();
+ reproducirAudio(musicaDisfraces,true);
 }
-
-function iniciarJuego() {
-  const anterior = premioGuardado();
-
-  if (anterior !== null) {
-    detenerAudiosMusicales();
-    mostrarPremio(anterior, true);
-    return;
-  }
-
-  mostrar("seleccion");
-
+function alternarMusica(){
+ musicaSilenciada=!musicaSilenciada;
+ actualizarBotonMusica();
+ if(musicaSilenciada){
   detenerAudiosMusicales();
-
-  /*
-    El clic en INICIAR JUEGO habilita la reproducción
-    en navegadores móviles.
-  */
-
-  musicaSilenciada = false;
-  actualizarBotonMusica();
-  reproducirAudio(musicaDisfraces, true);
+  sonidoTransformacion.pause();
+  return;
+ }
+ if(transicionEnCurso){
+  sonidoTransformacion.play().catch(()=>{});
+  return;
+ }
+ if(document.getElementById("seleccion").classList.contains("activa")){
+  reproducirAudio(musicaDisfraces,true);
+ }else if(document.getElementById("inicio").classList.contains("activa")){
+  reproducirAudio(musicaInicio,true);
+ }
 }
 
-function alternarMusica() {
-  musicaSilenciada = !musicaSilenciada;
-  actualizarBotonMusica();
+/* ARRASTRAR DISFRAZ */
+function crearVistaArrastre(numero,x,y){
+ const rect=escenario.getBoundingClientRect();
+ const boton=document.querySelector('.zona[data-numero="'+numero+'"]');
+ const zona=boton.getBoundingClientRect();
+ const vista=document.createElement("div");
+ vista.className="arrastre-vista";
 
-  if (musicaSilenciada) {
-    detenerAudiosMusicales();
-    sonidoTransformacion.pause();
-    return;
-  }
+ const ancho=Math.min(rect.width*.24,150);
+ const cx=zona.left+zona.width/2-rect.left;
+ const cy=zona.top+zona.height/2-rect.top;
 
-  const seleccionActiva =
-    document.getElementById("seleccion").classList.contains("activa");
+ vista.style.width=ancho+"px";
+ vista.style.height=ancho+"px";
+ vista.style.backgroundImage='url("fondo-halloween.png")';
 
-  if (seleccionActiva) {
-    reproducirAudio(musicaDisfraces, true);
-  } else {
-    reproducirAudio(musicaInicio, true);
-  }
+ /* Mantener la misma escala de la imagen visible */
+ const imagenFondo=document.querySelector(".fondo-juego");
+ const rectImagen=imagenFondo.getBoundingClientRect();
+ vista.style.backgroundSize=
+ rectImagen.width+"px "+rectImagen.height+"px";
+ vista.style.backgroundPosition=
+ (ancho/2-cx)+"px "+(ancho/2-cy)+"px";
+ vista.style.left=x+"px";
+ vista.style.top=y+"px";
+
+ document.body.appendChild(vista);
+ return vista;
 }
 
-/* ARRASTRE DE LOS DISFRACES */
-
-const escenario = document.getElementById("escenario");
-const tomJugador = document.getElementById("tomJugador");
-const magia = document.getElementById("magia");
-const mensajeArrastre = document.getElementById("mensajeArrastre");
-
-function crearVistaArrastre(numero, x, y) {
-  const rectEscenario = escenario.getBoundingClientRect();
-  const boton = document.querySelector('.zona[data-numero="' + numero + '"]');
-  const rectBoton = boton.getBoundingClientRect();
-
-  const vista = document.createElement("div");
-  vista.className = "arrastre-vista";
-
-  const anchoVista = Math.min(rectEscenario.width * .24, 150);
-  const centroX = rectBoton.left + rectBoton.width / 2 - rectEscenario.left;
-  const centroY = rectBoton.top + rectBoton.height / 2 - rectEscenario.top;
-
-  vista.style.width = anchoVista + "px";
-  vista.style.height = anchoVista + "px";
-  vista.style.backgroundImage = 'url("fondo-halloween.png")';
-  vista.style.backgroundSize =
-    rectEscenario.width + "px " + rectEscenario.height + "px";
-
-  vista.style.backgroundPosition =
-    (anchoVista / 2 - centroX) + "px " +
-    (anchoVista / 2 - centroY) + "px";
-
-  vista.style.left = x + "px";
-  vista.style.top = y + "px";
-
-  document.body.appendChild(vista);
-  return vista;
+function moverVista(x,y){
+ if(!arrastre||!arrastre.vista)return;
+ arrastre.vista.style.left=x+"px";
+ arrastre.vista.style.top=y+"px";
 }
 
-function moverVista(x, y) {
-  if (!arrastre || !arrastre.vista) return;
-
-  arrastre.vista.style.left = x + "px";
-  arrastre.vista.style.top = y + "px";
+function iniciarArrastre(evento,numero){
+ if(juegoBloqueado||transicionEnCurso)return;
+ const anterior=premioGuardado();
+ if(anterior!==null){
+  mostrarPremio(anterior,true);
+  return;
+ }
+ evento.preventDefault();
+ const vista=crearVistaArrastre(numero,evento.clientX,evento.clientY);
+ arrastre={
+  numero,
+  pointerId:evento.pointerId,
+  vista
+ };
+ mensajeArrastre.textContent="🎃 ¡Soltá el disfraz encima de Tom!";
+ moverVista(evento.clientX,evento.clientY);
 }
 
-function iniciarArrastre(evento, numero) {
-  if (juegoBloqueado || transicionEnCurso) return;
+document.querySelectorAll(".zona").forEach(boton=>{
+ boton.addEventListener("pointerdown",evento=>{
+  iniciarArrastre(evento,Number(boton.dataset.numero));
+ });
+});
 
-  const anterior = premioGuardado();
+document.addEventListener("pointermove",evento=>{
+ if(!arrastre||evento.pointerId!==arrastre.pointerId)return;
+ evento.preventDefault();
+ moverVista(evento.clientX,evento.clientY);
+},{passive:false});
 
-  if (anterior !== null) {
-    mostrarPremio(anterior, true);
-    return;
-  }
+document.addEventListener("pointerup",evento=>{
+ if(!arrastre||evento.pointerId!==arrastre.pointerId)return;
+ const numero=arrastre.numero;
+ if(arrastre.vista)arrastre.vista.remove();
+ arrastre=null;
 
-  evento.preventDefault();
+ const rect=tomJugador.getBoundingClientRect();
+ const sobreTom=
+ evento.clientX>=rect.left&&
+ evento.clientX<=rect.right&&
+ evento.clientY>=rect.top&&
+ evento.clientY<=rect.bottom;
 
-  const vista = crearVistaArrastre(numero, evento.clientX, evento.clientY);
+ if(sobreTom){
+  transformarTom(numero);
+ }else{
+  mensajeArrastre.textContent=
+  "👻 ¡Casi! Arrastrá el disfraz hasta el centro, encima de Tom.";
+ }
+});
 
-  arrastre = {
-    numero: numero,
-    pointerId: evento.pointerId,
-    vista: vista
+document.addEventListener("pointercancel",()=>{
+ if(arrastre&&arrastre.vista)arrastre.vista.remove();
+ arrastre=null;
+ mensajeArrastre.textContent="✨ Intentá arrastrar el disfraz hasta Tom.";
+});
+
+/* TRANSFORMACION SINCRONIZADA */
+function transformarTom(numero){
+ if(juegoBloqueado||transicionEnCurso||!opciones[numero])return;
+
+ const anterior=premioGuardado();
+ if(anterior!==null){
+  mostrarPremio(anterior,true);
+  return;
+ }
+
+ if(!guardarPremio(numero)){
+  alert("No se pudo guardar tu participación. Activá el almacenamiento del navegador.");
+  return;
+ }
+
+ transicionEnCurso=true;
+ juegoBloqueado=true;
+
+ document.querySelectorAll(".zona").forEach(z=>{
+  z.classList.add("bloqueada");
+ });
+
+ mensajeArrastre.textContent=
+ "✨ ¡La magia de Halloween está transformando a Tom!";
+
+ detenerAudiosMusicales();
+
+ /* Reiniciamos el sonido justo antes de iniciar el giro */
+ sonidoTransformacion.pause();
+ sonidoTransformacion.currentTime=0;
+
+ tomJugador.classList.remove("apareciendo","girando");
+ magia.classList.remove("activa");
+ void tomJugador.offsetWidth;
+
+ /* Inicio simultaneo de animacion y sonido */
+ tomJugador.classList.add("girando");
+ magia.classList.add("activa");
+
+ if(!musicaSilenciada){
+  sonidoTransformacion.play().catch(error=>{
+   console.warn("No se pudo reproducir la transformación:",error);
+  });
+ }
+
+ /* Tom gira primero y luego aparece disfrazado */
+ setTimeout(()=>{
+  const imagenNueva=new Image();
+  imagenNueva.src=opciones[numero].imagen;
+
+  const cambiarImagen=()=>{
+   tomJugador.src=opciones[numero].imagen;
+   tomJugador.classList.remove("girando");
+   tomJugador.classList.add("apareciendo");
   };
 
-  mensajeArrastre.textContent = "🎃 ¡Soltá el disfraz encima de Tom!";
-  moverVista(evento.clientX, evento.clientY);
-}
-
-document.querySelectorAll(".zona").forEach(boton => {
-  boton.addEventListener("pointerdown", evento => {
-    iniciarArrastre(evento, Number(boton.dataset.numero));
-  });
-});
-
-document.addEventListener("pointermove", evento => {
-  if (!arrastre || evento.pointerId !== arrastre.pointerId) return;
-
-  evento.preventDefault();
-  moverVista(evento.clientX, evento.clientY);
-}, { passive: false });
-
-document.addEventListener("pointerup", evento => {
-  if (!arrastre || evento.pointerId !== arrastre.pointerId) return;
-
-  const numero = arrastre.numero;
-  if (arrastre.vista) arrastre.vista.remove();
-  arrastre = null;
-
-  const rectTom = tomJugador.getBoundingClientRect();
-
-  const sobreTom =
-    evento.clientX >= rectTom.left &&
-    evento.clientX <= rectTom.right &&
-    evento.clientY >= rectTom.top &&
-    evento.clientY <= rectTom.bottom;
-
-  if (sobreTom) {
-    transformarTom(numero);
-  } else {
-    mensajeArrastre.textContent =
-      "👻 ¡Casi! Arrastrá el disfraz hasta el centro, encima de Tom.";
+  if(imagenNueva.complete&&imagenNueva.naturalWidth>0){
+   cambiarImagen();
+  }else{
+   imagenNueva.onload=cambiarImagen;
+   imagenNueva.onerror=cambiarImagen;
   }
-});
+ },1800);
 
-document.addEventListener("pointercancel", () => {
-  if (arrastre && arrastre.vista) arrastre.vista.remove();
-
-  arrastre = null;
-  mensajeArrastre.textContent = "✨ Intentá arrastrar el disfraz hasta Tom.";
-});
-
-/* TRANSFORMACIÓN */
-
-function transformarTom(numero) {
-  if (juegoBloqueado || transicionEnCurso || !opciones[numero]) return;
-
-  const anterior = premioGuardado();
-
-  if (anterior !== null) {
-    mostrarPremio(anterior, true);
-    return;
-  }
-
-  if (!guardarPremio(numero)) {
-    alert("No se pudo guardar tu participación. Activá el almacenamiento del navegador.");
-    return;
-  }
-
-  transicionEnCurso = true;
-  juegoBloqueado = true;
-
-  document.querySelectorAll(".zona").forEach(zona => {
-    zona.classList.add("bloqueada");
-  });
-
-  mensajeArrastre.textContent = "✨ ¡La magia de Halloween está transformando a Tom!";
-
-  detenerAudiosMusicales();
-
-  if (!musicaSilenciada) {
-    sonidoTransformacion.currentTime = 0;
-    sonidoTransformacion.play().catch(error => {
-      console.warn("No se pudo reproducir el sonido de transformación.", error);
-    });
-  }
-
-  tomJugador.classList.remove("apareciendo");
-  tomJugador.classList.add("girando");
+ /* Dejar tiempo para que el efecto termine */
+ setTimeout(()=>{
   magia.classList.remove("activa");
-
-  void tomJugador.offsetWidth;
-  void magia.offsetWidth;
-
-  magia.classList.add("activa");
-
-  setTimeout(() => {
-    tomJugador.onload = () => {
-      tomJugador.classList.remove("girando");
-      tomJugador.classList.add("apareciendo");
-    };
-
-    tomJugador.src = opciones[numero].imagen;
-
-    if (tomJugador.complete && tomJugador.naturalWidth > 0) {
-      tomJugador.classList.remove("girando");
-      tomJugador.classList.add("apareciendo");
-    }
-  }, 650);
-
-  setTimeout(() => {
-    magia.classList.remove("activa");
-    sonidoTransformacion.pause();
-    mostrarPremio(numero, false);
-    transicionEnCurso = false;
-  }, 1900);
+  mostrarPremio(numero,false);
+  transicionEnCurso=false;
+ },2900);
 }
 
 /* RESULTADO */
+function mostrarPremio(numero,yaParticipo){
+ const opcion=opciones[numero];
+ if(!opcion)return;
 
-function mostrarPremio(numero, yaParticipo) {
-  const opcion = opciones[numero];
-  if (!opcion) return;
+ detenerAudiosMusicales();
 
-  detenerAudiosMusicales();
+ /* No interrumpir el efecto mientras está sonando.
+    Al mostrar el premio ya finalizó el giro. */
+ if(!yaParticipo){
   sonidoTransformacion.pause();
+ }else{
+  sonidoTransformacion.pause();
+ }
 
-  document.getElementById("tituloResultado").textContent =
-    yaParticipo ? "🎃 ¡YA PARTICIPASTE! 🎃" : "🎉 ¡FELICIDADES! 🎉";
+ document.getElementById("tituloResultado").textContent=
+ yaParticipo?"🎃 ¡YA PARTICIPASTE! 🎃":"🎉 ¡FELICIDADES! 🎉";
 
-  document.getElementById("nombreDisfraz").textContent = "TOM " + opcion.nombre;
+ document.getElementById("nombreDisfraz").textContent="TOM "+opcion.nombre;
 
-  const imagen = document.getElementById("imagenPremio");
-  imagen.src = opcion.imagen;
-  imagen.alt = "Tom disfrazado de " + opcion.nombre;
+ const imagen=document.getElementById("imagenPremio");
+ imagen.src=opcion.imagen;
+ imagen.alt="Tom disfrazado de "+opcion.nombre;
 
-  document.getElementById("premio").textContent = opcion.premio;
+ document.getElementById("premio").textContent=opcion.premio;
+ document.getElementById("textoPremio").textContent=
+ yaParticipo?"🎁 ESTE FUE TU PREMIO:":"🎁 ¡TU PREMIO ES!";
 
-  document.getElementById("textoPremio").textContent =
-    yaParticipo ? "🎁 ESTE FUE TU PREMIO:" : "🎁 ¡TU PREMIO ES!";
+ document.getElementById("detalle").textContent=
+ opcion.tipo==="bono"?
+ "DE BONIFICACIÓN EN TU PRÓXIMA CARGA":
+ "DE REGALO PARA TU PRÓXIMA CARGA";
 
-  document.getElementById("detalle").textContent =
-    opcion.tipo === "bono"
-      ? "DE BONIFICACIÓN EN TU PRÓXIMA CARGA"
-      : "DE REGALO PARA TU PRÓXIMA CARGA";
+ document.getElementById("reclamarWhatsapp").href=opcion.whatsapp;
+ document.getElementById("cajaResultado")
+ .classList.toggle("festejando",!yaParticipo);
 
-  document.getElementById("reclamarWhatsapp").href = opcion.whatsapp;
-
-  document.getElementById("cajaResultado")
-    .classList.toggle("festejando", !yaParticipo);
-
-  mostrar("resultado");
-
-  if (!yaParticipo) lanzarConfeti();
+ mostrar("resultado");
+ if(!yaParticipo)lanzarConfeti();
 }
 
 /* CONFETI */
+function lanzarConfeti(){
+ const contenedor=document.getElementById("confeti");
+ const colores=[
+ "#ffca28","#ff5722","#b84dff",
+ "#32e86b","#ff3dba","#40d8ff"
+ ];
+ contenedor.innerHTML="";
+ contenedor.style.display="block";
 
-function lanzarConfeti() {
-  const contenedor = document.getElementById("confeti");
-  const colores = [
-    "#ffca28", "#ff5722", "#b84dff",
-    "#32e86b", "#ff3dba", "#40d8ff"
-  ];
+ for(let i=0;i<90;i++){
+  const papel=document.createElement("span");
+  papel.className="papelito";
+  papel.style.left=Math.random()*100+"%";
+  papel.style.background=
+  colores[Math.floor(Math.random()*colores.length)];
+  papel.style.animationDuration=(2.5+Math.random()*2)+"s";
+  papel.style.animationDelay=(Math.random()*1.2)+"s";
+  contenedor.appendChild(papel);
+ }
 
-  contenedor.innerHTML = "";
-  contenedor.style.display = "block";
-
-  for (let i = 0; i < 90; i++) {
-    const papel = document.createElement("span");
-    papel.className = "papelito";
-    papel.style.left = Math.random() * 100 + "%";
-    papel.style.background = colores[
-      Math.floor(Math.random() * colores.length)
-    ];
-    papel.style.animationDuration = (2.5 + Math.random() * 2) + "s";
-    papel.style.animationDelay = (Math.random() * 1.2) + "s";
-    contenedor.appendChild(papel);
-  }
-
-  setTimeout(() => {
-    contenedor.style.display = "none";
-    contenedor.innerHTML = "";
-  }, 6000);
+ setTimeout(()=>{
+  contenedor.style.display="none";
+  contenedor.innerHTML="";
+ },6000);
 }
 
-/* RECORDAR SI YA PARTICIPÓ */
-
-window.addEventListener("DOMContentLoaded", () => {
-  actualizarBotonMusica();
-
-  const anterior = premioGuardado();
-
-  if (anterior !== null) {
-    juegoBloqueado = true;
-    mostrarPremio(anterior, true);
-  }
+/* RECUPERAR PREMIO */
+window.addEventListener("DOMContentLoaded",()=>{
+ actualizarBotonMusica();
+ const anterior=premioGuardado();
+ if(anterior!==null){
+  juegoBloqueado=true;
+  mostrarPremio(anterior,true);
+ }
 });
 </script>
-
 </body>
 </html>
