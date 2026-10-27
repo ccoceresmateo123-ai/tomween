@@ -7,25 +7,20 @@
 <title>TOMWEEN | Comunidad Tom</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 :root {
   --oro: #ffc13b;
-  --violeta: #a62cff;
   --fondo: #15051f;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   min-height: 100vh;
   background: var(--fondo);
-  color: white;
+  color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   overflow-x: hidden;
@@ -43,15 +38,34 @@ section {
     linear-gradient(160deg, #270b40, #100417);
 }
 
-section.activa {
-  display: flex;
-}
+section.activa { display: flex; }
+
+/* PORTADA: FONDO A PANTALLA COMPLETA */
 
 #inicio {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 85px 16px 45px;
   background:
-    linear-gradient(#10041755, #10041788),
-    url("inicio/fondoinicio.png") center / cover no-repeat,
+    linear-gradient(180deg, #10041730, #10041770),
+    url("fondoinicio.png") center center / cover no-repeat,
     linear-gradient(160deg, #270b40, #100417);
+}
+
+#inicio > * {
+  position: relative;
+  z-index: 1;
+}
+
+.portada {
+  display: block;
+  width: min(95vw, 650px);
+  max-height: 36vh;
+  object-fit: contain;
+  border-radius: 22px;
+  box-shadow: 0 0 30px #ff8c4770;
 }
 
 h1 {
@@ -65,17 +79,7 @@ h2 {
   margin: 10px 0;
 }
 
-p {
-  line-height: 1.5;
-}
-
-.portada {
-  display: block;
-  width: min(95vw, 650px);
-  height: auto;
-  border-radius: 22px;
-  box-shadow: 0 0 30px #ff8c4770;
-}
+p { line-height: 1.5; }
 
 .btn {
   display: inline-block;
@@ -92,9 +96,7 @@ p {
   box-shadow: 0 5px 0 #863100;
 }
 
-.btn:active {
-  transform: translateY(3px);
-}
+.btn:active { transform: translateY(3px); }
 
 /* ESCENARIO */
 
@@ -109,7 +111,6 @@ p {
   box-shadow: 0 0 25px #ff923d80;
   line-height: 0;
   isolation: isolate;
-  touch-action: pan-y;
   user-select: none;
 }
 
@@ -183,7 +184,7 @@ p {
   }
 }
 
-/* HUMO Y DESTELLOS */
+/* EXPLOSIÓN MÁGICA */
 
 #magia {
   display: none;
@@ -225,7 +226,7 @@ p {
   }
 }
 
-/* ZONAS ARRASTRABLES */
+/* ZONAS PARA ARRASTRAR */
 
 .zona {
   position: absolute;
@@ -240,9 +241,7 @@ p {
   -webkit-tap-highlight-color: transparent;
 }
 
-.zona:active {
-  cursor: grabbing;
-}
+.zona:active { cursor: grabbing; }
 
 .zona:focus-visible {
   outline: 3px solid #ffe45c;
@@ -260,23 +259,6 @@ p {
 .z5 { left: 81%; top: 45%; width: 24%; height: 25%; }
 .z6 { left: 80%; top: 72%; width: 24%; height: 25%; }
 
-/* VISTA DEL DISFRAZ DURANTE EL ARRASTRE */
-
-.arrastre-vista {
-  position: fixed;
-  z-index: 9999;
-  width: 115px;
-  height: 115px;
-  border: 3px solid #ffdc69;
-  border-radius: 50%;
-  background-color: #321044;
-  background-repeat: no-repeat;
-  box-shadow: 0 0 24px #c94dff;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-}
-
 .ayuda-arrastre {
   display: inline-block;
   max-width: 95%;
@@ -288,6 +270,23 @@ p {
   color: #fff1bd;
   font-weight: bold;
   line-height: 1.4;
+}
+
+/* IMAGEN QUE SIGUE AL DEDO O AL MOUSE */
+
+.arrastre-vista {
+  position: fixed;
+  z-index: 9999;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #ffdc69;
+  border-radius: 50%;
+  background-color: #321044;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 24px #c94dff;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
 }
 
 /* RESULTADO */
@@ -347,8 +346,14 @@ p {
 }
 
 @keyframes brilloPremio {
-  from { transform: scale(1); text-shadow: 0 4px #843000, 0 0 12px orange; }
-  to { transform: scale(1.06); text-shadow: 0 4px #843000, 0 0 24px yellow, 0 0 40px #ff48cc; }
+  from {
+    transform: scale(1);
+    text-shadow: 0 4px #843000, 0 0 12px orange;
+  }
+  to {
+    transform: scale(1.06);
+    text-shadow: 0 4px #843000, 0 0 24px yellow, 0 0 40px #ff48cc;
+  }
 }
 
 .sub {
@@ -385,14 +390,11 @@ p {
   line-height: 1.4;
 }
 
-.condicion:last-child {
-  border-bottom: 0;
-}
+.condicion:last-child { border-bottom: 0; }
 
-/* WHATSAPP */
+/* BOTONES */
 
-.btn-whatsapp,
-.btn-canal {
+.btn-whatsapp, .btn-canal {
   display: inline-block;
   width: min(100%, 400px);
   margin: 12px auto;
@@ -407,9 +409,7 @@ p {
   box-shadow: 0 5px 0 #075b26;
 }
 
-.btn-whatsapp {
-  animation: pulsoBoton 1.6s infinite;
-}
+.btn-whatsapp { animation: pulsoBoton 1.6s infinite; }
 
 @keyframes pulsoBoton {
   50% { box-shadow: 0 5px 0 #075b26, 0 0 24px #40ff80; }
@@ -462,10 +462,13 @@ p {
 }
 
 @keyframes caer {
-  to { transform: translateY(110vh) rotate(900deg); opacity: 0; }
+  to {
+    transform: translateY(110vh) rotate(900deg);
+    opacity: 0;
+  }
 }
 
-/* AUDIO */
+/* BOTÓN DE MÚSICA */
 
 #musicaBtn {
   position: fixed;
@@ -484,7 +487,15 @@ p {
   .btn, .btn-whatsapp, .btn-canal { font-size: 14px; }
   .condicion { font-size: 13px; }
   #tomJugador { width: 27%; }
-  .arrastre-vista { width: 90px; height: 90px; }
+  .arrastre-vista { width: 85px; height: 85px; }
+
+  #inicio {
+    padding: 75px 14px 35px;
+  }
+
+  #inicio > p {
+    max-width: 420px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -502,12 +513,12 @@ p {
 <body>
 
 <button id="musicaBtn" type="button" onclick="alternarMusica()">
-  🔇 Música
+  🔇 Activar música
 </button>
 
-<audio id="musicaInicio" src="inicio/musica-inicio.mp3" preload="auto" loop></audio>
-<audio id="musicaDisfraces" src="inicio/musica-disfraces.mp3" preload="auto" loop></audio>
-<audio id="sonidoTransformacion" src="inicio/sonido-transformacion.mp3" preload="auto"></audio>
+<audio id="musicaInicio" src="musica-inicio.mp3" preload="auto" loop></audio>
+<audio id="musicaDisfraces" src="musica-disfraces.mp3" preload="auto" loop></audio>
+<audio id="sonidoTransformacion" src="sonido-transformacion.mp3" preload="auto"></audio>
 
 <div id="confeti"></div>
 
@@ -515,7 +526,9 @@ p {
 
 <section id="inicio" class="activa">
 
-  <img class="portada" src="portada-nueva.png" alt="Comunidad Tom Halloween">
+  <img class="portada"
+       src="portada-nueva.png"
+       alt="Comunidad Tom Halloween">
 
   <h2>🎃 ¡BIENVENIDOS A TOMWEEN! 🎃</h2>
 
@@ -529,7 +542,7 @@ p {
 
 </section>
 
-<!-- SELECCIÓN -->
+<!-- SELECCIÓN DE DISFRACES -->
 
 <section id="seleccion">
 
@@ -551,12 +564,12 @@ p {
 
     <div id="magia"></div>
 
-    <button class="zona z1" type="button" data-numero="0" aria-label="Arrastrar disfraz de vampiro"></button>
-    <button class="zona z2" type="button" data-numero="1" aria-label="Arrastrar disfraz de fantasma"></button>
-    <button class="zona z3" type="button" data-numero="2" aria-label="Arrastrar disfraz de momia"></button>
-    <button class="zona z4" type="button" data-numero="3" aria-label="Arrastrar disfraz de diablo"></button>
-    <button class="zona z5" type="button" data-numero="4" aria-label="Arrastrar disfraz de brujo"></button>
-    <button class="zona z6" type="button" data-numero="5" aria-label="Arrastrar disfraz de esqueleto"></button>
+    <button class="zona z1" type="button" data-numero="0" aria-label="Disfraz de vampiro"></button>
+    <button class="zona z2" type="button" data-numero="1" aria-label="Disfraz de fantasma"></button>
+    <button class="zona z3" type="button" data-numero="2" aria-label="Disfraz de momia"></button>
+    <button class="zona z4" type="button" data-numero="3" aria-label="Disfraz de diablo"></button>
+    <button class="zona z5" type="button" data-numero="4" aria-label="Disfraz de brujo"></button>
+    <button class="zona z6" type="button" data-numero="5" aria-label="Disfraz de esqueleto"></button>
 
   </div>
 
@@ -609,6 +622,7 @@ p {
         💜 Seguinos en nuestro canal de WhatsApp para descubrir más juegos,
         premios y bonos de COMUNIDAD TOM.
       </p>
+
       <a class="btn-canal"
          href="https://whatsapp.com/channel/0029Vb7Vf4nKgsNszIrKNG02"
          target="_blank"
@@ -682,14 +696,12 @@ let musicaSilenciada = true;
 let arrastre = null;
 let juegoBloqueado = false;
 let transicionEnCurso = false;
-let audioInicioIntentado = false;
 
 /* PARTICIPACIÓN ÚNICA POR NAVEGADOR */
 
 function premioGuardado() {
   try {
     const valor = localStorage.getItem(CLAVE_JUEGO);
-
     if (valor === null) return null;
 
     const numero = Number(valor);
@@ -714,7 +726,7 @@ function guardarPremio(numero) {
   }
 }
 
-/* PANTALLAS */
+/* CAMBIO DE PANTALLAS */
 
 function mostrar(id) {
   document.querySelectorAll("section").forEach(seccion => {
@@ -739,12 +751,14 @@ async function reproducirAudio(audio, reiniciar = false) {
     if (reiniciar) audio.currentTime = 0;
     await audio.play();
   } catch (error) {
-    console.warn("El navegador no pudo reproducir el audio.", error);
+    console.warn("No se pudo reproducir el audio. Revisá su nombre y ubicación.", error);
   }
 }
 
 function actualizarBotonMusica() {
-  botonMusica.textContent = musicaSilenciada ? "🔇 Música" : "🔊 Música";
+  botonMusica.textContent = musicaSilenciada
+    ? "🔇 Activar música"
+    : "🔊 Silenciar música";
 }
 
 function iniciarJuego() {
@@ -757,11 +771,17 @@ function iniciarJuego() {
   }
 
   mostrar("seleccion");
+
   detenerAudiosMusicales();
 
-  if (!musicaSilenciada) {
-    reproducirAudio(musicaDisfraces, true);
-  }
+  /*
+    El clic en INICIAR JUEGO habilita la reproducción
+    en navegadores móviles.
+  */
+
+  musicaSilenciada = false;
+  actualizarBotonMusica();
+  reproducirAudio(musicaDisfraces, true);
 }
 
 function alternarMusica() {
@@ -774,26 +794,17 @@ function alternarMusica() {
     return;
   }
 
-  const pantallaSeleccion = document.getElementById("seleccion").classList.contains("activa");
+  const seleccionActiva =
+    document.getElementById("seleccion").classList.contains("activa");
 
-  if (pantallaSeleccion) {
-    reproducirAudio(musicaDisfraces);
+  if (seleccionActiva) {
+    reproducirAudio(musicaDisfraces, true);
   } else {
-    reproducirAudio(musicaInicio);
+    reproducirAudio(musicaInicio, true);
   }
 }
 
-/* SONIDO INICIAL: SE INTENTA REPRODUCIR AL PRIMER TOQUE */
-
-document.addEventListener("pointerdown", function iniciarAudioInicial() {
-  if (audioInicioIntentado || musicaSilenciada) return;
-
-  audioInicioIntentado = true;
-  reproducirAudio(musicaInicio);
-
-}, { once: true });
-
-/* ARRASTRAR DISFRACES */
+/* ARRASTRE DE LOS DISFRACES */
 
 const escenario = document.getElementById("escenario");
 const tomJugador = document.getElementById("tomJugador");
@@ -808,31 +819,24 @@ function crearVistaArrastre(numero, x, y) {
   const vista = document.createElement("div");
   vista.className = "arrastre-vista";
 
-  /*
-    Recorta visualmente la zona elegida del fondo.
-    Así se arrastra el disfraz que ya aparece en el escenario,
-    sin crear una segunda imagen diferente.
-  */
-
-  const anchoVista = Math.min(rectEscenario.width * 0.24, 150);
-  const altoVista = anchoVista;
-
+  const anchoVista = Math.min(rectEscenario.width * .24, 150);
   const centroX = rectBoton.left + rectBoton.width / 2 - rectEscenario.left;
   const centroY = rectBoton.top + rectBoton.height / 2 - rectEscenario.top;
 
   vista.style.width = anchoVista + "px";
-  vista.style.height = altoVista + "px";
+  vista.style.height = anchoVista + "px";
   vista.style.backgroundImage = 'url("fondo-halloween.png")';
-  vista.style.backgroundSize = rectEscenario.width + "px " + rectEscenario.height + "px";
+  vista.style.backgroundSize =
+    rectEscenario.width + "px " + rectEscenario.height + "px";
+
   vista.style.backgroundPosition =
     (anchoVista / 2 - centroX) + "px " +
-    (altoVista / 2 - centroY) + "px";
+    (anchoVista / 2 - centroY) + "px";
 
   vista.style.left = x + "px";
   vista.style.top = y + "px";
 
   document.body.appendChild(vista);
-
   return vista;
 }
 
@@ -860,12 +864,10 @@ function iniciarArrastre(evento, numero) {
   arrastre = {
     numero: numero,
     pointerId: evento.pointerId,
-    vista: vista,
-    inicioX: evento.clientX,
-    inicioY: evento.clientY
+    vista: vista
   };
 
-  mensajeArrastre.textContent = "🎃 ¡Ahora soltá el disfraz encima de Tom!";
+  mensajeArrastre.textContent = "🎃 ¡Soltá el disfraz encima de Tom!";
   moverVista(evento.clientX, evento.clientY);
 }
 
@@ -886,21 +888,18 @@ document.addEventListener("pointerup", evento => {
   if (!arrastre || evento.pointerId !== arrastre.pointerId) return;
 
   const numero = arrastre.numero;
-  const vista = arrastre.vista;
-
-  if (vista) vista.remove();
-
+  if (arrastre.vista) arrastre.vista.remove();
   arrastre = null;
 
   const rectTom = tomJugador.getBoundingClientRect();
 
-  const soltadoSobreTom =
+  const sobreTom =
     evento.clientX >= rectTom.left &&
     evento.clientX <= rectTom.right &&
     evento.clientY >= rectTom.top &&
     evento.clientY <= rectTom.bottom;
 
-  if (soltadoSobreTom) {
+  if (sobreTom) {
     transformarTom(numero);
   } else {
     mensajeArrastre.textContent =
@@ -909,9 +908,7 @@ document.addEventListener("pointerup", evento => {
 });
 
 document.addEventListener("pointercancel", () => {
-  if (arrastre && arrastre.vista) {
-    arrastre.vista.remove();
-  }
+  if (arrastre && arrastre.vista) arrastre.vista.remove();
 
   arrastre = null;
   mensajeArrastre.textContent = "✨ Intentá arrastrar el disfraz hasta Tom.";
@@ -922,8 +919,10 @@ document.addEventListener("pointercancel", () => {
 function transformarTom(numero) {
   if (juegoBloqueado || transicionEnCurso || !opciones[numero]) return;
 
-  if (premioGuardado() !== null) {
-    mostrarPremio(premioGuardado(), true);
+  const anterior = premioGuardado();
+
+  if (anterior !== null) {
+    mostrarPremio(anterior, true);
     return;
   }
 
@@ -945,14 +944,14 @@ function transformarTom(numero) {
 
   if (!musicaSilenciada) {
     sonidoTransformacion.currentTime = 0;
-    sonidoTransformacion.play().catch(() => {});
+    sonidoTransformacion.play().catch(error => {
+      console.warn("No se pudo reproducir el sonido de transformación.", error);
+    });
   }
 
   tomJugador.classList.remove("apareciendo");
   tomJugador.classList.add("girando");
   magia.classList.remove("activa");
-
-  /* Reinicia las animaciones para que puedan reproducirse */
 
   void tomJugador.offsetWidth;
   void magia.offsetWidth;
@@ -960,16 +959,14 @@ function transformarTom(numero) {
   magia.classList.add("activa");
 
   setTimeout(() => {
-    tomJugador.src = opciones[numero].imagen;
-
     tomJugador.onload = () => {
       tomJugador.classList.remove("girando");
       tomJugador.classList.add("apareciendo");
     };
 
-    /* También funciona si la imagen ya estaba cargada en caché */
+    tomJugador.src = opciones[numero].imagen;
 
-    if (tomJugador.complete) {
+    if (tomJugador.complete && tomJugador.naturalWidth > 0) {
       tomJugador.classList.remove("girando");
       tomJugador.classList.add("apareciendo");
     }
@@ -978,9 +975,7 @@ function transformarTom(numero) {
   setTimeout(() => {
     magia.classList.remove("activa");
     sonidoTransformacion.pause();
-
     mostrarPremio(numero, false);
-
     transicionEnCurso = false;
   }, 1900);
 }
@@ -989,7 +984,6 @@ function transformarTom(numero) {
 
 function mostrarPremio(numero, yaParticipo) {
   const opcion = opciones[numero];
-
   if (!opcion) return;
 
   detenerAudiosMusicales();
@@ -1016,34 +1010,35 @@ function mostrarPremio(numero, yaParticipo) {
 
   document.getElementById("reclamarWhatsapp").href = opcion.whatsapp;
 
-  const caja = document.getElementById("cajaResultado");
-  caja.classList.toggle("festejando", !yaParticipo);
+  document.getElementById("cajaResultado")
+    .classList.toggle("festejando", !yaParticipo);
 
   mostrar("resultado");
 
-  if (!yaParticipo) {
-    lanzarConfeti();
-  }
+  if (!yaParticipo) lanzarConfeti();
 }
 
 /* CONFETI */
 
 function lanzarConfeti() {
   const contenedor = document.getElementById("confeti");
-  const colores = ["#ffca28", "#ff5722", "#b84dff", "#32e86b", "#ff3dba", "#40d8ff"];
+  const colores = [
+    "#ffca28", "#ff5722", "#b84dff",
+    "#32e86b", "#ff3dba", "#40d8ff"
+  ];
 
   contenedor.innerHTML = "";
   contenedor.style.display = "block";
 
   for (let i = 0; i < 90; i++) {
     const papel = document.createElement("span");
-
     papel.className = "papelito";
     papel.style.left = Math.random() * 100 + "%";
-    papel.style.background = colores[Math.floor(Math.random() * colores.length)];
+    papel.style.background = colores[
+      Math.floor(Math.random() * colores.length)
+    ];
     papel.style.animationDuration = (2.5 + Math.random() * 2) + "s";
     papel.style.animationDelay = (Math.random() * 1.2) + "s";
-
     contenedor.appendChild(papel);
   }
 
@@ -1053,7 +1048,7 @@ function lanzarConfeti() {
   }, 6000);
 }
 
-/* RECUPERAR PARTICIPACIÓN AL RECARGAR */
+/* RECORDAR SI YA PARTICIPÓ */
 
 window.addEventListener("DOMContentLoaded", () => {
   actualizarBotonMusica();
